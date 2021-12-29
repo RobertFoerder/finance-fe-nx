@@ -1,0 +1,7 @@
+{
+  "apiModulePrefix": "Finance",
+  "configurationPrefix": "Finance",
+  "fileNaming": "kebab-case",
+  "modelPropertyNaming": "camelCase",
+  "stringEnums": true
+}

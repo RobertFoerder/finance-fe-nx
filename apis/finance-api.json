@@ -1,0 +1,170 @@
+{
+  "openapi": "3.0.2",
+  "x-json-schema-faker": {
+    "locale": "en",
+    "min-items": 50,
+    "max-items": 500
+  },
+  "info": {
+    "title": "Finance API",
+    "version": "1.0",
+    "description": "Finance API",
+    "contact": {
+      "name": "Robert Foerder",
+      "email": "rfoe@gmx.de"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Dev local"
+    }
+  ],
+  "paths": {
+    "/entries": {
+      "get": {
+        "summary": "Get finance entries",
+        "tags": ["entries"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FinanceEntry"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query parameters"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "operationId": "get-entries",
+        "description": "Get list of finance entries",
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "in": "query",
+            "name": "year"
+          }
+        ]
+      },
+      "post": {
+        "summary": "Add finance entry",
+        "tags": ["entries"],
+        "description": "Create new finance entry",
+        "operationId": "post-entry",
+        "requestBody": {
+          "description": "New finance entry",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FinanceEntry"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FinanceEntry"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid finance entry"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "parameters": []
+    },
+    "/entries/{entryId}": {
+      "delete": {
+        "summary": "Delete finance entry",
+        "tags": ["entries"],
+        "description": "Delete finance entry",
+        "operationId": "delete-entry",
+        "parameters": [
+          {
+            "name": "entryId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success - No content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Finance entry not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FinanceEntry": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "year": {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 9999
+          },
+          "month": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 11
+          },
+          "category": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "value": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "entries"
+    }
+  ]
+}

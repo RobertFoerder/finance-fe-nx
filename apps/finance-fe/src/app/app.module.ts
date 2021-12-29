@@ -1,13 +1,95 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { MsalGuard, MsalInterceptor, MsalModule } from '@azure/msal-angular';
+import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
+import { StoreModule } from '@ngrx/store';
+import { environment } from '../environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { ReactiveComponentModule } from '@ngrx/component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { LayoutModule } from '@finance-fe-nx/layout';
+import { GenericApiEffects } from '@finance-fe-nx/core';
+
+const ROUTES: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'summary' },
+  {
+    path: 'summary',
+    loadChildren: () =>
+      import('@finance-fe-nx/summary/views').then((m) => m.SummaryViewsModule),
+    canActivate: [MsalGuard],
+  },
+];
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
-  imports: [BrowserModule],
-  providers: [],
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }),
+    MsalModule.forRoot(
+      new PublicClientApplication({
+        auth: {
+          clientId: '0328ffcf-3e10-46af-bbcb-b0304f3ad068',
+          authority:
+            'https://login.microsoftonline.com/b0ea035c-6cd2-489c-941b-081faffe69e1',
+          redirectUri: 'http://localhost:4200',
+        },
+        cache: {
+          cacheLocation: 'localStorage',
+        },
+      }),
+      {
+        interactionType: InteractionType.Redirect,
+        authRequest: {
+          scopes: ['user.read'],
+        },
+      },
+      {
+        interactionType: InteractionType.Redirect,
+        protectedResourceMap: new Map([
+          [
+            'https://finance-app-function-app.azurewebsites.net/api/*',
+            ['api://b4dcf01c-7c63-4131-933c-7f359c4a0c58/user_impersonation'],
+          ],
+        ]),
+      }
+    ),
+    StoreModule.forRoot(
+      {},
+      {
+        runtimeChecks: {
+          strictStateImmutability: true,
+          strictActionImmutability: true,
+          strictStateSerializability: true,
+          strictActionSerializability: true,
+          strictActionTypeUniqueness: true,
+        },
+      }
+    ),
+    EffectsModule.forRoot([GenericApiEffects]),
+    environment.production ? [] : StoreDevtoolsModule.instrument(),
+    StoreRouterConnectingModule.forRoot(),
+    ReactiveComponentModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
+    LayoutModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MsalInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@finance-fe-nx/core": ["libs/core/src/index.ts"],
+      "@finance-fe-nx/finance-api": ["libs/finance-api/src/index.ts"],
+      "@finance-fe-nx/layout": ["libs/layout/src/index.ts"],
+      "@finance-fe-nx/summary": ["libs/summary/src/index.ts"],
+      "@finance-fe-nx/summary/data": ["libs/summary/data/src/index.ts"],
+      "@finance-fe-nx/summary/views": ["libs/summary/views/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

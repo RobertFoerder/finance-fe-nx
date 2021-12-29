@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'finance-fe-nx-root',
+  selector: 'finance-fe-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'finance-fe';
-}
+export class AppComponent {}

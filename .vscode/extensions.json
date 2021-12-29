@@ -1,9 +1,15 @@
 {
   "recommendations": [
     "angular.ng-template",
-    "nrwl.angular-console",
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
     "esbenp.prettier-vscode",
+    "andys8.jest-snippets",
     "firsttris.vscode-jest-runner",
-    "dbaeumer.vscode-eslint"
+    "nrwl.angular-console",
+    "stylelint.vscode-stylelint",
+    "visualstudioexptteam.vscodeintellicode",
+    "wayou.vscode-todo-highlight"
   ]
 }
