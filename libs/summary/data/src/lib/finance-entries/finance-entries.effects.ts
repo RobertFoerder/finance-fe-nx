@@ -9,7 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { serializeErrorResponse } from '@finance-fe-nx/core';
 
 @Injectable()
-export class FinancenEntriesEffects {
+export class FinanceEntriesEffects {
   public readonly init$ = createEffect(() =>
     this.actions$.pipe(
       ofType(FinanceEntriesActions.load),

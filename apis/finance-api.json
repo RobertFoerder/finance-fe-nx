@@ -142,7 +142,7 @@
           "month": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 11
+            "maximum": 12
           },
           "category": {
             "type": "string"
@@ -152,7 +152,9 @@
           },
           "value": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "minimum": -50000,
+            "maximum": 50000
           },
           "date": {
             "type": "string",

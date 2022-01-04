@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 
 import * as fromFinanceEntries from './finance-entries/finance-entries.reducers';
-import { FinancenEntriesEffects } from './finance-entries/finance-entries.effects';
+import { FinanceEntriesEffects } from './finance-entries/finance-entries.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { FinanceEntriesFacade } from './finance-entries/finance-entries.facade';
 
@@ -14,7 +14,7 @@ import { FinanceEntriesFacade } from './finance-entries/finance-entries.facade';
       fromFinanceEntries.FINANCE_ENTRIES_FEATURE_KEY,
       fromFinanceEntries.reducer
     ),
-    EffectsModule.forFeature([FinancenEntriesEffects]),
+    EffectsModule.forFeature([FinanceEntriesEffects]),
   ],
   providers: [FinanceEntriesFacade],
 })

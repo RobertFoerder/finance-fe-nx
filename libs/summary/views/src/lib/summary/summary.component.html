@@ -1,1 +1,26 @@
-<span> Hallo </span>
+<label for="year">Year</label>
+<select
+  name="year"
+  [ngModel]="year"
+  (ngModelChange)="selectedYearChanged($event)"
+>
+  <option *ngFor="let year of availableYears" [ngValue]="year">
+    {{ year }}
+  </option>
+</select>
+<span *ngIf="facade.loading$ | async">Loading ...</span>
+<span *ngIf="facade.error$ | async">Error...</span>
+<div
+  *ngIf="
+    (facade.loading$ | async) === false && (facade.error$ | async) === undefined
+  "
+>
+  <div *ngFor="let month of availableMonths; let i = index" class="mt-2">
+    <finance-fe-monthly-summary
+      [year]="year"
+      [month]="month"
+      [expanded]="i === 0"
+    >
+    </finance-fe-monthly-summary>
+  </div>
+</div>

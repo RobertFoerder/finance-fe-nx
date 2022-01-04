@@ -74,6 +74,9 @@
               "apps/finance-fe/src/assets"
             ],
             "styles": ["apps/finance-fe/src/styles.scss"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["libs/layout/src/lib/styles"]
+            },
             "scripts": [],
             "serviceWorker": true,
             "ngswConfigPath": "apps/finance-fe/ngsw-config.json"
