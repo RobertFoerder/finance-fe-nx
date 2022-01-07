@@ -1,0 +1,29 @@
+<form (submit)="onSubmit()">
+  <div>
+    <label for="year">Year</label>
+    <input name="year" type="text" [(ngModel)]="entry.year" readonly />
+  </div>
+  <div>
+    <label for="month">Month</label>
+    <select name="month" [(ngModel)]="entry.month">
+      <option *ngFor="let month of availableMonths" [ngValue]="month">
+        {{ month | monthToDate | date: 'MMMM' }}
+      </option>
+    </select>
+  </div>
+  <div>
+    <label for="category">Category</label>
+    <input name="category" type="text" [(ngModel)]="entry.category" />
+  </div>
+  <div>
+    <label for="description">Description</label>
+    <input name="description" type="text" [(ngModel)]="entry.description" />
+  </div>
+  <div>
+    <label for="value">Value</label>
+    <input name="value" type="number" [(ngModel)]="entry.value" />
+  </div>
+  <div>
+    <button type="submit" class="btn-primary mt-2">Add entry</button>
+  </div>
+</form>

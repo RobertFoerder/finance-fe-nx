@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FinanceEntry } from '@finance-fe-nx/finance-api';
 import { select, Store } from '@ngrx/store';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import * as FinanceEntriesActions from './finance-entries.actions';
 import * as FinanceEntriesSelectors from './finance-entries.selectors';
 
@@ -15,9 +15,6 @@ export class FinanceEntriesFacade {
   public readonly loading$ = this.store.pipe(
     select(FinanceEntriesSelectors.getFinanceEntriesLoading)
   );
-  public readonly loaded$ = this.store.pipe(
-    select(FinanceEntriesSelectors.getFinanceEntriesLoaded)
-  );
   public readonly collection$ = this.store.pipe(
     select(FinanceEntriesSelectors.getFinanceEntries)
   );
@@ -29,6 +26,12 @@ export class FinanceEntriesFacade {
   );
 
   constructor(private readonly store: Store) {}
+
+  public financeEntriesLoaded(year: number): Observable<boolean> {
+    return this.store.select(
+      FinanceEntriesSelectors.getFinanceEntriesLoaded(year)
+    );
+  }
 
   public loadFinanceEntries(year: number): void {
     this.store.dispatch(FinanceEntriesActions.load({ year }));
@@ -60,6 +63,10 @@ export class FinanceEntriesFacade {
     return this.getMonthlyEntries(month).pipe(
       map((entries) => this.groupEntriesByCategory(entries))
     );
+  }
+
+  public addEntry(entry: FinanceEntry): void {
+    this.store.dispatch(FinanceEntriesActions.add({ entry }));
   }
 
   private getMonthlyEntries(month: number): Observable<FinanceEntry[]> {

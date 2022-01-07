@@ -5,10 +5,9 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ContainerComponent } from '@finance-fe-nx/core';
-import { FinanceEntry } from '@finance-fe-nx/finance-api';
 import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
-import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'finance-fe-monthly-summary',
@@ -42,7 +41,11 @@ export class MonthlySummaryComponent
   public total = 0;
   public date = new Date();
 
-  constructor(public readonly facade: FinanceEntriesFacade) {
+  constructor(
+    public readonly facade: FinanceEntriesFacade,
+    private readonly router: Router,
+    private readonly activatedRoute: ActivatedRoute
+  ) {
     super();
   }
 
@@ -52,5 +55,9 @@ export class MonthlySummaryComponent
         this.total = total;
       }
     });
+  }
+
+  public addEntry(): void {
+    this.router.navigate(['add'], { relativeTo: this.activatedRoute });
   }
 }

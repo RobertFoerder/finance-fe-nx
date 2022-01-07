@@ -136,8 +136,8 @@
           },
           "year": {
             "type": "integer",
-            "minimum": 1900,
-            "maximum": 9999
+            "minimum": 2020,
+            "maximum": 2023
           },
           "month": {
             "type": "integer",

@@ -1,0 +1,15 @@
+form div {
+  @apply flex flex-col mb-2;
+}
+
+label {
+  @apply text-sm;
+}
+
+input {
+  @apply h-6 max-w-md;
+}
+
+select {
+  @apply bg-white h-6 max-w-md;
+}

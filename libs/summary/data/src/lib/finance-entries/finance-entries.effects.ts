@@ -10,7 +10,7 @@ import { serializeErrorResponse } from '@finance-fe-nx/core';
 
 @Injectable()
 export class FinanceEntriesEffects {
-  public readonly init$ = createEffect(() =>
+  public readonly load$ = createEffect(() =>
     this.actions$.pipe(
       ofType(FinanceEntriesActions.load),
       fetch({
@@ -24,6 +24,24 @@ export class FinanceEntriesEffects {
             ),
         onError: (_, error: HttpErrorResponse) =>
           FinanceEntriesActions.loadEntriesFailure({
+            error: serializeErrorResponse(error),
+          }),
+      })
+    )
+  );
+
+  public readonly add$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(FinanceEntriesActions.add),
+      fetch({
+        run: ({ entry }) =>
+          this.service
+            .postEntry(entry)
+            .pipe(
+              map((entry) => FinanceEntriesActions.addEntrySuccess({ entry }))
+            ),
+        onError: (_, error: HttpErrorResponse) =>
+          FinanceEntriesActions.addEntryFailure({
             error: serializeErrorResponse(error),
           }),
       })

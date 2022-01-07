@@ -1,17 +1,23 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ContainerComponent } from '@finance-fe-nx/core';
+import { DateService } from '@finance-fe-nx/shared';
 import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
 
 @Component({
-  selector: 'finance-fe-summary',
   templateUrl: './summary.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SummaryComponent implements OnInit {
+export class SummaryComponent extends ContainerComponent implements OnInit {
   public year = new Date().getFullYear();
   public availableMonths: number[] = [];
   public availableYears: number[] = [];
 
-  constructor(public readonly facade: FinanceEntriesFacade) {}
+  constructor(
+    public readonly facade: FinanceEntriesFacade,
+    private readonly dateService: DateService
+  ) {
+    super();
+  }
 
   public ngOnInit(): void {
     this.loadAvailableYears();
@@ -33,21 +39,14 @@ export class SummaryComponent implements OnInit {
   }
 
   private loadAvailableMonths(): void {
-    this.availableMonths = [];
-
-    const currentDate = new Date();
-    let maxMonth = 11;
-
-    if (this.year === currentDate.getFullYear()) {
-      maxMonth = currentDate.getMonth();
-    }
-
-    for (let month = maxMonth; month >= 0; month--) {
-      this.availableMonths.push(month);
-    }
+    this.availableMonths = this.dateService.getAvailableMonths(this.year);
   }
 
   private loadFinanceEntries(): void {
-    this.facade.loadFinanceEntries(this.year);
+    this.useLatest(this.facade.financeEntriesLoaded(this.year), (loaded) => {
+      if (!loaded) {
+        this.facade.loadFinanceEntries(this.year);
+      }
+    });
   }
 }

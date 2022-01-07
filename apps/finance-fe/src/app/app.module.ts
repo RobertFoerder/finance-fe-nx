@@ -15,6 +15,10 @@ import { ReactiveComponentModule } from '@ngrx/component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { LayoutModule } from '@finance-fe-nx/layout';
 import { GenericApiEffects } from '@finance-fe-nx/core';
+import {
+  FinanceApiModule,
+  FinanceConfiguration,
+} from '@finance-fe-nx/finance-api';
 
 const ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'summary' },
@@ -75,6 +79,9 @@ const ROUTES: Routes = [
     environment.production ? [] : StoreDevtoolsModule.instrument(),
     StoreRouterConnectingModule.forRoot(),
     ReactiveComponentModule,
+    FinanceApiModule.forRoot(
+      () => new FinanceConfiguration({ basePath: environment.basePath })
+    ),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

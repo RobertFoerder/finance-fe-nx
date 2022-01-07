@@ -15,4 +15,19 @@ export const loadEntriesFailure = createAction(
   props<{ error: SerializedError }>()
 );
 
+export const add = createAction(
+  '[Finance-Entries/API] Add',
+  props<{ entry: FinanceEntryEntity }>()
+);
+
+export const addEntrySuccess = createAction(
+  '[Finance-Entries/API] Add finance entry success',
+  props<{ entry: FinanceEntryEntity }>()
+);
+
+export const addEntryFailure = createAction(
+  '[Finance-Entries/API] Add finance entry failure',
+  props<{ error: SerializedError }>()
+);
+
 export const reset = createAction('[Finance-Entries] Reset');
