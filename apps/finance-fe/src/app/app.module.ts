@@ -41,7 +41,7 @@ const ROUTES: Routes = [
           clientId: '0328ffcf-3e10-46af-bbcb-b0304f3ad068',
           authority:
             'https://login.microsoftonline.com/b0ea035c-6cd2-489c-941b-081faffe69e1',
-          redirectUri: 'http://localhost:4200',
+          redirectUri: environment.loginRedirectUri,
         },
         cache: {
           cacheLocation: 'localStorage',
