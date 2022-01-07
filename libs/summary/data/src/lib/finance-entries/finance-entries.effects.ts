@@ -48,6 +48,22 @@ export class FinanceEntriesEffects {
     )
   );
 
+  public readonly delete$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(FinanceEntriesActions.deleteEntry),
+      fetch({
+        run: ({ id }) =>
+          this.service
+            .deleteEntry(id)
+            .pipe(map(() => FinanceEntriesActions.deleteEntrySuccess({ id }))),
+        onError: (_, error: HttpErrorResponse) =>
+          FinanceEntriesActions.deleteEntryFailure({
+            error: serializeErrorResponse(error),
+          }),
+      })
+    )
+  );
+
   constructor(
     private readonly actions$: Actions,
     private readonly service: EntriesService

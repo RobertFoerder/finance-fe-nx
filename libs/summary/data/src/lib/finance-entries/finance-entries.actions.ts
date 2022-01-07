@@ -19,14 +19,25 @@ export const add = createAction(
   '[Finance-Entries/API] Add',
   props<{ entry: FinanceEntryEntity }>()
 );
-
 export const addEntrySuccess = createAction(
   '[Finance-Entries/API] Add finance entry success',
   props<{ entry: FinanceEntryEntity }>()
 );
-
 export const addEntryFailure = createAction(
   '[Finance-Entries/API] Add finance entry failure',
+  props<{ error: SerializedError }>()
+);
+
+export const deleteEntry = createAction(
+  '[Finance-Entries/API] Delete',
+  props<{ id: string }>()
+);
+export const deleteEntrySuccess = createAction(
+  '[Finance-Entries/API] Delete entry success',
+  props<{ id: string }>()
+);
+export const deleteEntryFailure = createAction(
+  '[Finance-Entries/API] Delete entry failure',
   props<{ error: SerializedError }>()
 );
 

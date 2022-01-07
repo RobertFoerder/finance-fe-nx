@@ -69,6 +69,12 @@ export class FinanceEntriesFacade {
     this.store.dispatch(FinanceEntriesActions.add({ entry }));
   }
 
+  public deleteEntry(id: string | undefined): void {
+    if (id) {
+      this.store.dispatch(FinanceEntriesActions.deleteEntry({ id }));
+    }
+  }
+
   private getMonthlyEntries(month: number): Observable<FinanceEntry[]> {
     return this.collection$.pipe(
       map((entries) => entries.filter((entry) => entry.month === month))

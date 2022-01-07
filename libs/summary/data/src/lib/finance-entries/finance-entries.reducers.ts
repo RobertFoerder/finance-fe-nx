@@ -10,6 +10,7 @@ export const FINANCE_ENTRIES_FEATURE_KEY = 'financeEntries';
 export interface State extends EntityState<FinanceEntryEntity> {
   readRequestStatus: RequestStatus;
   addRequestStatus: RequestStatus;
+  deleteRequestStatus: RequestStatus;
   year: number;
   error?: SerializedError;
 }
@@ -24,6 +25,7 @@ export const financeEntriesAdapter: EntityAdapter<FinanceEntryEntity> =
 export const initialState: State = financeEntriesAdapter.getInitialState({
   readRequestStatus: 'initial',
   addRequestStatus: 'initial',
+  deleteRequestStatus: 'initial',
   year: new Date().getFullYear(),
   error: undefined,
 });
@@ -61,6 +63,22 @@ const financeEntriesReducer = createReducer(
   on(FinanceEntriesActions.addEntryFailure, (state, { error }) => ({
     ...state,
     addRequestStatus: 'failed',
+    error,
+  })),
+  on(FinanceEntriesActions.deleteEntry, (state) => ({
+    ...state,
+    deleteRequestStatus: 'pending',
+    error: undefined,
+  })),
+  on(FinanceEntriesActions.deleteEntrySuccess, (state, { id }) =>
+    financeEntriesAdapter.removeOne(id, {
+      ...state,
+      deleteRequestStatus: 'successful',
+    })
+  ),
+  on(FinanceEntriesActions.deleteEntryFailure, (state, { error }) => ({
+    ...state,
+    deleteRequestStatus: 'failed',
     error,
   })),
   on(FinanceEntriesActions.reset, () => initialState)
