@@ -64,11 +64,29 @@ export class FinanceEntriesEffects {
     )
   );
 
-  public readonly setSelectedYear$ = createEffect(() =>
+  public readonly loadEntriesOnYearChanged$ = createEffect(() =>
     this.actions$.pipe(
       ofType(FinanceEntriesActions.setSelectedYear),
       fetch({
         run: ({ year }) => FinanceEntriesActions.load({ year }),
+      })
+    )
+  );
+
+  public readonly setSelectedMonthOnYearChanged$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(FinanceEntriesActions.setSelectedYear),
+      fetch({
+        run: ({ year }) => {
+          let selectedMonth = 11;
+          const currentDate = new Date();
+          if (year === currentDate.getFullYear()) {
+            selectedMonth = currentDate.getMonth();
+          }
+          return FinanceEntriesActions.setSelectedMonth({
+            month: selectedMonth,
+          });
+        },
       })
     )
   );

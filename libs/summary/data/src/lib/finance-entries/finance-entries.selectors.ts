@@ -40,3 +40,8 @@ export const getSelectedYear = createSelector(
   getFinanceEntriesState,
   (state: State) => state.selectedYear
 );
+
+export const getSelectedMonth = createSelector(
+  getFinanceEntriesState,
+  (state: State) => state.selectedMonth
+);

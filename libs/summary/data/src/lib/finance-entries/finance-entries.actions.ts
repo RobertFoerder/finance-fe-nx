@@ -47,3 +47,8 @@ export const setSelectedYear = createAction(
   '[Selected year] set selected year',
   props<{ year: number }>()
 );
+
+export const setSelectedMonth = createAction(
+  '[Selected month] Set selected month',
+  props<{ month: number | undefined }>()
+);

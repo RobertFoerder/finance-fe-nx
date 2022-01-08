@@ -1,12 +1,15 @@
 <div class="shadow-lg rounded-md h-auto bg-white flex flex-col p-2">
   <div
     class="flex flex-row items-center border-b-0 border-black"
-    [class.border-b-2]="expanded"
+    [class.border-b-2]="expanded$ | async"
   >
-    <button (click)="expanded = !expanded">
+    <button (click)="toggleExpand()">
       <svg class="h-2 w-2" viewBox="0 0 10 6">
-        <path [class.hidden]="expanded" d="M 0 0 l 5 6 l 5 -6" />
-        <path [class.hidden]="!expanded" d="M 0 6 l 5 -6 l 5 6" />
+        <path [class.hidden]="expanded$ | async" d="M 0 0 l 5 6 l 5 -6" />
+        <path
+          [class.hidden]="(expanded$ | async) === false"
+          d="M 0 6 l 5 -6 l 5 6"
+        />
       </svg>
     </button>
     <span class="ml-2 text-lg font-bold">{{ date | date: 'MMMM YYYY' }}</span>
@@ -29,7 +32,7 @@
       >{{ total | currency: 'EUR' }}</span
     >
   </div>
-  <div class="pt-4 pb-2 pl-2" *ngIf="expanded">
+  <div class="pt-4 pb-2 pl-2" *ngIf="expanded$ | async">
     <div
       class="mb-2"
       *ngFor="

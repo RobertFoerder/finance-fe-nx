@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContainerComponent } from '@finance-fe-nx/core';
 import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'finance-fe-monthly-summary',
@@ -22,20 +23,16 @@ export class MonthlySummaryComponent
   private _month = new Date().getMonth();
   private _year = new Date().getFullYear();
 
-  @Input() expanded = false;
+  public expanded$: Observable<boolean> = this.facade.selectedMonth$.pipe(
+    map((selectedMonth) => selectedMonth === this._month)
+  );
+
   @Input() get month() {
     return this._month;
   }
   set month(value: number) {
     this._month = value;
     this.date.setMonth(value);
-  }
-  @Input() get year(): number {
-    return this._year;
-  }
-  set year(value: number) {
-    this._year = value;
-    this.date.setFullYear(value);
   }
 
   public total = 0;
@@ -50,6 +47,9 @@ export class MonthlySummaryComponent
   }
 
   public ngOnInit(): void {
+    this.useLatest(this.facade.selectedYear$, (selectedYear) =>
+      this.date.setFullYear(selectedYear)
+    );
     this.subscribeTo(this.facade.getMonthlyTotal(this._month), (total) => {
       if (total) {
         this.total = total;
@@ -58,6 +58,17 @@ export class MonthlySummaryComponent
   }
 
   public addEntry(): void {
+    this.facade.setSelectedMonth(this._month);
     this.router.navigate(['add'], { relativeTo: this.activatedRoute });
+  }
+
+  public toggleExpand(): void {
+    this.useLatest(this.expanded$, (expanded) => {
+      let selectedMonth = undefined;
+      if (!expanded) {
+        selectedMonth = this._month;
+      }
+      this.facade.setSelectedMonth(selectedMonth);
+    });
   }
 }

@@ -26,6 +26,9 @@ export class FinanceEntriesFacade {
   public readonly selectedYear$ = this.store.pipe(
     select(FinanceEntriesSelectors.getSelectedYear)
   );
+  public readonly selectedMonth$ = this.store.pipe(
+    select(FinanceEntriesSelectors.getSelectedMonth)
+  );
 
   constructor(private readonly store: Store) {}
 
@@ -45,6 +48,10 @@ export class FinanceEntriesFacade {
 
   public setSelectedYear(year: number): void {
     this.store.dispatch(FinanceEntriesActions.setSelectedYear({ year }));
+  }
+
+  public setSelectedMonth(month: number | undefined): void {
+    this.store.dispatch(FinanceEntriesActions.setSelectedMonth({ month }));
   }
 
   public getMonthlyTotal(month: number): Observable<number | undefined> {

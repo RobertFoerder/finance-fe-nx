@@ -36,6 +36,10 @@ export class AddEntryComponent extends ContainerComponent implements OnInit {
       this.facade.selectedYear$,
       (selectedYear) => (this.entry.year = selectedYear)
     );
+    this.useLatest(
+      this.facade.selectedMonth$,
+      (month) => (this.entry.month = month)
+    );
   }
 
   public onSubmit() {

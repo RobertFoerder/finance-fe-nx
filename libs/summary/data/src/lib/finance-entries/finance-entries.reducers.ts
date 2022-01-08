@@ -12,7 +12,7 @@ export interface State extends EntityState<FinanceEntryEntity> {
   addRequestStatus: RequestStatus;
   deleteRequestStatus: RequestStatus;
   selectedYear: number;
-  selectedMonth: number;
+  selectedMonth: number | undefined;
   error?: SerializedError;
 }
 
@@ -34,9 +34,16 @@ export const initialState: State = financeEntriesAdapter.getInitialState({
 
 const financeEntriesReducer = createReducer(
   initialState,
-  on(FinanceEntriesActions.load, (state, { year }) => ({
+  on(FinanceEntriesActions.setSelectedYear, (state, { year }) => ({
     ...state,
     selectedYear: year,
+  })),
+  on(FinanceEntriesActions.setSelectedMonth, (state, { month }) => ({
+    ...state,
+    selectedMonth: month,
+  })),
+  on(FinanceEntriesActions.load, (state) => ({
+    ...state,
     readRequestStatus: 'pending',
     error: undefined,
   })),
