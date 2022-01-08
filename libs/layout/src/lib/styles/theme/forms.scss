@@ -7,9 +7,13 @@ label {
 }
 
 input {
-  @apply h-6 max-w-md;
+  @apply h-6 max-w-md rounded-md p-1;
 }
 
 select {
-  @apply bg-white h-6 max-w-md;
+  @apply bg-white h-6 max-w-md rounded-md p-1;
+}
+
+.ng-invalid:not(form).ng-touched {
+  @apply border-red-600 border-2;
 }

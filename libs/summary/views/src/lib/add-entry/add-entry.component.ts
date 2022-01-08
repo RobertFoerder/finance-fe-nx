@@ -15,17 +15,10 @@ export class AddEntryComponent extends ContainerComponent implements OnInit {
     month: new Date().getMonth(),
     category: '',
     description: '',
-    value: 0,
   };
-
-  public availableMonths$: Observable<number[]> =
-    this.facade.selectedYear$.pipe(
-      map((selectedYear) => this.dateService.getAvailableMonths(selectedYear))
-    );
 
   constructor(
     private readonly facade: FinanceEntriesFacade,
-    private readonly dateService: DateService,
     private readonly router: Router
   ) {
     super();
