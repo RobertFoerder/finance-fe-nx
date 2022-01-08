@@ -16,12 +16,10 @@ export const getFinanceEntriesLoading = createSelector(
   (state: State) => state.readRequestStatus === 'pending'
 );
 
-export const getFinanceEntriesLoaded = (year: number) =>
-  createSelector(
-    getFinanceEntriesState,
-    (state: State) =>
-      state.readRequestStatus === 'successful' && state.year === year
-  );
+export const getFinanceEntriesLoaded = createSelector(
+  getFinanceEntriesState,
+  (state: State) => state.readRequestStatus === 'successful'
+);
 
 export const getFinanceEntriesError = createSelector(
   getFinanceEntriesState,
@@ -36,4 +34,9 @@ export const getFinanceEntries = createSelector(
 export const getFinanceEntriesEntities = createSelector(
   getFinanceEntriesState,
   (state: State) => selectEntities(state)
+);
+
+export const getSelectedYear = createSelector(
+  getFinanceEntriesState,
+  (state: State) => state.selectedYear
 );

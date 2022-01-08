@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import { FinanceEntry } from '@finance-fe-nx/finance-api';
 import { select, Store } from '@ngrx/store';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
 import * as FinanceEntriesActions from './finance-entries.actions';
+import { EntriesPerCategory } from './finance-entries.models';
 import * as FinanceEntriesSelectors from './finance-entries.selectors';
-
-interface EntriesPerCategory {
-  category: string | undefined;
-  entries: FinanceEntry[];
-}
 
 @Injectable()
 export class FinanceEntriesFacade {
   public readonly loading$ = this.store.pipe(
     select(FinanceEntriesSelectors.getFinanceEntriesLoading)
+  );
+  public readonly loaded$ = this.store.pipe(
+    select(FinanceEntriesSelectors.getFinanceEntriesLoaded)
   );
   public readonly collection$ = this.store.pipe(
     select(FinanceEntriesSelectors.getFinanceEntries)
@@ -24,17 +23,28 @@ export class FinanceEntriesFacade {
   public readonly error$ = this.store.pipe(
     select(FinanceEntriesSelectors.getFinanceEntriesError)
   );
+  public readonly selectedYear$ = this.store.pipe(
+    select(FinanceEntriesSelectors.getSelectedYear)
+  );
 
   constructor(private readonly store: Store) {}
 
-  public financeEntriesLoaded(year: number): Observable<boolean> {
-    return this.store.select(
-      FinanceEntriesSelectors.getFinanceEntriesLoaded(year)
-    );
+  public init(): void {
+    this.loaded$.pipe(take(1)).subscribe((loaded) => {
+      if (!loaded) {
+        this.selectedYear$
+          .pipe(take(1))
+          .subscribe((selectedYear) =>
+            this.store.dispatch(
+              FinanceEntriesActions.load({ year: selectedYear })
+            )
+          );
+      }
+    });
   }
 
-  public loadFinanceEntries(year: number): void {
-    this.store.dispatch(FinanceEntriesActions.load({ year }));
+  public setSelectedYear(year: number): void {
+    this.store.dispatch(FinanceEntriesActions.setSelectedYear({ year }));
   }
 
   public getMonthlyTotal(month: number): Observable<number | undefined> {

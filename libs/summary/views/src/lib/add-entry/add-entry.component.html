@@ -6,7 +6,7 @@
   <div>
     <label for="month">Month</label>
     <select name="month" [(ngModel)]="entry.month">
-      <option *ngFor="let month of availableMonths" [ngValue]="month">
+      <option *ngFor="let month of availableMonths$ | async" [ngValue]="month">
         {{ month | monthToDate | date: 'MMMM' }}
       </option>
     </select>

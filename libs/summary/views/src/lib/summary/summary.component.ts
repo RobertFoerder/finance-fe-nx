@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ContainerComponent } from '@finance-fe-nx/core';
 import { DateService } from '@finance-fe-nx/shared';
 import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
+import { map, Observable } from 'rxjs';
 
 @Component({
   templateUrl: './summary.component.html',
@@ -9,8 +10,11 @@ import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
 })
 export class SummaryComponent extends ContainerComponent implements OnInit {
   public year = new Date().getFullYear();
-  public availableMonths: number[] = [];
   public availableYears: number[] = [];
+  public availableMonths$: Observable<number[]> =
+    this.facade.selectedYear$.pipe(
+      map((selectedYear) => this.dateService.getAvailableMonths(selectedYear))
+    );
 
   constructor(
     public readonly facade: FinanceEntriesFacade,
@@ -21,14 +25,18 @@ export class SummaryComponent extends ContainerComponent implements OnInit {
 
   public ngOnInit(): void {
     this.loadAvailableYears();
-    this.loadAvailableMonths();
-    this.loadFinanceEntries();
+
+    this.useLatest(
+      this.facade.selectedYear$,
+      (selectedYear) => (this.year = selectedYear)
+    );
+
+    this.facade.init();
   }
 
   public selectedYearChanged(year: number): void {
+    this.facade.setSelectedYear(year);
     this.year = year;
-    this.loadAvailableMonths();
-    this.loadFinanceEntries();
   }
 
   private loadAvailableYears(): void {
@@ -36,17 +44,5 @@ export class SummaryComponent extends ContainerComponent implements OnInit {
     for (let year = currentYear; year >= currentYear - 100; year--) {
       this.availableYears.push(year);
     }
-  }
-
-  private loadAvailableMonths(): void {
-    this.availableMonths = this.dateService.getAvailableMonths(this.year);
-  }
-
-  private loadFinanceEntries(): void {
-    this.useLatest(this.facade.financeEntriesLoaded(this.year), (loaded) => {
-      if (!loaded) {
-        this.facade.loadFinanceEntries(this.year);
-      }
-    });
   }
 }

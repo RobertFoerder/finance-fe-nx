@@ -11,7 +11,8 @@ export interface State extends EntityState<FinanceEntryEntity> {
   readRequestStatus: RequestStatus;
   addRequestStatus: RequestStatus;
   deleteRequestStatus: RequestStatus;
-  year: number;
+  selectedYear: number;
+  selectedMonth: number;
   error?: SerializedError;
 }
 
@@ -26,7 +27,8 @@ export const initialState: State = financeEntriesAdapter.getInitialState({
   readRequestStatus: 'initial',
   addRequestStatus: 'initial',
   deleteRequestStatus: 'initial',
-  year: new Date().getFullYear(),
+  selectedYear: new Date().getFullYear(),
+  selectedMonth: new Date().getMonth(),
   error: undefined,
 });
 
@@ -34,7 +36,7 @@ const financeEntriesReducer = createReducer(
   initialState,
   on(FinanceEntriesActions.load, (state, { year }) => ({
     ...state,
-    year,
+    selectedYear: year,
     readRequestStatus: 'pending',
     error: undefined,
   })),

@@ -64,6 +64,15 @@ export class FinanceEntriesEffects {
     )
   );
 
+  public readonly setSelectedYear$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(FinanceEntriesActions.setSelectedYear),
+      fetch({
+        run: ({ year }) => FinanceEntriesActions.load({ year }),
+      })
+    )
+  );
+
   constructor(
     private readonly actions$: Actions,
     private readonly service: EntriesService

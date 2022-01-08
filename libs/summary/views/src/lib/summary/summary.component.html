@@ -3,6 +3,7 @@
   name="year"
   [ngModel]="year"
   (ngModelChange)="selectedYearChanged($event)"
+  class="ml-1"
 >
   <option *ngFor="let year of availableYears" [ngValue]="year">
     {{ year }}
@@ -15,7 +16,10 @@
     (facade.loading$ | async) === false && (facade.error$ | async) === undefined
   "
 >
-  <div *ngFor="let month of availableMonths; let i = index" class="mt-2">
+  <div
+    *ngFor="let month of availableMonths$ | async; let i = index"
+    class="mt-2"
+  >
     <finance-fe-monthly-summary
       [year]="year"
       [month]="month"

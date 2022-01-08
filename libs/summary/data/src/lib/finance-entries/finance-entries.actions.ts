@@ -3,7 +3,7 @@ import { createAction, props } from '@ngrx/store';
 import { FinanceEntryEntity } from './finance-entries.models';
 
 export const load = createAction(
-  '[Finance-Entries Page] Load',
+  '[Finance-Entries/API] Load finance entries',
   props<{ year: number }>()
 );
 export const loadEntriesSuccess = createAction(
@@ -42,3 +42,8 @@ export const deleteEntryFailure = createAction(
 );
 
 export const reset = createAction('[Finance-Entries] Reset');
+
+export const setSelectedYear = createAction(
+  '[Selected year] set selected year',
+  props<{ year: number }>()
+);
