@@ -72,7 +72,8 @@
             "assets": [
               "apps/finance-fe/src/favicon.png",
               "apps/finance-fe/src/assets",
-              "apps/finance-fe/src/manifest.webmanifest"
+              "apps/finance-fe/src/manifest.webmanifest",
+              "apps/finance-fe/src/apple-touch-icon.png"
             ],
             "styles": ["apps/finance-fe/src/styles.scss"],
             "stylePreprocessorOptions": {
