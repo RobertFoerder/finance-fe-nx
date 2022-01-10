@@ -70,8 +70,9 @@
             "tsConfig": "apps/finance-fe/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "apps/finance-fe/src/favicon.ico",
-              "apps/finance-fe/src/assets"
+              "apps/finance-fe/src/favicon.png",
+              "apps/finance-fe/src/assets",
+              "apps/finance-fe/src/manifest.webmanifest"
             ],
             "styles": ["apps/finance-fe/src/styles.scss"],
             "stylePreprocessorOptions": {
