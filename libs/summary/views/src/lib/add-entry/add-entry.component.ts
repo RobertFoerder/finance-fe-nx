@@ -37,13 +37,11 @@ export class AddEntryComponent extends ContainerComponent implements OnInit {
       (month) => (this.entry.month = month)
     );
     this.subscribeTo(this.facade.addError$, (error) => {
-      console.log('error', error);
       if (error) {
         this.toastr.error('Error adding entry');
       }
     });
     this.subscribeTo(this.facade.added$, (added) => {
-      console.log('added', added);
       if (added) {
         this.router.navigate(['/summary']);
       }
