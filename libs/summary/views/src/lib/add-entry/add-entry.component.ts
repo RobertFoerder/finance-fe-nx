@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   templateUrl: './add-entry.component.html',
+  styleUrls: ['./add-entry.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddEntryComponent extends ContainerComponent implements OnInit {
@@ -15,6 +16,8 @@ export class AddEntryComponent extends ContainerComponent implements OnInit {
     category: '',
     description: '',
   };
+
+  public isIncome = false;
 
   constructor(
     public readonly facade: FinanceEntriesFacade,
@@ -49,6 +52,9 @@ export class AddEntryComponent extends ContainerComponent implements OnInit {
   }
 
   public onSubmit() {
+    if (!this.isIncome && this.entry.value) {
+      this.entry.value = -this.entry.value;
+    }
     this.facade.addEntry(this.entry);
   }
 }
