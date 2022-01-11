@@ -7,6 +7,8 @@ import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
 import { StoreModule } from '@ngrx/store';
 import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { EffectsModule } from '@ngrx/effects';
@@ -90,6 +92,8 @@ const ROUTES: Routes = [
     }),
     LayoutModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     {

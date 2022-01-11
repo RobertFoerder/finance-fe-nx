@@ -13,7 +13,9 @@ export interface State extends EntityState<FinanceEntryEntity> {
   deleteRequestStatus: RequestStatus;
   selectedYear: number;
   selectedMonth: number | undefined;
-  error?: SerializedError;
+  loadError?: SerializedError;
+  addError?: SerializedError;
+  deleteError?: SerializedError;
 }
 
 export interface FinanceEntriesPartialState {
@@ -29,7 +31,9 @@ export const initialState: State = financeEntriesAdapter.getInitialState({
   deleteRequestStatus: 'initial',
   selectedYear: new Date().getFullYear(),
   selectedMonth: new Date().getMonth(),
-  error: undefined,
+  loadError: undefined,
+  addError: undefined,
+  deleteError: undefined,
 });
 
 const financeEntriesReducer = createReducer(
@@ -45,7 +49,7 @@ const financeEntriesReducer = createReducer(
   on(FinanceEntriesActions.load, (state) => ({
     ...state,
     readRequestStatus: 'pending',
-    error: undefined,
+    loadError: undefined,
   })),
   on(FinanceEntriesActions.loadEntriesSuccess, (state, { entries }) =>
     financeEntriesAdapter.setAll(entries, {
@@ -55,13 +59,13 @@ const financeEntriesReducer = createReducer(
   ),
   on(FinanceEntriesActions.loadEntriesFailure, (state, { error }) => ({
     ...state,
-    error,
+    loadError: error,
     readRequestStatus: 'failed',
   })),
   on(FinanceEntriesActions.add, (state) => ({
     ...state,
     addRequestStatus: 'pending',
-    error: undefined,
+    addError: undefined,
   })),
   on(FinanceEntriesActions.addEntrySuccess, (state, { entry }) =>
     financeEntriesAdapter.setOne(entry, {
@@ -72,12 +76,12 @@ const financeEntriesReducer = createReducer(
   on(FinanceEntriesActions.addEntryFailure, (state, { error }) => ({
     ...state,
     addRequestStatus: 'failed',
-    error,
+    addError: error,
   })),
   on(FinanceEntriesActions.deleteEntry, (state) => ({
     ...state,
     deleteRequestStatus: 'pending',
-    error: undefined,
+    deleteError: undefined,
   })),
   on(FinanceEntriesActions.deleteEntrySuccess, (state, { id }) =>
     financeEntriesAdapter.removeOne(id, {
@@ -88,9 +92,23 @@ const financeEntriesReducer = createReducer(
   on(FinanceEntriesActions.deleteEntryFailure, (state, { error }) => ({
     ...state,
     deleteRequestStatus: 'failed',
-    error,
+    deleteError: error,
   })),
-  on(FinanceEntriesActions.reset, () => initialState)
+  on(FinanceEntriesActions.resetEntries, (state) => ({
+    ...state,
+    loadError: undefined,
+    readRequestStatus: 'initial',
+  })),
+  on(FinanceEntriesActions.resetAdd, (state) => ({
+    ...state,
+    addError: undefined,
+    addRequestStatus: 'initial',
+  })),
+  on(FinanceEntriesActions.resetDelete, (state) => ({
+    ...state,
+    deleteError: undefined,
+    deleteRequestStatus: 'initial',
+  }))
 );
 
 export function reducer(state: State | undefined, action: Action): State {

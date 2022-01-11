@@ -10,12 +10,13 @@
   </option>
 </select>
 <span *ngIf="facade.loading$ | async">Loading ...</span>
-<span *ngIf="facade.error$ | async">Error...</span>
+<span *ngIf="facade.loadError$ | async">Error loading entries...</span>
 <span *ngIf="facade.deleting$ | async">Deleting...</span>
+<span *ngIf="facade.deleteError$ | async">Error deleting entry...</span>
 <div
   *ngIf="
     (facade.loading$ | async) === false &&
-    (facade.error$ | async) === undefined &&
+    (facade.loadError$ | async) === undefined &&
     (facade.deleting$ | async) === false
   "
 >

@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
-import { DateService } from '@finance-fe-nx/shared';
 import { FinanceEntry } from '@finance-fe-nx/finance-api';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, Observable } from 'rxjs';
 import { ContainerComponent } from '@finance-fe-nx/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   templateUrl: './add-entry.component.html',
@@ -18,14 +17,16 @@ export class AddEntryComponent extends ContainerComponent implements OnInit {
   };
 
   constructor(
-    private readonly facade: FinanceEntriesFacade,
+    public readonly facade: FinanceEntriesFacade,
     private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly toastr: ToastrService
   ) {
     super();
   }
 
   public ngOnInit(): void {
+    this.facade.resetAdd();
     this.entry.category = this.activatedRoute.snapshot.queryParams.category;
     this.useLatest(
       this.facade.selectedYear$,
@@ -35,10 +36,21 @@ export class AddEntryComponent extends ContainerComponent implements OnInit {
       this.facade.selectedMonth$,
       (month) => (this.entry.month = month)
     );
+    this.subscribeTo(this.facade.addError$, (error) => {
+      console.log('error', error);
+      if (error) {
+        this.toastr.error('Error adding entry');
+      }
+    });
+    this.subscribeTo(this.facade.added$, (added) => {
+      console.log('added', added);
+      if (added) {
+        this.router.navigate(['/summary']);
+      }
+    });
   }
 
   public onSubmit() {
     this.facade.addEntry(this.entry);
-    this.router.navigate(['/summary']);
   }
 }

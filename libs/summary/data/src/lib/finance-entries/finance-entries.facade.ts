@@ -20,11 +20,23 @@ export class FinanceEntriesFacade {
   public readonly entities$ = this.store.pipe(
     select(FinanceEntriesSelectors.getFinanceEntriesEntities)
   );
+  public readonly loadError$ = this.store.pipe(
+    select(FinanceEntriesSelectors.getFinanceEntriesLoadError)
+  );
   public readonly deleting$ = this.store.pipe(
     select(FinanceEntriesSelectors.getFinanceEntriesDeleting)
   );
-  public readonly error$ = this.store.pipe(
-    select(FinanceEntriesSelectors.getFinanceEntriesError)
+  public readonly deleteError$ = this.store.pipe(
+    select(FinanceEntriesSelectors.getFinanceEntriesDeleteError)
+  );
+  public readonly adding$ = this.store.pipe(
+    select(FinanceEntriesSelectors.getFinanceEntriesAdding)
+  );
+  public readonly added$ = this.store.pipe(
+    select(FinanceEntriesSelectors.getFinanceEntriesAdded)
+  );
+  public readonly addError$ = this.store.pipe(
+    select(FinanceEntriesSelectors.getFinanceEntriesAddError)
   );
   public readonly selectedYear$ = this.store.pipe(
     select(FinanceEntriesSelectors.getSelectedYear)
@@ -50,6 +62,18 @@ export class FinanceEntriesFacade {
           );
       }
     });
+  }
+
+  public resetEntries(): void {
+    this.store.dispatch(FinanceEntriesActions.resetEntries());
+  }
+
+  public resetAdd(): void {
+    this.store.dispatch(FinanceEntriesActions.resetAdd());
+  }
+
+  public resetDelete(): void {
+    this.store.dispatch(FinanceEntriesActions.resetDelete());
   }
 
   public setSelectedYear(year: number): void {

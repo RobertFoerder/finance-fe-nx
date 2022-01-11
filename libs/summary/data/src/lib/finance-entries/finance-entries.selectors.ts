@@ -21,9 +21,9 @@ export const getFinanceEntriesLoaded = createSelector(
   (state: State) => state.readRequestStatus === 'successful'
 );
 
-export const getFinanceEntriesError = createSelector(
+export const getFinanceEntriesLoadError = createSelector(
   getFinanceEntriesState,
-  (state: State) => state.error
+  (state: State) => state.loadError
 );
 
 export const getFinanceEntries = createSelector(
@@ -39,6 +39,26 @@ export const getFinanceEntriesEntities = createSelector(
 export const getFinanceEntriesDeleting = createSelector(
   getFinanceEntriesState,
   (state: State) => state.deleteRequestStatus === 'pending'
+);
+
+export const getFinanceEntriesDeleteError = createSelector(
+  getFinanceEntriesState,
+  (state: State) => state.deleteError
+);
+
+export const getFinanceEntriesAdding = createSelector(
+  getFinanceEntriesState,
+  (state: State) => state.addRequestStatus === 'pending'
+);
+
+export const getFinanceEntriesAdded = createSelector(
+  getFinanceEntriesState,
+  (state: State) => state.addRequestStatus === 'successful'
+);
+
+export const getFinanceEntriesAddError = createSelector(
+  getFinanceEntriesState,
+  (state: State) => state.addError
 );
 
 export const getSelectedYear = createSelector(

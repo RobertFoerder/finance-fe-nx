@@ -1,4 +1,9 @@
-<form (ngSubmit)="onSubmit()" #entryForm="ngForm">
+<span *ngIf="facade.adding$ | async">Adding...</span>
+<form
+  *ngIf="(facade.adding$ | async) === false"
+  (ngSubmit)="onSubmit()"
+  #entryForm="ngForm"
+>
   <div>
     <label for="year">Year</label>
     <input name="year" type="text" [ngModel]="entry.year" readonly />

@@ -14,6 +14,7 @@ export const loadEntriesFailure = createAction(
   '[Finance-Entries/API] Load finance entries failure',
   props<{ error: SerializedError }>()
 );
+export const resetEntries = createAction('[Finance-Entries] Reset');
 
 export const add = createAction(
   '[Finance-Entries/API] Add',
@@ -27,6 +28,7 @@ export const addEntryFailure = createAction(
   '[Finance-Entries/API] Add finance entry failure',
   props<{ error: SerializedError }>()
 );
+export const resetAdd = createAction('[Finance-Entries] Reset add');
 
 export const deleteEntry = createAction(
   '[Finance-Entries/API] Delete',
@@ -40,8 +42,7 @@ export const deleteEntryFailure = createAction(
   '[Finance-Entries/API] Delete entry failure',
   props<{ error: SerializedError }>()
 );
-
-export const reset = createAction('[Finance-Entries] Reset');
+export const resetDelete = createAction('[Finannce-Entries] Reset delete');
 
 export const setSelectedYear = createAction(
   '[Selected year] set selected year',
