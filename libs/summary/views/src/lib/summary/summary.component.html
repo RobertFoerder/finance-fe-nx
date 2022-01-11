@@ -11,12 +11,24 @@
 </select>
 <span *ngIf="facade.loading$ | async">Loading ...</span>
 <span *ngIf="facade.error$ | async">Error...</span>
+<span *ngIf="facade.deleting$ | async">Deleting...</span>
 <div
   *ngIf="
-    (facade.loading$ | async) === false && (facade.error$ | async) === undefined
+    (facade.loading$ | async) === false &&
+    (facade.error$ | async) === undefined &&
+    (facade.deleting$ | async) === false
   "
 >
   <div *ngFor="let month of availableMonths$ | async" class="mt-2">
     <finance-fe-monthly-summary [month]="month"> </finance-fe-monthly-summary>
+  </div>
+  <div class="mt-2 mr-2 flex flex-row-reverse">
+    <span
+      class="text-lg font-bold"
+      [class.income]="total > 0"
+      [class.expense]="total < 0"
+      >{{ total | currency: 'EUR' }}</span
+    >
+    <span class="font-bold mr-2 text-lg">Total</span>
   </div>
 </div>

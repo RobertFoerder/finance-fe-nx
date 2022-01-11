@@ -36,6 +36,11 @@ export const getFinanceEntriesEntities = createSelector(
   (state: State) => selectEntities(state)
 );
 
+export const getFinanceEntriesDeleting = createSelector(
+  getFinanceEntriesState,
+  (state: State) => state.deleteRequestStatus === 'pending'
+);
+
 export const getSelectedYear = createSelector(
   getFinanceEntriesState,
   (state: State) => state.selectedYear

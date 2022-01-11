@@ -15,6 +15,7 @@ export class SummaryComponent extends ContainerComponent implements OnInit {
     this.facade.selectedYear$.pipe(
       map((selectedYear) => this.dateService.getAvailableMonths(selectedYear))
     );
+  public total = 0;
 
   constructor(
     public readonly facade: FinanceEntriesFacade,
@@ -25,6 +26,12 @@ export class SummaryComponent extends ContainerComponent implements OnInit {
 
   public ngOnInit(): void {
     this.loadAvailableYears();
+
+    this.subscribeTo(this.facade.total$, (total) => {
+      if (total) {
+        this.total = total;
+      }
+    });
 
     this.useLatest(
       this.facade.selectedYear$,

@@ -13,7 +13,6 @@ import { map, Observable } from 'rxjs';
 @Component({
   selector: 'finance-fe-monthly-summary',
   templateUrl: './monthly-summary.component.html',
-  styleUrls: ['./monthly-summary.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MonthlySummaryComponent

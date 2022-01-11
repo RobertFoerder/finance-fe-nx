@@ -20,6 +20,9 @@ export class FinanceEntriesFacade {
   public readonly entities$ = this.store.pipe(
     select(FinanceEntriesSelectors.getFinanceEntriesEntities)
   );
+  public readonly deleting$ = this.store.pipe(
+    select(FinanceEntriesSelectors.getFinanceEntriesDeleting)
+  );
   public readonly error$ = this.store.pipe(
     select(FinanceEntriesSelectors.getFinanceEntriesError)
   );
@@ -28,6 +31,9 @@ export class FinanceEntriesFacade {
   );
   public readonly selectedMonth$ = this.store.pipe(
     select(FinanceEntriesSelectors.getSelectedMonth)
+  );
+  public readonly total$ = this.collection$.pipe(
+    map((entries) => this.sumUp(entries))
   );
 
   constructor(private readonly store: Store) {}
@@ -56,21 +62,7 @@ export class FinanceEntriesFacade {
 
   public getMonthlyTotal(month: number): Observable<number | undefined> {
     return this.getMonthlyEntries(month).pipe(
-      map((entries: FinanceEntry[]) => {
-        if (!entries || entries.length === 0) {
-          return 0;
-        }
-
-        return entries
-          .map((entry) => entry.value)
-          .reduce((a, b) => {
-            if (!a || !b) {
-              return 0;
-            }
-
-            return a + b;
-          });
-      })
+      map((entries: FinanceEntry[]) => this.sumUp(entries))
     );
   }
 
@@ -133,5 +125,21 @@ export class FinanceEntriesFacade {
       }
       return e1.category.localeCompare(e2.category);
     });
+  }
+
+  private sumUp(entries: FinanceEntry[]): number | undefined {
+    if (!entries || entries.length === 0) {
+      return 0;
+    }
+
+    return entries
+      .map((entry) => entry.value)
+      .reduce((a, b) => {
+        if (!a || !b) {
+          return 0;
+        }
+
+        return a + b;
+      });
   }
 }
