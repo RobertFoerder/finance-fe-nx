@@ -41,6 +41,18 @@
     >
       <div class="border-b-2">
         <span class="font-bold">{{ category.category }}</span>
+        <button (click)="addEntry(category.category)" class="pl-2">
+          <svg
+            class="fill-current h-4 w-4"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>Add</title>
+            <path
+              d="M 10 8 L 10 1 L 8 1 L 8 8 l -7 0 l 0 2 L 8 10 l 0 7 l 2 -0 L 10 10 l 7 0 l -0 -2 z"
+            />
+          </svg>
+        </button>
       </div>
       <div class="flex" *ngFor="let entry of category.entries">
         <span>{{ entry.description }}</span>

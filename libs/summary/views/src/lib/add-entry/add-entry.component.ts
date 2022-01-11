@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
 import { DateService } from '@finance-fe-nx/shared';
 import { FinanceEntry } from '@finance-fe-nx/finance-api';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { ContainerComponent } from '@finance-fe-nx/core';
 
@@ -19,12 +19,14 @@ export class AddEntryComponent extends ContainerComponent implements OnInit {
 
   constructor(
     private readonly facade: FinanceEntriesFacade,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly activatedRoute: ActivatedRoute
   ) {
     super();
   }
 
   public ngOnInit(): void {
+    this.entry.category = this.activatedRoute.snapshot.queryParams.category;
     this.useLatest(
       this.facade.selectedYear$,
       (selectedYear) => (this.entry.year = selectedYear)

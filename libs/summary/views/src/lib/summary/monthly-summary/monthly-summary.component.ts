@@ -56,9 +56,16 @@ export class MonthlySummaryComponent
     });
   }
 
-  public addEntry(): void {
+  public addEntry(category?: string): void {
     this.facade.setSelectedMonth(this._month);
-    this.router.navigate(['add'], { relativeTo: this.activatedRoute });
+    let queryParams = null;
+    if (category) {
+      queryParams = { category };
+    }
+    this.router.navigate(['add'], {
+      relativeTo: this.activatedRoute,
+      queryParams,
+    });
   }
 
   public toggleExpand(): void {
