@@ -55,6 +55,7 @@ export class AddEntryComponent extends ContainerComponent implements OnInit {
     if (!this.isIncome && this.entry.value) {
       this.entry.value = -this.entry.value;
     }
+    this.entry.date = new Date();
     this.facade.addEntry(this.entry);
   }
 }
