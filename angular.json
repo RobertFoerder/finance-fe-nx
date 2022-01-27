@@ -1,6 +1,58 @@
 {
   "version": 1,
   "projects": {
+    "accounts-data": {
+      "projectType": "library",
+      "root": "libs/accounts/data",
+      "sourceRoot": "libs/accounts/data/src",
+      "prefix": "finance-fe-nx",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/accounts/data"],
+          "options": {
+            "jestConfig": "libs/accounts/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/accounts/data/src/**/*.ts",
+              "libs/accounts/data/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "accounts-views": {
+      "projectType": "library",
+      "root": "libs/accounts/views",
+      "sourceRoot": "libs/accounts/views/src",
+      "prefix": "finance-fe-nx",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/accounts/views"],
+          "options": {
+            "jestConfig": "libs/accounts/views/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/accounts/views/src/**/*.ts",
+              "libs/accounts/views/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "core": {
       "projectType": "library",
       "root": "libs/core",

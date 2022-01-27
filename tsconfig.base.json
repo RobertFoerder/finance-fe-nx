@@ -15,6 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@finance-fe-nx/accounts/data": ["libs/accounts/data/src/index.ts"],
+      "@finance-fe-nx/accounts/views": ["libs/accounts/views/src/index.ts"],
       "@finance-fe-nx/core": ["libs/core/src/index.ts"],
       "@finance-fe-nx/finance-api": ["libs/finance-api/src/index.ts"],
       "@finance-fe-nx/layout": ["libs/layout/src/index.ts"],
