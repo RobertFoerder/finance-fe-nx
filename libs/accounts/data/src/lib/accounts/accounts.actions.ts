@@ -43,7 +43,7 @@ export const resetDelete = createAction('[Accounts] Reset delete');
 
 export const editAccount = createAction(
   '[Accounts/API] Edit',
-  props<{ account: AccountEntity }>()
+  props<{ id: string; account: AccountEntity }>()
 );
 export const editAccountSuccess = createAction(
   '[Accounts/API] Edit account success',

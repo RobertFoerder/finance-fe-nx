@@ -68,9 +68,9 @@ export class AccountsEffects {
     this.actions$.pipe(
       ofType(AccountsActions.editAccount),
       fetch({
-        run: ({ account }) =>
+        run: ({ id, account }) =>
           this.service
-            .putAccount(account.id, account)
+            .putAccount(id, account)
             .pipe(
               map((account) => AccountsActions.editAccountSuccess({ account }))
             ),

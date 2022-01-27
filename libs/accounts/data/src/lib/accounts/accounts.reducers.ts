@@ -92,7 +92,7 @@ const accountsReducer = createReducer(
     editError: undefined,
   })),
   on(AccountsActions.editAccountSuccess, (state, { account }) =>
-    accountsAdapter.updateOne(account, {
+    accountsAdapter.upsertOne(account, {
       ...state,
       editRequestStatus: 'successful',
     })

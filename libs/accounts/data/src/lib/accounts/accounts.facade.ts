@@ -78,7 +78,11 @@ export class AccountsFacade {
   }
 
   public editAccount(account: Account): void {
-    this.store.dispatch(AccountsActions.editAccount({ account }));
+    if (account.id) {
+      this.store.dispatch(
+        AccountsActions.editAccount({ id: account.id, account })
+      );
+    }
   }
 
   public deleteAccount(id: string | undefined): void {

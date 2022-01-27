@@ -2,12 +2,14 @@
 .openapi-generator-ignore
 README.md
 api.module.ts
+api/accounts.service.ts
 api/api.ts
 api/entries.service.ts
 configuration.ts
 encoder.ts
 git_push.sh
 index.ts
+model/account.ts
 model/finance-entry.ts
 model/models.ts
 variables.ts
