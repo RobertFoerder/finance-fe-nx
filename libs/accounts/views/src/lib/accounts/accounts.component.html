@@ -1,0 +1,57 @@
+<span *ngIf="facade.loading$ | async">Loading ...</span>
+<span *ngIf="facade.loadError$ | async">Error loading entries...</span>
+<span *ngIf="facade.deleting$ | async">Deleting...</span>
+<span *ngIf="facade.deleteError$ | async">Error deleting entry...</span>
+<div
+  *ngIf="
+    (facade.loading$ | async) === false &&
+    (facade.loadError$ | async) === undefined &&
+    (facade.deleting$ | async) === false
+  "
+>
+  <div class="shadow-lg rounded-md h-auto bg-white flex flex-col p-2">
+    <div class="flex flex-row items-center border-b-0 border-black border-b-2">
+      <span class="ml-2 text-lg font-bold">Accounts</span>
+      <button (click)="addAccount()" class="pl-2">
+        <svg
+          class="fill-current h-4 w-4"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>Add</title>
+          <path
+            d="M 10 8 L 10 1 L 8 1 L 8 8 l -7 0 l 0 2 L 8 10 l 0 7 l 2 -0 L 10 10 l 7 0 l -0 -2 z"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="pt-4 pb-2 pl-2 divide-y-2">
+      <div
+        class="mb-2 flex flex-row"
+        *ngFor="let account of facade.collection$ | async"
+      >
+        <span>{{ account.name }}</span>
+        <button (click)="facade.deleteAccount(account.id)" class="pl-2">
+          <img class="h-4 w-4 mr-2" src="/assets/svg/delete.svg" />
+        </button>
+        <span
+          class="flex-grow text-right"
+          [class.expense]="account.value && account.value < 0"
+          [class.income]="account.value && account.value > 0"
+        >
+          {{ account.value | currency: 'EUR' }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-2 mr-2 flex flex-row-reverse">
+    <span
+      class="text-lg font-bold"
+      [class.income]="total > 0"
+      [class.expense]="total < 0"
+      >{{ total | currency: 'EUR' }}</span
+    >
+    <span class="font-bold mr-2 text-lg">Total</span>
+  </div>
+</div>

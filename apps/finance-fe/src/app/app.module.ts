@@ -30,6 +30,14 @@ const ROUTES: Routes = [
       import('@finance-fe-nx/summary/views').then((m) => m.SummaryViewsModule),
     canActivate: [MsalGuard],
   },
+  {
+    path: 'accounts',
+    loadChildren: () =>
+      import('@finance-fe-nx/accounts/views').then(
+        (m) => m.AccountsViewsModule
+      ),
+    canActivate: [MsalGuard],
+  },
 ];
 
 @NgModule({

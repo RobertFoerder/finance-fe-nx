@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Account } from '@finance-fe-nx/finance-api';
 import { select, Store } from '@ngrx/store';
-import { take } from 'rxjs';
+import { map, take } from 'rxjs';
 import * as AccountsActions from './accounts.actions';
 import * as AccountsSelectors from './accounts.selectors';
 
@@ -46,6 +46,9 @@ export class AccountsFacade {
   public readonly editError$ = this.store.pipe(
     select(AccountsSelectors.getAccountsEditError)
   );
+  public readonly total$ = this.collection$.pipe(
+    map((accounts) => this.sumUp(accounts))
+  );
 
   constructor(private readonly store: Store) {}
 
@@ -89,5 +92,21 @@ export class AccountsFacade {
     if (id) {
       this.store.dispatch(AccountsActions.deleteAccount({ id }));
     }
+  }
+
+  private sumUp(accounts: Account[]): number | undefined {
+    if (!accounts || accounts.length === 0) {
+      return 0;
+    }
+
+    return accounts
+      .map((account) => account.value)
+      .reduce((a, b) => {
+        if (!a || !b) {
+          return 0;
+        }
+
+        return a + b;
+      });
   }
 }
