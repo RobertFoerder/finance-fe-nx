@@ -1,0 +1,8 @@
+.value {
+  min-width: 6rem;
+  @apply text-right;
+}
+
+.average {
+  @apply flex-grow text-right text-sm self-center;
+}

@@ -1,12 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ContainerComponent } from '@finance-fe-nx/core';
 import { FinanceEntry } from '@finance-fe-nx/finance-api';
-import { SumUpService } from '@finance-fe-nx/shared';
+import { DateService, SumUpService } from '@finance-fe-nx/shared';
 import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
 import { map, Observable } from 'rxjs';
 
 interface EntryDescription {
   name: string | undefined;
   value: number | undefined;
+  monthlyAverage: number;
 }
 
 interface EntryCategory {
@@ -14,14 +16,21 @@ interface EntryCategory {
   value: number | undefined;
   descriptions: EntryDescription[];
   expanded: boolean;
+  monthlyAverage: number;
 }
 
 @Component({
   selector: 'finance-fe-category-summary',
   templateUrl: './category-summary.component.html',
+  styleUrls: ['./category-summary.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CategorySummaryComponent {
+export class CategorySummaryComponent
+  extends ContainerComponent
+  implements OnInit
+{
+  private availableMonths = 0;
+
   public entriesGroupedByCategory$: Observable<EntryCategory[]> =
     this.facade.collection$.pipe(
       map((entries) => this.groupEntriesByCategory(entries))
@@ -29,8 +38,20 @@ export class CategorySummaryComponent {
 
   constructor(
     private readonly facade: FinanceEntriesFacade,
-    private sumUp: SumUpService
-  ) {}
+    private sumUp: SumUpService,
+    private dateService: DateService
+  ) {
+    super();
+  }
+
+  public ngOnInit(): void {
+    this.subscribeTo(
+      this.facade.selectedYear$,
+      (year) =>
+        (this.availableMonths =
+          this.dateService.getAvailableMonths(year).length)
+    );
+  }
 
   private groupEntriesByCategory(entries: FinanceEntry[]): EntryCategory[] {
     const groupedEntries: EntryCategory[] = [];
@@ -44,11 +65,14 @@ export class CategorySummaryComponent {
         (entry) => entry.category?.trim() === category
       );
 
+      const sum = this.sumUp.financeEntries(entriesPerCategory);
+
       groupedEntries.push({
         name: category,
-        value: this.sumUp.financeEntries(entriesPerCategory),
+        value: sum,
         descriptions: this.groupEntriesByDescription(entriesPerCategory),
         expanded: false,
+        monthlyAverage: this.getMonthlyAverage(sum),
       });
     }
 
@@ -74,9 +98,12 @@ export class CategorySummaryComponent {
         (entry) => entry.description?.trim() === description
       );
 
+      const sum = this.sumUp.financeEntries(entriesPerDescription);
+
       groupedEntries.push({
         name: description,
-        value: this.sumUp.financeEntries(entriesPerDescription),
+        value: sum,
+        monthlyAverage: this.getMonthlyAverage(sum),
       });
     }
 
@@ -86,6 +113,14 @@ export class CategorySummaryComponent {
       }
       return e1.name.localeCompare(e2.name);
     });
+  }
+
+  private getMonthlyAverage(sum: number | undefined): number {
+    if (!sum) {
+      return 0;
+    }
+
+    return sum / this.availableMonths;
   }
 
   private distinct(

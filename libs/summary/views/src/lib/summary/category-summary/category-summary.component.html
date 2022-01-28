@@ -12,8 +12,11 @@
           </svg>
         </button>
         <span class="ml-2 font-bold">{{ category.name }}</span>
+        <span class="average">
+          {{ category.monthlyAverage | currency: 'EUR' }}/month
+        </span>
         <span
-          class="flex-grow text-right"
+          class="value"
           [class.expense]="category.value && category.value < 0"
           [class.income]="category.value && category.value > 0"
         >
@@ -23,8 +26,11 @@
       <div *ngIf="category.expanded" class="mb-4">
         <div class="flex" *ngFor="let description of category.descriptions">
           <span>{{ description.name }}</span>
+          <span class="average">
+            {{ description.monthlyAverage | currency: 'EUR' }}/month
+          </span>
           <span
-            class="flex-grow text-right"
+            class="value"
             [class.expense]="description.value && description.value < 0"
             [class.income]="description.value && description.value > 0"
           >
