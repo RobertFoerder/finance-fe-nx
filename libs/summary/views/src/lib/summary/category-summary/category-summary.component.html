@@ -1,0 +1,37 @@
+<div class="shadow-lg rounded-md h-auto bg-white flex flex-col p-2">
+  <div class="pb-2 pl-2">
+    <div
+      class="mb-2"
+      *ngFor="let category of entriesGroupedByCategory$ | async"
+    >
+      <div class="border-b-2 flex">
+        <button (click)="category.expanded = !category.expanded">
+          <svg class="h-2 w-2" viewBox="0 0 10 6">
+            <path [class.hidden]="category.expanded" d="M 0 0 l 5 6 l 5 -6" />
+            <path [class.hidden]="!category.expanded" d="M 0 6 l 5 -6 l 5 6" />
+          </svg>
+        </button>
+        <span class="ml-2 font-bold">{{ category.name }}</span>
+        <span
+          class="flex-grow text-right"
+          [class.expense]="category.value && category.value < 0"
+          [class.income]="category.value && category.value > 0"
+        >
+          {{ category.value | currency: 'EUR' }}
+        </span>
+      </div>
+      <div *ngIf="category.expanded" class="mb-4">
+        <div class="flex" *ngFor="let description of category.descriptions">
+          <span>{{ description.name }}</span>
+          <span
+            class="flex-grow text-right"
+            [class.expense]="description.value && description.value < 0"
+            [class.income]="description.value && description.value > 0"
+          >
+            {{ description.value | currency: 'EUR' }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

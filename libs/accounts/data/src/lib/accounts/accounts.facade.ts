@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Account } from '@finance-fe-nx/finance-api';
+import { SumUpService } from '@finance-fe-nx/shared';
 import { select, Store } from '@ngrx/store';
 import { map, take } from 'rxjs';
 import * as AccountsActions from './accounts.actions';
@@ -47,10 +48,13 @@ export class AccountsFacade {
     select(AccountsSelectors.getAccountsEditError)
   );
   public readonly total$ = this.collection$.pipe(
-    map((accounts) => this.sumUp(accounts))
+    map((accounts) => this.sumUp.accounts(accounts))
   );
 
-  constructor(private readonly store: Store) {}
+  constructor(
+    private readonly store: Store,
+    private readonly sumUp: SumUpService
+  ) {}
 
   public init(): void {
     this.loaded$.pipe(take(1)).subscribe((loaded) => {
@@ -92,21 +96,5 @@ export class AccountsFacade {
     if (id) {
       this.store.dispatch(AccountsActions.deleteAccount({ id }));
     }
-  }
-
-  private sumUp(accounts: Account[]): number | undefined {
-    if (!accounts || accounts.length === 0) {
-      return 0;
-    }
-
-    return accounts
-      .map((account) => account.value)
-      .reduce((a, b) => {
-        if (!a || !b) {
-          return 0;
-        }
-
-        return a + b;
-      });
   }
 }

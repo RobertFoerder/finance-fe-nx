@@ -6,6 +6,7 @@ import * as fromAccounts from './accounts/accounts.reducers';
 import { AccountsEffects } from './accounts/accounts.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { AccountsFacade } from './accounts/accounts.facade';
+import { SharedModule } from '@finance-fe-nx/shared';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { AccountsFacade } from './accounts/accounts.facade';
       fromAccounts.reducer
     ),
     EffectsModule.forFeature([AccountsEffects]),
+    SharedModule,
   ],
   providers: [AccountsFacade],
 })

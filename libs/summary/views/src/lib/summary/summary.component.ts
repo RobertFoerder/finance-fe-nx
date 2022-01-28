@@ -16,6 +16,7 @@ export class SummaryComponent extends ContainerComponent implements OnInit {
       map((selectedYear) => this.dateService.getAvailableMonths(selectedYear))
     );
   public total = 0;
+  public displayType: 'month' | 'category' = 'month';
 
   constructor(
     public readonly facade: FinanceEntriesFacade,

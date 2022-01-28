@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DateService } from './services/date.service';
-import { MonthToDatePipe } from '..';
+import { MonthToDatePipe, SumUpService } from '..';
 import { ValueInputComponent } from './components/value-input/value-input.component';
 import { FormsModule } from '@angular/forms';
 import { AppUpdateService } from './services/app-update.service';
@@ -10,6 +10,6 @@ import { AppUpdateService } from './services/app-update.service';
   declarations: [MonthToDatePipe, ValueInputComponent],
   imports: [CommonModule, FormsModule],
   exports: [MonthToDatePipe, ValueInputComponent],
-  providers: [DateService, AppUpdateService],
+  providers: [DateService, AppUpdateService, SumUpService],
 })
 export class SharedModule {}

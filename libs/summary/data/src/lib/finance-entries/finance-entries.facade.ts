@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FinanceEntry } from '@finance-fe-nx/finance-api';
+import { SumUpService } from '@finance-fe-nx/shared';
 import { select, Store } from '@ngrx/store';
 import { map, Observable, take } from 'rxjs';
 import * as FinanceEntriesActions from './finance-entries.actions';
-import { EntriesPerCategory } from './finance-entries.models';
 import * as FinanceEntriesSelectors from './finance-entries.selectors';
 
 @Injectable()
@@ -45,10 +45,13 @@ export class FinanceEntriesFacade {
     select(FinanceEntriesSelectors.getSelectedMonth)
   );
   public readonly total$ = this.collection$.pipe(
-    map((entries) => this.sumUp(entries))
+    map((entries) => this.sumUp.financeEntries(entries))
   );
 
-  constructor(private readonly store: Store) {}
+  constructor(
+    private readonly store: Store,
+    private readonly sumUp: SumUpService
+  ) {}
 
   public init(): void {
     this.loaded$.pipe(take(1)).subscribe((loaded) => {
@@ -84,20 +87,6 @@ export class FinanceEntriesFacade {
     this.store.dispatch(FinanceEntriesActions.setSelectedMonth({ month }));
   }
 
-  public getMonthlyTotal(month: number): Observable<number | undefined> {
-    return this.getMonthlyEntries(month).pipe(
-      map((entries: FinanceEntry[]) => this.sumUp(entries))
-    );
-  }
-
-  public getMonthlyEntriesGroupedByCategory(
-    month: number
-  ): Observable<EntriesPerCategory[]> {
-    return this.getMonthlyEntries(month).pipe(
-      map((entries) => this.groupEntriesByCategory(entries))
-    );
-  }
-
   public addEntry(entry: FinanceEntry): void {
     this.store.dispatch(FinanceEntriesActions.add({ entry }));
   }
@@ -106,64 +95,5 @@ export class FinanceEntriesFacade {
     if (id) {
       this.store.dispatch(FinanceEntriesActions.deleteEntry({ id }));
     }
-  }
-
-  private getMonthlyEntries(month: number): Observable<FinanceEntry[]> {
-    return this.collection$.pipe(
-      map((entries) => entries.filter((entry) => entry.month === month))
-    );
-  }
-
-  private groupEntriesByCategory(
-    allEntries: FinanceEntry[]
-  ): EntriesPerCategory[] {
-    const groupedEntries: EntriesPerCategory[] = [];
-
-    if (!allEntries) {
-      return groupedEntries;
-    }
-
-    for (const entry of allEntries) {
-      if (groupedEntries.some((e) => e.category === entry.category)) {
-        continue;
-      }
-
-      const entriesPerCategory: FinanceEntry[] = allEntries
-        .filter((e) => e.category === entry.category)
-        .sort((e1, e2) => {
-          if (!e1.date || !e2.date) {
-            return 0;
-          }
-          return e1.date.toString().localeCompare(e2.date.toString());
-        });
-
-      groupedEntries.push({
-        category: entry.category,
-        entries: entriesPerCategory,
-      });
-    }
-
-    return groupedEntries.sort((e1, e2) => {
-      if (!e1.category || !e2.category) {
-        return 0;
-      }
-      return e1.category.localeCompare(e2.category);
-    });
-  }
-
-  private sumUp(entries: FinanceEntry[]): number | undefined {
-    if (!entries || entries.length === 0) {
-      return 0;
-    }
-
-    return entries
-      .map((entry) => entry.value)
-      .reduce((a, b) => {
-        if (!a || !b) {
-          return 0;
-        }
-
-        return a + b;
-      });
   }
 }

@@ -10,6 +10,14 @@ import { ContainerComponent } from '@finance-fe-nx/core';
 import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
 import { map, Observable } from 'rxjs';
 import { ConfirmBoxEvokeService } from '@costlydeveloper/ngx-awesome-popup';
+import { FinanceEntry } from '@finance-fe-nx/finance-api';
+import { SumUpService } from '@finance-fe-nx/shared';
+
+interface EntriesPerCategory {
+  category: string | undefined;
+  entries: FinanceEntry[];
+}
+
 @Component({
   selector: 'finance-fe-monthly-summary',
   templateUrl: './monthly-summary.component.html',
@@ -21,6 +29,11 @@ export class MonthlySummaryComponent
 {
   private _month = new Date().getMonth();
   private _year = new Date().getFullYear();
+
+  private monthlyEntries$: Observable<FinanceEntry[]> =
+    this.facade.collection$.pipe(
+      map((entries) => entries.filter((entry) => entry.month === this.month))
+    );
 
   public expanded$: Observable<boolean> = this.facade.selectedMonth$.pipe(
     map((selectedMonth) => selectedMonth === this._month)
@@ -37,11 +50,22 @@ export class MonthlySummaryComponent
   public total = 0;
   public date = new Date();
 
+  public monthlyEntriesGroupedByCategory$: Observable<EntriesPerCategory[]> =
+    this.monthlyEntries$.pipe(
+      map((entries) => this.groupEntriesByCategory(entries))
+    );
+
+  public monthlyTotal$: Observable<number | undefined> =
+    this.monthlyEntries$.pipe(
+      map((entries: FinanceEntry[]) => this.sumUp.financeEntries(entries))
+    );
+
   constructor(
     public readonly facade: FinanceEntriesFacade,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly confirmBox: ConfirmBoxEvokeService
+    private readonly confirmBox: ConfirmBoxEvokeService,
+    private readonly sumUp: SumUpService
   ) {
     super();
   }
@@ -50,7 +74,7 @@ export class MonthlySummaryComponent
     this.useLatest(this.facade.selectedYear$, (selectedYear) =>
       this.date.setFullYear(selectedYear)
     );
-    this.subscribeTo(this.facade.getMonthlyTotal(this._month), (total) => {
+    this.subscribeTo(this.monthlyTotal$, (total) => {
       if (total) {
         this.total = total;
       }
@@ -87,5 +111,42 @@ export class MonthlySummaryComponent
           this.facade.deleteEntry(id);
         }
       });
+  }
+
+  private groupEntriesByCategory(
+    allEntries: FinanceEntry[]
+  ): EntriesPerCategory[] {
+    const groupedEntries: EntriesPerCategory[] = [];
+
+    if (!allEntries) {
+      return groupedEntries;
+    }
+
+    for (const entry of allEntries) {
+      if (groupedEntries.some((e) => e.category === entry.category)) {
+        continue;
+      }
+
+      const entriesPerCategory: FinanceEntry[] = allEntries
+        .filter((e) => e.category === entry.category)
+        .sort((e1, e2) => {
+          if (!e1.date || !e2.date) {
+            return 0;
+          }
+          return e1.date.toString().localeCompare(e2.date.toString());
+        });
+
+      groupedEntries.push({
+        category: entry.category,
+        entries: entriesPerCategory,
+      });
+    }
+
+    return groupedEntries.sort((e1, e2) => {
+      if (!e1.category || !e2.category) {
+        return 0;
+      }
+      return e1.category.localeCompare(e2.category);
+    });
   }
 }

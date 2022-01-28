@@ -11,7 +11,7 @@ input {
 }
 
 select {
-  @apply bg-white h-6 rounded-md p-1;
+  @apply bg-white h-7 rounded-md p-1 text-sm;
 }
 
 input.ng-invalid:not(form).ng-touched {
