@@ -9,6 +9,10 @@ import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import {
+  NgxAwesomePopupModule,
+  ConfirmBoxConfigModule,
+} from '@costlydeveloper/ngx-awesome-popup';
 
 import { AppComponent } from './app.component';
 import { EffectsModule } from '@ngrx/effects';
@@ -102,6 +106,8 @@ const ROUTES: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgxAwesomePopupModule.forRoot(),
+    ConfirmBoxConfigModule.forRoot(),
   ],
   providers: [
     {

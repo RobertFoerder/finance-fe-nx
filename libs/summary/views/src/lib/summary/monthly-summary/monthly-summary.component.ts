@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ContainerComponent } from '@finance-fe-nx/core';
 import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
 import { map, Observable } from 'rxjs';
-
+import { ConfirmBoxEvokeService } from '@costlydeveloper/ngx-awesome-popup';
 @Component({
   selector: 'finance-fe-monthly-summary',
   templateUrl: './monthly-summary.component.html',
@@ -40,7 +40,8 @@ export class MonthlySummaryComponent
   constructor(
     public readonly facade: FinanceEntriesFacade,
     private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly confirmBox: ConfirmBoxEvokeService
   ) {
     super();
   }
@@ -76,5 +77,15 @@ export class MonthlySummaryComponent
       }
       this.facade.setSelectedMonth(selectedMonth);
     });
+  }
+
+  public deleteEntry(id: string | undefined): void {
+    this.confirmBox
+      .danger('Delete entry', 'Are you sure?', 'Yes', 'Cancel')
+      .subscribe((resp) => {
+        if (resp) {
+          this.facade.deleteEntry(id);
+        }
+      });
   }
 }

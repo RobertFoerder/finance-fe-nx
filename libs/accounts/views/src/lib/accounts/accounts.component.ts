@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ContainerComponent } from '@finance-fe-nx/core';
 import { AccountsFacade } from '@finance-fe-nx/accounts/data';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmBoxEvokeService } from '@costlydeveloper/ngx-awesome-popup';
 
 @Component({
   templateUrl: './accounts.component.html',
@@ -13,7 +14,8 @@ export class AccountsComponent extends ContainerComponent implements OnInit {
   constructor(
     public readonly facade: AccountsFacade,
     private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly confirmBox: ConfirmBoxEvokeService
   ) {
     super();
   }
@@ -32,5 +34,15 @@ export class AccountsComponent extends ContainerComponent implements OnInit {
     this.router.navigate(['add'], {
       relativeTo: this.activatedRoute,
     });
+  }
+
+  public deleteAccount(id: string | undefined): void {
+    this.confirmBox
+      .danger('Delete account', 'Are you sure?', 'Yes', 'Cancel')
+      .subscribe((resp) => {
+        if (resp) {
+          this.facade.deleteAccount(id);
+        }
+      });
   }
 }
