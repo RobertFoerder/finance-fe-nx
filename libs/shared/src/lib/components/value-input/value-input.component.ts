@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Component, forwardRef, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -26,6 +26,8 @@ export class ValueInputComponent implements ControlValueAccessor {
 
   private onTouched = () => {};
 
+  constructor(private readonly cdr: ChangeDetectorRef) {}
+
   public onValueChanged(value: number | undefined) {
     this.markAsTouched();
     this.value = value;
@@ -44,7 +46,8 @@ export class ValueInputComponent implements ControlValueAccessor {
   }
 
   public writeValue(value: number | undefined): void {
-    this.value = value;
+    this.value = !value || value >= 0 ? value : Math.abs(value);
+    this.cdr.detectChanges();
   }
 
   public registerOnChange(onChange: (value: number | undefined) => void): void {

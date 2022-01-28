@@ -116,6 +116,11 @@ const accountsReducer = createReducer(
     ...state,
     deleteError: undefined,
     deleteRequestStatus: 'initial',
+  })),
+  on(AccountsActions.resetEdit, (state) => ({
+    ...state,
+    editError: undefined,
+    editRequestStatus: 'initial',
   }))
 );
 

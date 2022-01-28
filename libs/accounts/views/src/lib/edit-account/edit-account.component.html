@@ -1,7 +1,9 @@
-<span *ngIf="facade.editing$ | async">Adding...</span>
+<span *ngIf="facade.editing$ | async">Editing...</span>
+<span *ngIf="loading">Loading...</span>
+<span *ngIf="!account && !loading">No account with this id</span>
 <form
-  *ngIf="(facade.editing$ | async) === false"
-  (ngSubmit)="onSubmit()"
+  *ngIf="(facade.editing$ | async) === false && account"
+  (ngSubmit)="facade.editAccount(account)"
   #accountForm="ngForm"
   class="max-w-md"
 >

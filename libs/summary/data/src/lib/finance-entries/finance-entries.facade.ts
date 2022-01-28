@@ -99,7 +99,6 @@ export class FinanceEntriesFacade {
   }
 
   public addEntry(entry: FinanceEntry): void {
-    console.log('adding entry', entry);
     this.store.dispatch(FinanceEntriesActions.add({ entry }));
   }
 
