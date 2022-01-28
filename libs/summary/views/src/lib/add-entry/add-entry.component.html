@@ -1,9 +1,9 @@
 <span *ngIf="facade.adding$ | async">Adding...</span>
 <form
   *ngIf="(facade.adding$ | async) === false"
-  (ngSubmit)="onSubmit()"
   #entryForm="ngForm"
   class="max-w-md"
+  (ngSubmit)="facade.addEntry(entry)"
 >
   <div>
     <label for="year">Year</label>
@@ -33,36 +33,11 @@
   </div>
   <div>
     <label for="value">Value*</label>
-    <div class="flex flex-row mb-0 items-center">
-      <div class="flex flex-row mb-0">
-        <button
-          tabindex="-1"
-          type="button"
-          class="switch-button switch-button-left income"
-          (click)="isIncome = true"
-          [class.selected]="isIncome"
-        >
-          +
-        </button>
-        <button
-          tabindex="-1"
-          type="button"
-          class="switch-button switch-button-right expense"
-          (click)="isIncome = false"
-          [class.selected]="!isIncome"
-        >
-          -
-        </button>
-      </div>
-      <input
-        class="flex-grow ml-2"
-        name="value"
-        type="number"
-        min="0"
-        [(ngModel)]="entry.value"
-        required
-      />
-    </div>
+    <finance-fe-value-input
+      name="value"
+      [(ngModel)]="entry.value"
+      required
+    ></finance-fe-value-input>
   </div>
   <div>
     <button

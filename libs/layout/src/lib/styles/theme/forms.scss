@@ -7,13 +7,13 @@ label {
 }
 
 input {
-  @apply h-6 rounded-md p-1;
+  @apply h-6 rounded-md p-1 read-only:bg-gray-300;
 }
 
 select {
   @apply bg-white h-6 rounded-md p-1;
 }
 
-.ng-invalid:not(form).ng-touched {
+input.ng-invalid:not(form).ng-touched {
   @apply border-red-600 border-2;
 }

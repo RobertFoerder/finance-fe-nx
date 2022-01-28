@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '@finance-fe-nx/shared';
-import { AddAccountComponent } from './add-account.component';
+import { EditAccountComponent } from './edit-account.component';
 
 @NgModule({
-  declarations: [AddAccountComponent],
+  declarations: [EditAccountComponent],
   imports: [CommonModule, FormsModule, SharedModule],
 })
-export class AddAccountModule {}
+export class EditAccountModule {}

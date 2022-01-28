@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "finance-fe-nx",
+            "prefix": "finance-fe",
             "style": "kebab-case"
           }
         ]

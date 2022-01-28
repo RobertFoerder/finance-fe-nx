@@ -1,18 +1,24 @@
-<span *ngIf="facade.adding$ | async">Adding...</span>
+<span *ngIf="facade.editing$ | async">Adding...</span>
 <form
-  *ngIf="(facade.adding$ | async) === false"
-  (ngSubmit)="facade.addAccount(account)"
+  *ngIf="(facade.editing$ | async) === false"
+  (ngSubmit)="onSubmit()"
   #accountForm="ngForm"
   class="max-w-md"
 >
   <div>
     <label for="name">Name*</label>
-    <input name="name" type="text" [(ngModel)]="account.name" required />
+    <input
+      name="name"
+      type="text"
+      [(ngModel)]="account.name"
+      required
+      readonly
+    />
   </div>
   <div>
     <label for="value">Value*</label>
     <finance-fe-value-input
-      [income]="true"
+      [income]="initialValue >= 0"
       [(ngModel)]="account.value"
       required
       name="value"
@@ -24,7 +30,7 @@
       type="submit"
       class="btn-primary mt-2"
     >
-      Add account
+      Save
     </button>
   </div>
 </form>

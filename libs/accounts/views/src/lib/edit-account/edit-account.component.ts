@@ -6,13 +6,13 @@ import { Account } from '@finance-fe-nx/finance-api';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  templateUrl: './add-account.component.html',
+  templateUrl: './edit-account.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddAccountComponent extends ContainerComponent implements OnInit {
-  public account: Account = {
-    name: '',
-  };
+export class EditAccountComponent extends ContainerComponent implements OnInit {
+  public account: Account = {};
+  public isIncome = true;
+  public initialValue = 0;
 
   constructor(
     public readonly facade: AccountsFacade,
@@ -24,15 +24,22 @@ export class AddAccountComponent extends ContainerComponent implements OnInit {
 
   public ngOnInit(): void {
     this.facade.resetAdd();
-    this.subscribeTo(this.facade.addError$, (error) => {
+    this.subscribeTo(this.facade.editError$, (error) => {
       if (error) {
         this.toastr.error('Error adding account');
       }
     });
-    this.subscribeTo(this.facade.added$, (added) => {
-      if (added) {
+    this.subscribeTo(this.facade.edited$, (edited) => {
+      if (edited) {
         this.router.navigate(['/accounts']);
       }
     });
+  }
+
+  public onSubmit() {
+    if (!this.isIncome && this.account.value) {
+      this.account.value = -this.account.value;
+    }
+    this.facade.editAccount(this.account);
   }
 }

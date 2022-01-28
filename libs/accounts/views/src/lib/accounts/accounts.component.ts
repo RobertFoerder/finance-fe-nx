@@ -45,4 +45,8 @@ export class AccountsComponent extends ContainerComponent implements OnInit {
         }
       });
   }
+
+  public editAccount(id: string | undefined): void {
+    this.router.navigate(['edit', id], { relativeTo: this.activatedRoute });
+  }
 }

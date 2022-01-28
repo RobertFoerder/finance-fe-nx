@@ -6,10 +6,13 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { AccountsModule } from './accounts/accounts.module';
 import { AddAccountComponent } from './add-account/add-account.component';
 import { AddAccountModule } from './add-account/add-account.module';
+import { EditAccountComponent } from './edit-account/edit-account.component';
+import { EditAccountModule } from './edit-account/edit-account.module';
 
 export const ROUTES: Routes = [
   { path: '', component: AccountsComponent },
   { path: 'add', component: AddAccountComponent },
+  { path: 'edit/:accountId', component: EditAccountComponent },
 ];
 
 @NgModule({
@@ -18,6 +21,7 @@ export const ROUTES: Routes = [
     RouterModule.forChild(ROUTES),
     AccountsModule,
     AddAccountModule,
+    EditAccountModule,
     AccountsDataModule,
   ],
 })
