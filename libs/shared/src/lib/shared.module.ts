@@ -4,11 +4,12 @@ import { DateService } from './services/date.service';
 import { MonthToDatePipe } from '..';
 import { ValueInputComponent } from './components/value-input/value-input.component';
 import { FormsModule } from '@angular/forms';
+import { AppUpdateService } from './services/app-update.service';
 
 @NgModule({
   declarations: [MonthToDatePipe, ValueInputComponent],
   imports: [CommonModule, FormsModule],
   exports: [MonthToDatePipe, ValueInputComponent],
-  providers: [DateService],
+  providers: [DateService, AppUpdateService],
 })
 export class SharedModule {}

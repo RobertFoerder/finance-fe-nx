@@ -25,6 +25,7 @@ import {
   FinanceApiModule,
   FinanceConfiguration,
 } from '@finance-fe-nx/finance-api';
+import { SharedModule } from '@finance-fe-nx/shared';
 
 const ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'summary' },
@@ -108,6 +109,7 @@ const ROUTES: Routes = [
     ToastrModule.forRoot(),
     NgxAwesomePopupModule.forRoot(),
     ConfirmBoxConfigModule.forRoot(),
+    SharedModule,
   ],
   providers: [
     {
