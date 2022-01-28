@@ -4,12 +4,17 @@ import { ConfirmBoxEvokeService } from '@costlydeveloper/ngx-awesome-popup';
 
 @Injectable()
 export class AppUpdateService {
+  private updating = false;
+
   constructor(
     private readonly updates: SwUpdate,
     private readonly confirmBox: ConfirmBoxEvokeService
   ) {
     this.updates.versionUpdates.subscribe(() => {
-      this.showAppUpdateAlert();
+      if (!this.updating) {
+        this.updating = true;
+        this.showAppUpdateAlert();
+      }
     });
   }
 
@@ -17,6 +22,7 @@ export class AppUpdateService {
     this.confirmBox
       .info('Update available', 'Update now?', 'Yes', 'No')
       .subscribe((resp) => {
+        this.updating = false;
         if (resp) {
           this.doAppUpdate();
         }
