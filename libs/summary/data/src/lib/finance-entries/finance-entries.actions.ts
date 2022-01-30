@@ -44,6 +44,20 @@ export const deleteEntryFailure = createAction(
 );
 export const resetDelete = createAction('[Finannce-Entries] Reset delete');
 
+export const editEntry = createAction(
+  '[Finance-Entries/API] Edit',
+  props<{ id: string; entry: FinanceEntryEntity }>()
+);
+export const editEntrySuccess = createAction(
+  '[Finance-Entries/API] Edit entry success',
+  props<{ entry: FinanceEntryEntity }>()
+);
+export const editEntryFailure = createAction(
+  '[Finance-Entries/API] Edit entry failure',
+  props<{ error: SerializedError }>()
+);
+export const resetEdit = createAction('[Finance-Entries] Reset edit');
+
 export const setSelectedYear = createAction(
   '[Selected year] set selected year',
   props<{ year: number }>()

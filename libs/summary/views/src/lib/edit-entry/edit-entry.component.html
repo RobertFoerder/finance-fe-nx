@@ -1,0 +1,60 @@
+<span *ngIf="facade.editing$ | async">Editing...</span>
+<span *ngIf="loading">Loading...</span>
+<span *ngIf="!entry && !loading">No entry with this id</span>
+<form
+  *ngIf="(facade.editing$ | async) === false && entry"
+  #entryForm="ngForm"
+  class="max-w-md"
+  (ngSubmit)="facade.editEntry(entry)"
+>
+  <div>
+    <label for="year">Year</label>
+    <input name="year" type="text" [ngModel]="entry.year" readonly />
+  </div>
+  <div>
+    <label for="month">Month</label>
+    <input
+      name="month"
+      type="text"
+      [ngModel]="entry.month | monthToDate | date: 'MMMM'"
+      readonly
+    />
+  </div>
+  <div>
+    <label for="category">Category*</label>
+    <input
+      name="category"
+      type="text"
+      [(ngModel)]="entry.category"
+      required
+      readonly
+    />
+  </div>
+  <div>
+    <label for="description">Description*</label>
+    <input
+      name="description"
+      type="text"
+      [(ngModel)]="entry.description"
+      required
+    />
+  </div>
+  <div>
+    <label for="value">Value*</label>
+    <finance-fe-value-input
+      [income]="initialValue >= 0"
+      name="value"
+      [(ngModel)]="entry.value"
+      required
+    ></finance-fe-value-input>
+  </div>
+  <div>
+    <button
+      [disabled]="entryForm.form.untouched || !entryForm.form.valid"
+      type="submit"
+      class="btn-primary mt-2"
+    >
+      Save
+    </button>
+  </div>
+</form>

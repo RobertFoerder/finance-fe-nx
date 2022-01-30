@@ -113,6 +113,10 @@ export class MonthlySummaryComponent
       });
   }
 
+  public editEntry(id: string | undefined): void {
+    this.router.navigate(['edit', id], { relativeTo: this.activatedRoute });
+  }
+
   private groupEntriesByCategory(
     allEntries: FinanceEntry[]
   ): EntriesPerCategory[] {

@@ -38,6 +38,15 @@ export class FinanceEntriesFacade {
   public readonly addError$ = this.store.pipe(
     select(FinanceEntriesSelectors.getFinanceEntriesAddError)
   );
+  public readonly editing$ = this.store.pipe(
+    select(FinanceEntriesSelectors.getFinanceEntriesEditing)
+  );
+  public readonly edited$ = this.store.pipe(
+    select(FinanceEntriesSelectors.getFinanceEntriesEdited)
+  );
+  public readonly editError$ = this.store.pipe(
+    select(FinanceEntriesSelectors.getFinanceEntriesEditError)
+  );
   public readonly selectedYear$ = this.store.pipe(
     select(FinanceEntriesSelectors.getSelectedYear)
   );
@@ -79,6 +88,10 @@ export class FinanceEntriesFacade {
     this.store.dispatch(FinanceEntriesActions.resetDelete());
   }
 
+  public resetEdit(): void {
+    this.store.dispatch(FinanceEntriesActions.resetEdit());
+  }
+
   public setSelectedYear(year: number): void {
     this.store.dispatch(FinanceEntriesActions.setSelectedYear({ year }));
   }
@@ -94,6 +107,14 @@ export class FinanceEntriesFacade {
   public deleteEntry(id: string | undefined): void {
     if (id) {
       this.store.dispatch(FinanceEntriesActions.deleteEntry({ id }));
+    }
+  }
+
+  public editEntry(entry: FinanceEntry): void {
+    if (entry.id) {
+      this.store.dispatch(
+        FinanceEntriesActions.editEntry({ id: entry.id, entry })
+      );
     }
   }
 }

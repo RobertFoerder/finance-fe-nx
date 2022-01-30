@@ -61,6 +61,21 @@ export const getFinanceEntriesAddError = createSelector(
   (state: State) => state.addError
 );
 
+export const getFinanceEntriesEditing = createSelector(
+  getFinanceEntriesState,
+  (state: State) => state.editRequestStatus === 'pending'
+);
+
+export const getFinanceEntriesEdited = createSelector(
+  getFinanceEntriesState,
+  (state: State) => state.editRequestStatus === 'successful'
+);
+
+export const getFinanceEntriesEditError = createSelector(
+  getFinanceEntriesState,
+  (state: State) => state.editError
+);
+
 export const getSelectedYear = createSelector(
   getFinanceEntriesState,
   (state: State) => state.selectedYear

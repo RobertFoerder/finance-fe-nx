@@ -14,5 +14,5 @@
   "scss.validate": false,
   "typescript.locale": "en",
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["Serializability"]
+  "cSpell.words": ["costlydeveloper", "Serializability"]
 }

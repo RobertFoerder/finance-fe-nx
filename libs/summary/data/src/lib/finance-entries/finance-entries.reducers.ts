@@ -11,11 +11,13 @@ export interface State extends EntityState<FinanceEntryEntity> {
   readRequestStatus: RequestStatus;
   addRequestStatus: RequestStatus;
   deleteRequestStatus: RequestStatus;
+  editRequestStatus: RequestStatus;
   selectedYear: number;
   selectedMonth: number | undefined;
   loadError?: SerializedError;
   addError?: SerializedError;
   deleteError?: SerializedError;
+  editError?: SerializedError;
 }
 
 export interface FinanceEntriesPartialState {
@@ -29,11 +31,13 @@ export const initialState: State = financeEntriesAdapter.getInitialState({
   readRequestStatus: 'initial',
   addRequestStatus: 'initial',
   deleteRequestStatus: 'initial',
+  editRequestStatus: 'initial',
   selectedYear: new Date().getFullYear(),
   selectedMonth: new Date().getMonth(),
   loadError: undefined,
   addError: undefined,
   deleteError: undefined,
+  editError: undefined,
 });
 
 const financeEntriesReducer = createReducer(
@@ -94,6 +98,22 @@ const financeEntriesReducer = createReducer(
     deleteRequestStatus: 'failed',
     deleteError: error,
   })),
+  on(FinanceEntriesActions.editEntry, (state) => ({
+    ...state,
+    editRequestStatus: 'pending',
+    editError: undefined,
+  })),
+  on(FinanceEntriesActions.editEntrySuccess, (state, { entry }) =>
+    financeEntriesAdapter.upsertOne(entry, {
+      ...state,
+      editRequestStatus: 'successful',
+    })
+  ),
+  on(FinanceEntriesActions.editEntryFailure, (state, { error }) => ({
+    ...state,
+    editRequestStatus: 'failed',
+    editError: error,
+  })),
   on(FinanceEntriesActions.resetEntries, (state) => ({
     ...state,
     loadError: undefined,
@@ -108,6 +128,11 @@ const financeEntriesReducer = createReducer(
     ...state,
     deleteError: undefined,
     deleteRequestStatus: 'initial',
+  })),
+  on(FinanceEntriesActions.resetEdit, (state) => ({
+    ...state,
+    editError: undefined,
+    editRequestStatus: 'initial',
   }))
 );
 

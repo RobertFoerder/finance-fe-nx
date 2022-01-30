@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EntriesService } from '@finance-fe-nx/finance-api';
+
 import { fetch } from '@nrwl/angular';
 
 import * as FinanceEntriesActions from './finance-entries.actions';
@@ -58,6 +59,24 @@ export class FinanceEntriesEffects {
             .pipe(map(() => FinanceEntriesActions.deleteEntrySuccess({ id }))),
         onError: (_, error: HttpErrorResponse) =>
           FinanceEntriesActions.deleteEntryFailure({
+            error: serializeErrorResponse(error),
+          }),
+      })
+    )
+  );
+
+  public readonly edit$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(FinanceEntriesActions.editEntry),
+      fetch({
+        run: ({ id, entry }) =>
+          this.service
+            .putEntry(id, entry)
+            .pipe(
+              map((entry) => FinanceEntriesActions.editEntrySuccess({ entry }))
+            ),
+        onError: (_, error: HttpErrorResponse) =>
+          FinanceEntriesActions.editEntryFailure({
             error: serializeErrorResponse(error),
           }),
       })
