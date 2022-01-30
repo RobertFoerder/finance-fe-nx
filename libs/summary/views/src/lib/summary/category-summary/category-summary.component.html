@@ -16,7 +16,7 @@
           {{ category.monthlyAverage | currency: 'EUR' }}/month
         </span>
         <span
-          class="value"
+          class="value font-bold"
           [class.expense]="category.value && category.value < 0"
           [class.income]="category.value && category.value > 0"
         >
@@ -24,18 +24,46 @@
         </span>
       </div>
       <div *ngIf="category.expanded" class="mb-4">
-        <div class="flex" *ngFor="let description of category.descriptions">
-          <span>{{ description.name }}</span>
-          <span class="average">
-            {{ description.monthlyAverage | currency: 'EUR' }}/month
-          </span>
-          <span
-            class="value"
-            [class.expense]="description.value && description.value < 0"
-            [class.income]="description.value && description.value > 0"
-          >
-            {{ description.value | currency: 'EUR' }}
-          </span>
+        <div class="pl-2" *ngFor="let description of category.descriptions">
+          <div class="flex border-b-2">
+            <button (click)="description.expanded = !description.expanded">
+              <svg class="h-2 w-2" viewBox="0 0 10 6">
+                <path
+                  [class.hidden]="description.expanded"
+                  d="M 0 0 l 5 6 l 5 -6"
+                />
+                <path
+                  [class.hidden]="!description.expanded"
+                  d="M 0 6 l 5 -6 l 5 6"
+                />
+              </svg>
+            </button>
+            <span class="ml-2">{{ description.name }}</span>
+            <span class="average">
+              {{ description.monthlyAverage | currency: 'EUR' }}/month
+            </span>
+            <span
+              class="value"
+              [class.expense]="description.value && description.value < 0"
+              [class.income]="description.value && description.value > 0"
+            >
+              {{ description.value | currency: 'EUR' }}
+            </span>
+          </div>
+          <div class="mb-2" *ngIf="description.expanded">
+            <div class="flex" *ngFor="let month of description.months">
+              <span class="text-sm">{{
+                month.month | monthToDate | date: 'MMMM'
+              }}</span>
+              <span
+                class="flex-grow text-right text-sm"
+                [class.expense]="month.sum && month.sum < 0"
+                [class.income]="month.sum && month.sum > 0"
+              >
+                {{ month.sum | currency: 'EUR' }}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -5,10 +5,17 @@ import { DateService, SumUpService } from '@finance-fe-nx/shared';
 import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
 import { map, Observable } from 'rxjs';
 
+interface EntryMonth {
+  month: number;
+  sum: number | undefined;
+}
+
 interface EntryDescription {
   name: string | undefined;
   value: number | undefined;
   monthlyAverage: number;
+  expanded: boolean;
+  months: EntryMonth[];
 }
 
 interface EntryCategory {
@@ -104,6 +111,8 @@ export class CategorySummaryComponent
         name: description,
         value: sum,
         monthlyAverage: this.getMonthlyAverage(sum),
+        expanded: false,
+        months: this.groupEntriesByMonth(entriesPerDescription),
       });
     }
 
@@ -113,6 +122,23 @@ export class CategorySummaryComponent
       }
       return e1.name.localeCompare(e2.name);
     });
+  }
+
+  private groupEntriesByMonth(entries: FinanceEntry[]): EntryMonth[] {
+    const groupedEntries: EntryMonth[] = [];
+
+    for (let month = 0; month < 12; month++) {
+      const entriesPerMonth = entries.filter((entry) => entry.month === month);
+
+      if (entriesPerMonth.length > 0) {
+        groupedEntries.push({
+          month,
+          sum: this.sumUp.financeEntries(entriesPerMonth),
+        });
+      }
+    }
+
+    return groupedEntries;
   }
 
   private getMonthlyAverage(sum: number | undefined): number {
