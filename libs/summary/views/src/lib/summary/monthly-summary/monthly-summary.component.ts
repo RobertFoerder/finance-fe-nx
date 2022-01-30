@@ -28,7 +28,6 @@ export class MonthlySummaryComponent
   implements OnInit, OnDestroy
 {
   private _month = new Date().getMonth();
-  private _year = new Date().getFullYear();
 
   private monthlyEntries$: Observable<FinanceEntry[]> =
     this.facade.collection$.pipe(
@@ -44,6 +43,7 @@ export class MonthlySummaryComponent
   }
   set month(value: number) {
     this._month = value;
+    this.date.setDate(1);
     this.date.setMonth(value);
   }
 

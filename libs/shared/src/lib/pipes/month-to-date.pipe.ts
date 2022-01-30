@@ -8,6 +8,7 @@ export class MonthToDatePipe implements PipeTransform {
     }
 
     const date = new Date();
+    date.setDate(1);
     date.setMonth(value);
     return date;
   }
