@@ -1,0 +1,46 @@
+<span *ngIf="facade.editing$ | async">Editing...</span>
+<span *ngIf="loading">Loading...</span>
+<span *ngIf="!fixedCost && !loading">No fixed cost with this id</span>
+<form
+  *ngIf="(facade.editing$ | async) === false && fixedCost"
+  #fixedCostForm="ngForm"
+  class="max-w-md"
+  (ngSubmit)="facade.editFixedCost(fixedCost)"
+>
+  <div>
+    <label for="category">Category*</label>
+    <input
+      name="category"
+      type="text"
+      [(ngModel)]="fixedCost.category"
+      required
+    />
+  </div>
+  <div>
+    <label for="description">Description*</label>
+    <input
+      name="description"
+      type="text"
+      [(ngModel)]="fixedCost.description"
+      required
+    />
+  </div>
+  <div>
+    <label for="value">Value*</label>
+    <finance-fe-value-input
+      [income]="initialValue >= 0"
+      name="value"
+      [(ngModel)]="fixedCost.value"
+      required
+    ></finance-fe-value-input>
+  </div>
+  <div>
+    <button
+      [disabled]="fixedCostForm.form.untouched || !fixedCostForm.form.valid"
+      type="submit"
+      class="btn-primary mt-2"
+    >
+      Save
+    </button>
+  </div>
+</form>

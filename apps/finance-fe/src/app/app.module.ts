@@ -43,6 +43,14 @@ const ROUTES: Routes = [
       ),
     canActivate: [MsalGuard],
   },
+  {
+    path: 'fixed-costs',
+    loadChildren: () =>
+      import('@finance-fe-nx/fixed-costs/views').then(
+        (m) => m.FixedCostsViewsModule
+      ),
+    canActivate: [MsalGuard],
+  },
 ];
 
 @NgModule({

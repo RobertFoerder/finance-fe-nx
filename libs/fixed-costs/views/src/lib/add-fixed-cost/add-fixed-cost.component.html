@@ -1,0 +1,43 @@
+<span *ngIf="facade.adding$ | async">Adding...</span>
+<form
+  *ngIf="(facade.adding$ | async) === false"
+  #fixedCostForm="ngForm"
+  class="max-w-md"
+  (ngSubmit)="facade.addFixedCost(fixedCost)"
+>
+  <div>
+    <label for="category">Category*</label>
+    <input
+      name="category"
+      type="text"
+      [(ngModel)]="fixedCost.category"
+      required
+    />
+  </div>
+  <div>
+    <label for="description">Description*</label>
+    <input
+      name="description"
+      type="text"
+      [(ngModel)]="fixedCost.description"
+      required
+    />
+  </div>
+  <div>
+    <label for="value">Value*</label>
+    <finance-fe-value-input
+      name="value"
+      [(ngModel)]="fixedCost.value"
+      required
+    ></finance-fe-value-input>
+  </div>
+  <div>
+    <button
+      [disabled]="fixedCostForm.form.untouched || !fixedCostForm.form.valid"
+      type="submit"
+      class="btn-primary mt-2"
+    >
+      Add entry
+    </button>
+  </div>
+</form>

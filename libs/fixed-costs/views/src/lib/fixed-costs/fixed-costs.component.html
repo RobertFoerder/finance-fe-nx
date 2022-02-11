@@ -1,0 +1,67 @@
+<span *ngIf="facade.loading$ | async">Loading ...</span>
+<span *ngIf="facade.loadError$ | async">Error loading fixed costs...</span>
+<span *ngIf="facade.deleting$ | async">Deleting...</span>
+<span *ngIf="facade.deleteError$ | async">Error deleting fixed cost...</span>
+<div
+  *ngIf="
+    (facade.loading$ | async) === false &&
+    (facade.loadError$ | async) === undefined &&
+    (facade.deleting$ | async) === false
+  "
+>
+  <div class="shadow-lg rounded-md h-auto bg-white flex flex-col p-2">
+    <div class="flex flex-row items-center border-b-0 border-black border-b-2">
+      <span class="ml-2 text-lg font-bold">Fixed costs</span>
+      <button (click)="addFixedCost()" class="pl-2">
+        <svg
+          class="fill-current h-4 w-4"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>Add</title>
+          <path
+            d="M 10 8 L 10 1 L 8 1 L 8 8 l -7 0 l 0 2 L 8 10 l 0 7 l 2 -0 L 10 10 l 7 0 l -0 -2 z"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="pt-4 pb-2 pl-2 divide-y-2">
+      <div
+        class="mb-2 flex flex-row"
+        *ngFor="let category of fixedCostsGroupedByCategory$ | async"
+      >
+        <div class="border-b-2">
+          <span class="font-bold">{{ category.category }}</span>
+          <button (click)="addFixedCost(category.category)" class="pl-2">
+            <svg
+              class="fill-current h-4 w-4"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Add</title>
+              <path
+                d="M 10 8 L 10 1 L 8 1 L 8 8 l -7 0 l 0 2 L 8 10 l 0 7 l 2 -0 L 10 10 l 7 0 l -0 -2 z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="flex" *ngFor="let fixedCost of category.fixedCosts">
+          <span>{{ fixedCost.description }}</span>
+          <button (click)="editFixedCost(fixedCost.id)" class="pl-2">
+            <img class="h-4 w-4 mr-2" src="/assets/svg/edit.svg" />
+          </button>
+          <button (click)="editFixedCost(fixedCost.id)" class="pl-2">
+            <img class="h-4 w-4 mr-2" src="/assets/svg/delete.svg" />
+          </button>
+          <span
+            class="flex-grow text-right"
+            [class.expense]="fixedCost.value && fixedCost.value < 0"
+            [class.income]="fixedCost.value && fixedCost.value > 0"
+          >
+            {{ fixedCost.value | currency: 'EUR' }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
