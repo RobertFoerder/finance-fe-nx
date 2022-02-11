@@ -19,6 +19,7 @@
       "@finance-fe-nx/accounts/views": ["libs/accounts/views/src/index.ts"],
       "@finance-fe-nx/core": ["libs/core/src/index.ts"],
       "@finance-fe-nx/finance-api": ["libs/finance-api/src/index.ts"],
+      "@finance-fe-nx/fixed-costs/data": ["libs/fixed-costs/data/src/index.ts"],
       "@finance-fe-nx/layout": ["libs/layout/src/index.ts"],
       "@finance-fe-nx/shared": ["libs/shared/src/index.ts"],
       "@finance-fe-nx/summary": ["libs/summary/src/index.ts"],

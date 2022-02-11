@@ -5,11 +5,13 @@ api.module.ts
 api/accounts.service.ts
 api/api.ts
 api/entries.service.ts
+api/fixed-costs.service.ts
 configuration.ts
 encoder.ts
 git_push.sh
 index.ts
 model/account.ts
 model/finance-entry.ts
+model/fixed-cost.ts
 model/models.ts
 variables.ts

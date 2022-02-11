@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { AccountsService } from './api/accounts.service';
 import { EntriesService } from './api/entries.service';
+import { FixedCostsService } from './api/fixed-costs.service';
 
 @NgModule({
   imports:      [],

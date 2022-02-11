@@ -307,6 +307,143 @@
           }
         }
       }
+    },
+    "/fixed-costs": {
+      "get": {
+        "summary": "Get fixed costs",
+        "tags": ["fixed-costs"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FixedCost"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "operationId": "get-fixed-cost",
+        "description": "Get list of fixed costs"
+      },
+      "post": {
+        "summary": "Add fixed cost",
+        "tags": ["fixed-costs"],
+        "description": "Create new fixed cost",
+        "operationId": "post-fixed-cost",
+        "requestBody": {
+          "description": "New fixed cost",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FixedCost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FixedCost"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid fixed cost"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "parameters": []
+    },
+    "/fixed-costs/{fixed-cost-id}": {
+      "delete": {
+        "summary": "Delete fixed cost",
+        "tags": ["fixed-costs"],
+        "description": "Delete fixed cost",
+        "operationId": "delete-fixed-cost",
+        "parameters": [
+          {
+            "name": "fixed-cost-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success - No content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Fixed cost not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update fixed cost",
+        "tags": ["fixed costs"],
+        "description": "Update fixed cost",
+        "operationId": "put-fixed-cost",
+        "parameters": [
+          {
+            "name": "fixed-cost-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Updated fixed cost",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FixedCost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FixedCost"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid fixed cost"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Fixed cost not found"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -354,6 +491,27 @@
             "format": "uuid"
           },
           "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": -50000,
+            "maximum": 50000
+          }
+        }
+      },
+      "FixedCost": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "category": {
+            "type": "string"
+          },
+          "description": {
             "type": "string"
           },
           "value": {

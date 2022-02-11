@@ -11,13 +11,10 @@
  */
 
 
-export interface FinanceEntry { 
+export interface FixedCost { 
     id?: string;
-    year?: number;
-    month?: number;
     category?: string;
     description?: string;
     value?: number;
-    date?: string;
 }
 

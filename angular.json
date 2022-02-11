@@ -234,6 +234,32 @@
       "tags": [],
       "implicitDependencies": ["finance-fe"]
     },
+    "fixed-costs-data": {
+      "projectType": "library",
+      "root": "libs/fixed-costs/data",
+      "sourceRoot": "libs/fixed-costs/data/src",
+      "prefix": "finance-fe-nx",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/fixed-costs/data"],
+          "options": {
+            "jestConfig": "libs/fixed-costs/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/fixed-costs/data/src/**/*.ts",
+              "libs/fixed-costs/data/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "layout": {
       "projectType": "library",
       "root": "libs/layout",
