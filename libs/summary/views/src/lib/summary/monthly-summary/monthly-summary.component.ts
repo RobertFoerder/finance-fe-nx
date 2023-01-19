@@ -9,7 +9,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ContainerComponent } from '@finance-fe-nx/core';
 import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
 import { map, Observable } from 'rxjs';
-import { ConfirmBoxEvokeService } from '@costlydeveloper/ngx-awesome-popup';
+import {
+  ConfirmBoxEvokeService,
+  IConfirmBoxPublicResponse,
+} from '@costlydeveloper/ngx-awesome-popup';
 import { FinanceEntry } from '@finance-fe-nx/finance-api';
 import { SumUpService } from '@finance-fe-nx/shared';
 
@@ -106,8 +109,9 @@ export class MonthlySummaryComponent
   public deleteEntry(id: string | undefined): void {
     this.confirmBox
       .danger('Delete entry', 'Are you sure?', 'Yes', 'Cancel')
-      .subscribe((resp) => {
-        if (resp) {
+      .subscribe((resp: IConfirmBoxPublicResponse) => {
+        if (resp.success) {
+          console.log('deleteEntry');
           this.facade.deleteEntry(id);
         }
       });
