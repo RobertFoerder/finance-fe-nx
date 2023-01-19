@@ -18,6 +18,9 @@
     "api:finance:ui": "npx ws --directory apis --compress --spa finance-api.html --open --port 8001"
   },
   "private": true,
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "dependencies": {
     "@angular/animations": "^13.0.0",
     "@angular/common": "^13.0.0",
