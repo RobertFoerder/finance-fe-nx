@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { SwUpdate } from '@angular/service-worker';
+import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import { ConfirmBoxEvokeService } from '@costlydeveloper/ngx-awesome-popup';
+import { filter, tap } from 'rxjs/operators';
 
 @Injectable()
 export class AppUpdateService {
@@ -10,12 +11,17 @@ export class AppUpdateService {
     private readonly updates: SwUpdate,
     private readonly confirmBox: ConfirmBoxEvokeService
   ) {
-    this.updates.versionUpdates.subscribe(() => {
-      if (!this.updating) {
-        this.updating = true;
-        this.showAppUpdateAlert();
-      }
-    });
+    updates.versionUpdates
+      .pipe(
+        tap((evt) => console.log('versionUpdates', evt)),
+        filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY')
+      )
+      .subscribe(() => {
+        if (!this.updating) {
+          this.updating = true;
+          this.showAppUpdateAlert();
+        }
+      });
   }
 
   public showAppUpdateAlert(): void {
@@ -24,12 +30,8 @@ export class AppUpdateService {
       .subscribe((resp) => {
         this.updating = false;
         if (resp) {
-          this.doAppUpdate();
+          document.location.reload();
         }
       });
-  }
-
-  private doAppUpdate(): void {
-    this.updates.activateUpdate().then(() => document.location.reload());
   }
 }

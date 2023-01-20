@@ -55,7 +55,7 @@ export class EditAccountComponent extends ContainerComponent implements OnInit {
       );
 
     this.subscribeTo(getAccountById, (account) => {
-      this.account = account;
+      this.account = { ...account };
       if (this.account) {
         this.initialValue = this.account.value ?? 0;
       }

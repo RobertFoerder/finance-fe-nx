@@ -60,7 +60,7 @@ export class EditFixedCostComponent
       );
 
     this.subscribeTo(getFixedCostById, (fixedCost) => {
-      this.fixedCost = fixedCost;
+      this.fixedCost = { ...fixedCost };
       if (this.fixedCost) {
         this.initialValue = this.fixedCost.value ?? 0;
       }

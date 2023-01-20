@@ -55,7 +55,7 @@ export class EditEntryComponent extends ContainerComponent implements OnInit {
       );
 
     this.subscribeTo(getEntryById, (entry) => {
-      this.entry = entry;
+      this.entry = { ...entry };
       if (this.entry) {
         this.initialValue = this.entry.value ?? 0;
       }
