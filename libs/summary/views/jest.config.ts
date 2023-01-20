@@ -1,5 +1,6 @@
-module.exports = {
-  displayName: 'summary-data',
+/* eslint-disable */
+export default {
+  displayName: 'summary-views',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +9,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../coverage/libs/summary/data',
+  coverageDirectory: '../../../coverage/libs/summary/views',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

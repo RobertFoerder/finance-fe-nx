@@ -111,7 +111,6 @@ export class MonthlySummaryComponent
       .danger('Delete entry', 'Are you sure?', 'Yes', 'Cancel')
       .subscribe((resp: IConfirmBoxPublicResponse) => {
         if (resp.success) {
-          console.log('deleteEntry');
           this.facade.deleteEntry(id);
         }
       });
