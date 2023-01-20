@@ -13,7 +13,6 @@ export class AppUpdateService {
   ) {
     updates.versionUpdates
       .pipe(
-        tap((evt) => console.log('versionUpdates', evt)),
         filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY')
       )
       .subscribe(() => {
