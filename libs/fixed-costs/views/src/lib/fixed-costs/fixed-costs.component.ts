@@ -47,9 +47,14 @@ export class FixedCostsComponent extends ContainerComponent implements OnInit {
     });
   }
 
-  public deleteFixedCost(id: string | undefined): void {
+  public deleteFixedCost(id: string | undefined, description: string): void {
     this.confirmBox
-      .danger('Delete fixed cost', 'Are you sure?', 'Yes', 'Cancel')
+      .danger(
+        'Delete fixed cost',
+        `Should fixed cost "${description}" really be deleted?`,
+        'Yes',
+        'Cancel'
+      )
       .subscribe((resp) => {
         if (resp.success) {
           this.facade.deleteFixedCost(id);

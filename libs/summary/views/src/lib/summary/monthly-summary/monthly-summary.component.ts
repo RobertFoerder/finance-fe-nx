@@ -106,9 +106,14 @@ export class MonthlySummaryComponent
     });
   }
 
-  public deleteEntry(id: string | undefined): void {
+  public deleteEntry(id: string | undefined, description: string): void {
     this.confirmBox
-      .danger('Delete entry', 'Are you sure?', 'Yes', 'Cancel')
+      .danger(
+        'Delete entry',
+        `Should entry "${description}" really be deleted?`,
+        'Yes',
+        'Cancel'
+      )
       .subscribe((resp: IConfirmBoxPublicResponse) => {
         if (resp.success) {
           this.facade.deleteEntry(id);

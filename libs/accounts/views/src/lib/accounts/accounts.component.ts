@@ -36,9 +36,14 @@ export class AccountsComponent extends ContainerComponent implements OnInit {
     });
   }
 
-  public deleteAccount(id: string | undefined): void {
+  public deleteAccount(id: string | undefined, accountName: string): void {
     this.confirmBox
-      .danger('Delete account', 'Are you sure?', 'Yes', 'Cancel')
+      .danger(
+        'Delete account',
+        `Should account "${accountName}" really be deleted?`,
+        'Yes',
+        'Cancel'
+      )
       .subscribe((resp) => {
         if (resp.success) {
           this.facade.deleteAccount(id);
