@@ -40,7 +40,7 @@ export class AccountsComponent extends ContainerComponent implements OnInit {
     this.confirmBox
       .danger('Delete account', 'Are you sure?', 'Yes', 'Cancel')
       .subscribe((resp) => {
-        if (resp) {
+        if (resp.success) {
           this.facade.deleteAccount(id);
         }
       });
