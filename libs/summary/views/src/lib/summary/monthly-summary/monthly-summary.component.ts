@@ -106,7 +106,10 @@ export class MonthlySummaryComponent
     });
   }
 
-  public deleteEntry(id: string | undefined, description: string): void {
+  public deleteEntry(
+    id: string | undefined,
+    description: string | undefined
+  ): void {
     this.confirmBox
       .danger(
         'Delete entry',

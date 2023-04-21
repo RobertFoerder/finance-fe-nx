@@ -47,7 +47,10 @@ export class FixedCostsComponent extends ContainerComponent implements OnInit {
     });
   }
 
-  public deleteFixedCost(id: string | undefined, description: string): void {
+  public deleteFixedCost(
+    id: string | undefined,
+    description: string | undefined
+  ): void {
     this.confirmBox
       .danger(
         'Delete fixed cost',

@@ -36,7 +36,10 @@ export class AccountsComponent extends ContainerComponent implements OnInit {
     });
   }
 
-  public deleteAccount(id: string | undefined, accountName: string): void {
+  public deleteAccount(
+    id: string | undefined,
+    accountName: string | undefined
+  ): void {
     this.confirmBox
       .danger(
         'Delete account',
