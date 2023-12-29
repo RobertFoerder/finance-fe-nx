@@ -1,0 +1,858 @@
+{
+  "nodes": {
+    "fixed-costs-views": {
+      "name": "fixed-costs-views",
+      "type": "lib",
+      "data": {
+        "root": "libs/fixed-costs/views",
+        "projectType": "library",
+        "sourceRoot": "libs/fixed-costs/views/src",
+        "prefix": "finance-fe-nx",
+        "targets": {
+          "test": {
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "executor": "@nrwl/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/libs/fixed-costs/views"
+            ],
+            "options": {
+              "jestConfig": "libs/fixed-costs/views/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+              "lintFilePatterns": [
+                "libs/fixed-costs/views/src/**/*.ts",
+                "libs/fixed-costs/views/src/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "tags": [],
+        "name": "fixed-costs-views",
+        "implicitDependencies": []
+      }
+    },
+    "fixed-costs-data": {
+      "name": "fixed-costs-data",
+      "type": "lib",
+      "data": {
+        "root": "libs/fixed-costs/data",
+        "projectType": "library",
+        "sourceRoot": "libs/fixed-costs/data/src",
+        "prefix": "finance-fe-nx",
+        "targets": {
+          "test": {
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "executor": "@nrwl/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/libs/fixed-costs/data"
+            ],
+            "options": {
+              "jestConfig": "libs/fixed-costs/data/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+              "lintFilePatterns": [
+                "libs/fixed-costs/data/src/**/*.ts",
+                "libs/fixed-costs/data/src/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "tags": [],
+        "name": "fixed-costs-data",
+        "implicitDependencies": []
+      }
+    },
+    "accounts-views": {
+      "name": "accounts-views",
+      "type": "lib",
+      "data": {
+        "root": "libs/accounts/views",
+        "projectType": "library",
+        "sourceRoot": "libs/accounts/views/src",
+        "prefix": "finance-fe-nx",
+        "targets": {
+          "test": {
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "executor": "@nrwl/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/libs/accounts/views"
+            ],
+            "options": {
+              "jestConfig": "libs/accounts/views/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+              "lintFilePatterns": [
+                "libs/accounts/views/src/**/*.ts",
+                "libs/accounts/views/src/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "tags": [],
+        "name": "accounts-views",
+        "implicitDependencies": []
+      }
+    },
+    "finance-fe-e2e": {
+      "name": "finance-fe-e2e",
+      "type": "e2e",
+      "data": {
+        "root": "apps/finance-fe-e2e",
+        "sourceRoot": "apps/finance-fe-e2e/src",
+        "projectType": "application",
+        "targets": {
+          "e2e": {
+            "inputs": [
+              "default",
+              "^production"
+            ],
+            "executor": "@nrwl/cypress:cypress",
+            "options": {
+              "cypressConfig": "apps/finance-fe-e2e/cypress.json",
+              "devServerTarget": "finance-fe:serve:development"
+            },
+            "configurations": {
+              "production": {
+                "devServerTarget": "finance-fe:serve:production"
+              }
+            }
+          },
+          "lint": {
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "executor": "@nrwl/linter:eslint",
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "options": {
+              "lintFilePatterns": [
+                "apps/finance-fe-e2e/**/*.{js,ts}"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "tags": [],
+        "implicitDependencies": [
+          "finance-fe"
+        ],
+        "name": "finance-fe-e2e"
+      }
+    },
+    "accounts-data": {
+      "name": "accounts-data",
+      "type": "lib",
+      "data": {
+        "root": "libs/accounts/data",
+        "projectType": "library",
+        "sourceRoot": "libs/accounts/data/src",
+        "prefix": "finance-fe-nx",
+        "targets": {
+          "test": {
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "executor": "@nrwl/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/libs/accounts/data"
+            ],
+            "options": {
+              "jestConfig": "libs/accounts/data/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+              "lintFilePatterns": [
+                "libs/accounts/data/src/**/*.ts",
+                "libs/accounts/data/src/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "tags": [],
+        "name": "accounts-data",
+        "implicitDependencies": []
+      }
+    },
+    "summary-views": {
+      "name": "summary-views",
+      "type": "lib",
+      "data": {
+        "root": "libs/summary/views",
+        "projectType": "library",
+        "sourceRoot": "libs/summary/views/src",
+        "prefix": "finance-fe",
+        "targets": {
+          "test": {
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "executor": "@nrwl/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/libs/summary/views"
+            ],
+            "options": {
+              "jestConfig": "libs/summary/views/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+              "lintFilePatterns": [
+                "libs/summary/views/src/**/*.ts",
+                "libs/summary/views/src/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "tags": [],
+        "name": "summary-views",
+        "implicitDependencies": []
+      }
+    },
+    "summary-data": {
+      "name": "summary-data",
+      "type": "lib",
+      "data": {
+        "root": "libs/summary/data",
+        "projectType": "library",
+        "sourceRoot": "libs/summary/data/src",
+        "prefix": "finance-fe",
+        "targets": {
+          "test": {
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "executor": "@nrwl/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/libs/summary/data"
+            ],
+            "options": {
+              "jestConfig": "libs/summary/data/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+              "lintFilePatterns": [
+                "libs/summary/data/src/**/*.ts",
+                "libs/summary/data/src/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "tags": [],
+        "name": "summary-data",
+        "implicitDependencies": []
+      }
+    },
+    "finance-api": {
+      "name": "finance-api",
+      "type": "lib",
+      "data": {
+        "root": "libs/finance-api",
+        "projectType": "library",
+        "sourceRoot": "libs/finance-api/src",
+        "prefix": "finance-fe",
+        "targets": {
+          "test": {
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "executor": "@nrwl/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/libs/finance-api"
+            ],
+            "options": {
+              "jestConfig": "libs/finance-api/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+              "lintFilePatterns": [
+                "libs/finance-api/src/**/*.ts",
+                "libs/finance-api/src/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "tags": [],
+        "name": "finance-api",
+        "implicitDependencies": []
+      }
+    },
+    "finance-fe": {
+      "name": "finance-fe",
+      "type": "app",
+      "data": {
+        "root": "apps/finance-fe",
+        "projectType": "application",
+        "sourceRoot": "apps/finance-fe/src",
+        "prefix": "finance-fe",
+        "targets": {
+          "build": {
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "executor": "@angular-devkit/build-angular:browser",
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/apps/finance-fe",
+              "index": "apps/finance-fe/src/index.html",
+              "main": "apps/finance-fe/src/main.ts",
+              "polyfills": "apps/finance-fe/src/polyfills.ts",
+              "tsConfig": "apps/finance-fe/tsconfig.app.json",
+              "inlineStyleLanguage": "scss",
+              "assets": [
+                "apps/finance-fe/src/favicon.png",
+                "apps/finance-fe/src/assets",
+                "apps/finance-fe/src/manifest.webmanifest",
+                "apps/finance-fe/src/apple-touch-icon.png"
+              ],
+              "styles": [
+                "apps/finance-fe/src/styles.scss"
+              ],
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "libs/layout/src/lib/styles"
+                ]
+              },
+              "scripts": [],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/finance-fe/ngsw-config.json"
+            },
+            "configurations": {
+              "production": {
+                "budgets": [
+                  {
+                    "type": "initial",
+                    "maximumWarning": "500kb",
+                    "maximumError": "1mb"
+                  },
+                  {
+                    "type": "anyComponentStyle",
+                    "maximumWarning": "2kb",
+                    "maximumError": "4kb"
+                  }
+                ],
+                "fileReplacements": [
+                  {
+                    "replace": "apps/finance-fe/src/environments/environment.ts",
+                    "with": "apps/finance-fe/src/environments/environment.prod.ts"
+                  }
+                ],
+                "outputHashing": "all"
+              },
+              "development": {
+                "buildOptimizer": false,
+                "optimization": false,
+                "vendorChunk": true,
+                "extractLicenses": false,
+                "sourceMap": true,
+                "namedChunks": true
+              }
+            },
+            "defaultConfiguration": "production"
+          },
+          "serve": {
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "configurations": {
+              "production": {
+                "browserTarget": "finance-fe:build:production"
+              },
+              "development": {
+                "browserTarget": "finance-fe:build:development"
+              }
+            },
+            "defaultConfiguration": "development",
+            "options": {}
+          },
+          "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+              "browserTarget": "finance-fe:build"
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+              "lintFilePatterns": [
+                "apps/finance-fe/src/**/*.ts",
+                "apps/finance-fe/src/**/*.html"
+              ]
+            },
+            "configurations": {}
+          },
+          "test": {
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "executor": "@nrwl/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/apps/finance-fe"
+            ],
+            "options": {
+              "jestConfig": "apps/finance-fe/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {}
+          }
+        },
+        "tags": [],
+        "name": "finance-fe",
+        "implicitDependencies": []
+      }
+    },
+    "summary": {
+      "name": "summary",
+      "type": "lib",
+      "data": {
+        "root": "libs/summary",
+        "projectType": "library",
+        "sourceRoot": "libs/summary/src",
+        "prefix": "finance-fe",
+        "targets": {
+          "test": {
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "executor": "@nrwl/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/libs/summary"
+            ],
+            "options": {
+              "jestConfig": "libs/summary/jest.config.js",
+              "passWithNoTests": true
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+              "lintFilePatterns": [
+                "libs/summary/src/**/*.ts",
+                "libs/summary/src/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "tags": [],
+        "name": "summary",
+        "implicitDependencies": []
+      }
+    },
+    "layout": {
+      "name": "layout",
+      "type": "lib",
+      "data": {
+        "root": "libs/layout",
+        "projectType": "library",
+        "sourceRoot": "libs/layout/src",
+        "prefix": "finance-fe",
+        "targets": {
+          "test": {
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "executor": "@nrwl/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/libs/layout"
+            ],
+            "options": {
+              "jestConfig": "libs/layout/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+              "lintFilePatterns": [
+                "libs/layout/src/**/*.ts",
+                "libs/layout/src/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "tags": [],
+        "name": "layout",
+        "implicitDependencies": []
+      }
+    },
+    "shared": {
+      "name": "shared",
+      "type": "lib",
+      "data": {
+        "root": "libs/shared",
+        "projectType": "library",
+        "sourceRoot": "libs/shared/src",
+        "prefix": "finance-fe-nx",
+        "targets": {
+          "test": {
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "executor": "@nrwl/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/libs/shared"
+            ],
+            "options": {
+              "jestConfig": "libs/shared/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+              "lintFilePatterns": [
+                "libs/shared/src/**/*.ts",
+                "libs/shared/src/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "tags": [],
+        "name": "shared",
+        "implicitDependencies": []
+      }
+    },
+    "core": {
+      "name": "core",
+      "type": "lib",
+      "data": {
+        "root": "libs/core",
+        "projectType": "library",
+        "sourceRoot": "libs/core/src",
+        "prefix": "finance-fe",
+        "targets": {
+          "test": {
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ],
+            "executor": "@nrwl/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/libs/core"
+            ],
+            "options": {
+              "jestConfig": "libs/core/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {}
+          },
+          "lint": {
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ],
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+              "lintFilePatterns": [
+                "libs/core/src/**/*.ts",
+                "libs/core/src/**/*.html"
+              ]
+            },
+            "configurations": {}
+          }
+        },
+        "tags": [],
+        "name": "core",
+        "implicitDependencies": []
+      }
+    }
+  },
+  "externalNodes": {},
+  "dependencies": {
+    "fixed-costs-views": [
+      {
+        "source": "fixed-costs-views",
+        "target": "core",
+        "type": "static"
+      },
+      {
+        "source": "fixed-costs-views",
+        "target": "finance-api",
+        "type": "static"
+      },
+      {
+        "source": "fixed-costs-views",
+        "target": "fixed-costs-data",
+        "type": "static"
+      },
+      {
+        "source": "fixed-costs-views",
+        "target": "shared",
+        "type": "static"
+      }
+    ],
+    "fixed-costs-data": [
+      {
+        "source": "fixed-costs-data",
+        "target": "shared",
+        "type": "static"
+      },
+      {
+        "source": "fixed-costs-data",
+        "target": "core",
+        "type": "static"
+      },
+      {
+        "source": "fixed-costs-data",
+        "target": "finance-api",
+        "type": "static"
+      }
+    ],
+    "accounts-views": [
+      {
+        "source": "accounts-views",
+        "target": "accounts-data",
+        "type": "static"
+      },
+      {
+        "source": "accounts-views",
+        "target": "core",
+        "type": "static"
+      },
+      {
+        "source": "accounts-views",
+        "target": "finance-api",
+        "type": "static"
+      },
+      {
+        "source": "accounts-views",
+        "target": "shared",
+        "type": "static"
+      }
+    ],
+    "finance-fe-e2e": [
+      {
+        "source": "finance-fe-e2e",
+        "target": "finance-fe",
+        "type": "implicit"
+      }
+    ],
+    "accounts-data": [
+      {
+        "source": "accounts-data",
+        "target": "shared",
+        "type": "static"
+      },
+      {
+        "source": "accounts-data",
+        "target": "core",
+        "type": "static"
+      },
+      {
+        "source": "accounts-data",
+        "target": "finance-api",
+        "type": "static"
+      }
+    ],
+    "summary-views": [
+      {
+        "source": "summary-views",
+        "target": "summary-data",
+        "type": "static"
+      },
+      {
+        "source": "summary-views",
+        "target": "finance-api",
+        "type": "static"
+      },
+      {
+        "source": "summary-views",
+        "target": "core",
+        "type": "static"
+      },
+      {
+        "source": "summary-views",
+        "target": "shared",
+        "type": "static"
+      }
+    ],
+    "summary-data": [
+      {
+        "source": "summary-data",
+        "target": "core",
+        "type": "static"
+      },
+      {
+        "source": "summary-data",
+        "target": "finance-api",
+        "type": "static"
+      },
+      {
+        "source": "summary-data",
+        "target": "shared",
+        "type": "static"
+      }
+    ],
+    "finance-api": [],
+    "finance-fe": [
+      {
+        "source": "finance-fe",
+        "target": "shared",
+        "type": "static"
+      },
+      {
+        "source": "finance-fe",
+        "target": "layout",
+        "type": "static"
+      },
+      {
+        "source": "finance-fe",
+        "target": "core",
+        "type": "static"
+      },
+      {
+        "source": "finance-fe",
+        "target": "finance-api",
+        "type": "static"
+      },
+      {
+        "source": "finance-fe",
+        "target": "summary-views",
+        "type": "dynamic"
+      },
+      {
+        "source": "finance-fe",
+        "target": "accounts-views",
+        "type": "dynamic"
+      },
+      {
+        "source": "finance-fe",
+        "target": "fixed-costs-views",
+        "type": "dynamic"
+      }
+    ],
+    "summary": [],
+    "layout": [],
+    "shared": [
+      {
+        "source": "shared",
+        "target": "finance-api",
+        "type": "static"
+      }
+    ],
+    "core": []
+  },
+  "version": "6.0"
+}
