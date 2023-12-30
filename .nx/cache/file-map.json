@@ -112,103 +112,43 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": ".prettierignore",
-        "hash": "17733650430415207254"
-      },
-      {
-        "file": "migrations.json",
-        "hash": "11086178949805868951"
-      },
-      {
-        "file": "apis/finance-api.html",
-        "hash": "17157304548287931345"
-      },
-      {
-        "file": ".github/workflows/azure-static-web-apps-blue-pond-02b563803.yml",
-        "hash": "13607690854804732763"
-      },
-      {
-        "file": ".vscode/extensions.json",
-        "hash": "5602819023443764055"
-      },
-      {
-        "file": "package.json",
-        "hash": "15903978794887706355"
-      },
-      {
-        "file": "tools/tsconfig.tools.json",
-        "hash": "16088922570277978783"
-      },
-      {
-        "file": "apis/config.json",
-        "hash": "15908476334234418082"
-      },
-      {
-        "file": "README.md",
-        "hash": "10889955915735098850"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "3438871998070085915"
-      },
-      {
-        "file": ".vscode/settings.json",
-        "hash": "509904888720431578"
-      },
-      {
-        "file": "tailwind.config.js",
-        "hash": "4355035398753984653"
-      },
-      {
-        "file": "libs/.gitkeep",
-        "hash": "3244421341483603138"
-      },
-      {
-        "file": "jest.config.ts",
-        "hash": "1257711678503192656"
-      },
-      {
         "file": "package-lock.json",
         "hash": "8411928925812002652"
-      },
-      {
-        "file": "jest.preset.js",
-        "hash": "15767436571456972096"
-      },
-      {
-        "file": ".eslintrc.json",
-        "hash": "15388041757782744192"
-      },
-      {
-        "file": "tools/generators/.gitkeep",
-        "hash": "3244421341483603138"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "16267754514737964994"
-      },
-      {
-        "file": "openapitools.json",
-        "hash": "1943530909791428400"
-      },
-      {
-        "file": "angular.json",
-        "hash": "11471847725706911943"
-      },
-      {
-        "file": "nx.json",
-        "hash": "5162766004497631389"
-      },
-      {
-        "file": ".editorconfig",
-        "hash": "5443105041930014821"
       },
       {
         "file": "apis/openapitools.json",
         "hash": "1943530909791428400"
       },
       {
-        "file": "apps/.gitkeep",
+        "file": "tools/tsconfig.tools.json",
+        "hash": "16088922570277978783"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "4784194520637840480"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "15767436571456972096"
+      },
+      {
+        "file": "tailwind.config.js",
+        "hash": "14754591432402085621"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "1257711678503192656"
+      },
+      {
+        "file": "angular.json",
+        "hash": "11471847725706911943"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "5602819023443764055"
+      },
+      {
+        "file": "libs/.gitkeep",
         "hash": "3244421341483603138"
       },
       {
@@ -216,16 +156,76 @@
         "hash": "9627573937257250201"
       },
       {
+        "file": "README.md",
+        "hash": "10889955915735098850"
+      },
+      {
+        "file": ".vscode/settings.json",
+        "hash": "509904888720431578"
+      },
+      {
+        "file": "migrations.json",
+        "hash": "11086178949805868951"
+      },
+      {
+        "file": "nx.json",
+        "hash": "5162766004497631389"
+      },
+      {
+        "file": ".github/workflows/azure-static-web-apps-blue-pond-02b563803.yml",
+        "hash": "13607690854804732763"
+      },
+      {
+        "file": ".editorconfig",
+        "hash": "5443105041930014821"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "16267754514737964994"
+      },
+      {
+        "file": "apps/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
         "file": "apis/sample.json",
         "hash": "5419528653681686555"
+      },
+      {
+        "file": "apis/finance-api.html",
+        "hash": "17157304548287931345"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "15388041757782744192"
       },
       {
         "file": "decorate-angular-cli.js",
         "hash": "12627382994622398531"
       },
       {
-        "file": "tsconfig.base.json",
-        "hash": "4784194520637840480"
+        "file": "apis/config.json",
+        "hash": "15908476334234418082"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "17733650430415207254"
+      },
+      {
+        "file": "tools/generators/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "3438871998070085915"
+      },
+      {
+        "file": "openapitools.json",
+        "hash": "1943530909791428400"
+      },
+      {
+        "file": "package.json",
+        "hash": "15903978794887706355"
       }
     ],
     "projectFileMap": {

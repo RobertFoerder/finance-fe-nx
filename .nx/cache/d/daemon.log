@@ -433,3 +433,77 @@ Error: This workspace is more than a week old and is unclaimed. Workspaces must 
 Error: This workspace is more than a week old and is unclaimed. Workspaces must be claimed within 7 days of creation. Claim your workspace at https://cloud.nx.app/orgs/workspace-setup?accessToken=ODVjMmIyYTItOThhYy00OWU5LWE0ZmQtOTMxOTA4M2I3ZGNkfHJlYWQtd3JpdGU=
     at Timeout._onTimeout (/Users/robertfoerder1/Documents/Finance-App/finance-fe-nx/node_modules/.cache/nx/cloud/2312.28.2/lib/daemon/process-run-end.js:16:5434)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[NX Daemon Server] - 2023-12-30T08:03:15.053Z - [WATCHER]: tailwind.config.js was modified
+[NX Daemon Server] - 2023-12-30T08:03:15.053Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2023-12-30T08:03:15.154Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2023-12-30T08:03:15.154Z - [REQUEST]: tailwind.config.js
+[NX Daemon Server] - 2023-12-30T08:03:15.154Z - [REQUEST]: 
+[NX Daemon Server] - 2023-12-30T08:03:15.191Z - Time taken for 'hash changed files from watcher' 0.4131660461425781ms
+[NX Daemon Server] - 2023-12-30T08:03:23.116Z - [WATCHER]: tailwind.config.js was modified
+[NX Daemon Server] - 2023-12-30T08:03:23.116Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2023-12-30T08:03:23.319Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2023-12-30T08:03:23.319Z - [REQUEST]: tailwind.config.js
+[NX Daemon Server] - 2023-12-30T08:03:23.319Z - [REQUEST]: 
+[NX Daemon Server] - 2023-12-30T08:03:23.365Z - Time taken for 'hash changed files from watcher' 1.075958251953125ms
+[NX Daemon Server] - 2023-12-30T08:03:29.764Z - [WATCHER]: tailwind.config.js was modified
+[NX Daemon Server] - 2023-12-30T08:03:29.764Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2023-12-30T08:03:30.167Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2023-12-30T08:03:30.167Z - [REQUEST]: tailwind.config.js
+[NX Daemon Server] - 2023-12-30T08:03:30.167Z - [REQUEST]: 
+[NX Daemon Server] - 2023-12-30T08:03:30.212Z - Time taken for 'hash changed files from watcher' 1.2281255722045898ms
+[NX Daemon Server] - 2023-12-30T08:03:46.266Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2023-12-30T08:03:46.267Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2023-12-30T08:03:46.267Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2023-12-30T08:03:46.268Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2023-12-30T08:03:46.268Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2023-12-30T08:03:46.270Z - Time taken for 'total for creating and serializing project graph' 0.09537506103515625ms
+[NX Daemon Server] - 2023-12-30T08:03:46.271Z - Done responding to the client project-graph
+[NX Daemon Server] - 2023-12-30T08:03:46.272Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 4.
+[NX Daemon Server] - 2023-12-30T08:03:46.310Z - [REQUEST]: Responding to the client. handleHashTasks
+[NX Daemon Server] - 2023-12-30T08:03:46.311Z - Done responding to the client handleHashTasks
+[NX Daemon Server] - 2023-12-30T08:03:46.311Z - Handled HASH_TASKS. Handling time: 9. Response time: 1.
+[NX Daemon Server] - 2023-12-30T08:03:46.360Z - [REQUEST]: Responding to the client. outputsHashesMatch
+[NX Daemon Server] - 2023-12-30T08:03:46.360Z - Done responding to the client outputsHashesMatch
+[NX Daemon Server] - 2023-12-30T08:03:46.360Z - Handled OUTPUTS_HASHES_MATCH. Handling time: 1. Response time: 0.
+[NX Daemon Server] - 2023-12-30T08:03:46.361Z - [REQUEST]: Responding to the client. recordOutputsHash
+[NX Daemon Server] - 2023-12-30T08:03:46.361Z - Done responding to the client recordOutputsHash
+[NX Daemon Server] - 2023-12-30T08:03:46.361Z - Handled RECORD_OUTPUTS_HASH. Handling time: 0. Response time: 0.
+[NX Daemon Server] - 2023-12-30T08:03:46.401Z - [REQUEST]: Responding to the client. PROCESS_IN_BACKGROUND
+[NX Daemon Server] - 2023-12-30T08:03:46.401Z - Done responding to the client PROCESS_IN_BACKGROUND
+[NX Daemon Server] - 2023-12-30T08:03:46.401Z - Handled PROCESS_IN_BACKGROUND. Handling time: 14. Response time: 0.
+[NX Daemon Server] - 2023-12-30T08:03:46.401Z - Uploading file artifacts
+[NX Daemon Server] - 2023-12-30T08:03:46.401Z - Done uploading file artifacts
+[NX Daemon Server] - 2023-12-30T08:03:46.401Z - Sending EndRun request
+[NX Daemon Server] - 2023-12-30T08:03:46.405Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2023-12-30T08:03:46.549Z - Error when sending EndRun
+Error: This workspace is more than a week old and is unclaimed. Workspaces must be claimed within 7 days of creation. Claim your workspace at https://cloud.nx.app/orgs/workspace-setup?accessToken=ODVjMmIyYTItOThhYy00OWU5LWE0ZmQtOTMxOTA4M2I3ZGNkfHJlYWQtd3JpdGU=
+    at Timeout._onTimeout (/Users/robertfoerder1/Documents/Finance-App/finance-fe-nx/node_modules/.cache/nx/cloud/2312.28.2/lib/daemon/process-run-end.js:16:5434)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[NX Daemon Server] - 2023-12-30T08:03:53.579Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2023-12-30T08:03:53.579Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2023-12-30T08:03:53.580Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2023-12-30T08:03:53.581Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2023-12-30T08:03:53.581Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2023-12-30T08:03:53.582Z - Time taken for 'total for creating and serializing project graph' 0.04366588592529297ms
+[NX Daemon Server] - 2023-12-30T08:03:53.584Z - Done responding to the client project-graph
+[NX Daemon Server] - 2023-12-30T08:03:53.584Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 3.
+[NX Daemon Server] - 2023-12-30T08:03:53.618Z - [REQUEST]: Responding to the client. handleHashTasks
+[NX Daemon Server] - 2023-12-30T08:03:53.618Z - Done responding to the client handleHashTasks
+[NX Daemon Server] - 2023-12-30T08:03:53.618Z - Handled HASH_TASKS. Handling time: 5. Response time: 0.
+[NX Daemon Server] - 2023-12-30T08:03:53.666Z - [REQUEST]: Responding to the client. outputsHashesMatch
+[NX Daemon Server] - 2023-12-30T08:03:53.666Z - Done responding to the client outputsHashesMatch
+[NX Daemon Server] - 2023-12-30T08:03:53.666Z - Handled OUTPUTS_HASHES_MATCH. Handling time: 0. Response time: 0.
+[NX Daemon Server] - 2023-12-30T08:03:53.667Z - [REQUEST]: Responding to the client. recordOutputsHash
+[NX Daemon Server] - 2023-12-30T08:03:53.667Z - Done responding to the client recordOutputsHash
+[NX Daemon Server] - 2023-12-30T08:03:53.667Z - Handled RECORD_OUTPUTS_HASH. Handling time: 0. Response time: 0.
+[NX Daemon Server] - 2023-12-30T08:03:53.710Z - [REQUEST]: Responding to the client. PROCESS_IN_BACKGROUND
+[NX Daemon Server] - 2023-12-30T08:03:53.710Z - Done responding to the client PROCESS_IN_BACKGROUND
+[NX Daemon Server] - 2023-12-30T08:03:53.710Z - Handled PROCESS_IN_BACKGROUND. Handling time: 15. Response time: 0.
+[NX Daemon Server] - 2023-12-30T08:03:53.711Z - Uploading file artifacts
+[NX Daemon Server] - 2023-12-30T08:03:53.711Z - Done uploading file artifacts
+[NX Daemon Server] - 2023-12-30T08:03:53.711Z - Sending EndRun request
+[NX Daemon Server] - 2023-12-30T08:03:53.713Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2023-12-30T08:03:53.859Z - Error when sending EndRun
+Error: This workspace is more than a week old and is unclaimed. Workspaces must be claimed within 7 days of creation. Claim your workspace at https://cloud.nx.app/orgs/workspace-setup?accessToken=ODVjMmIyYTItOThhYy00OWU5LWE0ZmQtOTMxOTA4M2I3ZGNkfHJlYWQtd3JpdGU=
+    at Timeout._onTimeout (/Users/robertfoerder1/Documents/Finance-App/finance-fe-nx/node_modules/.cache/nx/cloud/2312.28.2/lib/daemon/process-run-end.js:16:5434)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
