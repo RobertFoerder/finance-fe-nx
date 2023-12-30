@@ -17,7 +17,7 @@ import {
 import { AppComponent } from './app.component';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { LetModule, PushModule } from '@ngrx/component';
+// import { LetModule, PushModule } from '@ngrx/component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { LayoutModule } from '@finance-fe-nx/layout';
 import { GenericApiEffects } from '@finance-fe-nx/core';
@@ -101,7 +101,7 @@ const ROUTES: Routes = [
     EffectsModule.forRoot([GenericApiEffects]),
     environment.production ? [] : StoreDevtoolsModule.instrument(),
     StoreRouterConnectingModule.forRoot(),
-    LetModule, PushModule,
+    // LetModule, PushModule,
     FinanceApiModule.forRoot(
       () => new FinanceConfiguration({ basePath: environment.basePath })
     ),

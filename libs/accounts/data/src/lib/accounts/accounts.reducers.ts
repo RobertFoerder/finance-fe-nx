@@ -40,87 +40,87 @@ const accountsReducer = createReducer(
   initialState,
   on(AccountsActions.load, (state) => ({
     ...state,
-    readRequestStatus: 'pending',
+    readRequestStatus: 'pending' as const,
     loadError: undefined,
   })),
   on(AccountsActions.loadAccountsSuccess, (state, { accounts }) =>
     accountsAdapter.setAll(accounts, {
       ...state,
-      readRequestStatus: 'successful',
+      readRequestStatus: 'successful' as const,
     })
   ),
   on(AccountsActions.loadAccountsFailure, (state, { error }) => ({
     ...state,
     loadError: error,
-    readRequestStatus: 'failed',
+    readRequestStatus: 'failed' as const,
   })),
   on(AccountsActions.add, (state) => ({
     ...state,
-    addRequestStatus: 'pending',
+    addRequestStatus: 'pending' as const,
     addError: undefined,
   })),
   on(AccountsActions.addAccountSuccess, (state, { account }) =>
     accountsAdapter.setOne(account, {
       ...state,
-      addRequestStatus: 'successful',
+      addRequestStatus: 'successful' as const,
     })
   ),
   on(AccountsActions.addAccountFailure, (state, { error }) => ({
     ...state,
-    addRequestStatus: 'failed',
+    addRequestStatus: 'failed' as const,
     addError: error,
   })),
   on(AccountsActions.deleteAccount, (state) => ({
     ...state,
-    deleteRequestStatus: 'pending',
+    deleteRequestStatus: 'pending' as const,
     deleteError: undefined,
   })),
   on(AccountsActions.deleteAccountSuccess, (state, { id }) =>
     accountsAdapter.removeOne(id, {
       ...state,
-      deleteRequestStatus: 'successful',
+      deleteRequestStatus: 'successful' as const,
     })
   ),
   on(AccountsActions.deleteAccountFailure, (state, { error }) => ({
     ...state,
-    deleteRequestStatus: 'failed',
+    deleteRequestStatus: 'failed' as const,
     deleteError: error,
   })),
   on(AccountsActions.editAccount, (state) => ({
     ...state,
-    editRequestStatus: 'pending',
+    editRequestStatus: 'pending' as const,
     editError: undefined,
   })),
   on(AccountsActions.editAccountSuccess, (state, { account }) =>
     accountsAdapter.upsertOne(account, {
       ...state,
-      editRequestStatus: 'successful',
+      editRequestStatus: 'successful' as const,
     })
   ),
   on(AccountsActions.editAccountFailure, (state, { error }) => ({
     ...state,
-    editRequestStatus: 'failed',
+    editRequestStatus: 'failed' as const,
     editError: error,
   })),
   on(AccountsActions.resetAccounts, (state) => ({
     ...state,
     loadError: undefined,
-    readRequestStatus: 'initial',
+    readRequestStatus: 'initial' as const,
   })),
   on(AccountsActions.resetAdd, (state) => ({
     ...state,
     addError: undefined,
-    addRequestStatus: 'initial',
+    addRequestStatus: 'initial' as const,
   })),
   on(AccountsActions.resetDelete, (state) => ({
     ...state,
     deleteError: undefined,
-    deleteRequestStatus: 'initial',
+    deleteRequestStatus: 'initial' as const,
   })),
   on(AccountsActions.resetEdit, (state) => ({
     ...state,
     editError: undefined,
-    editRequestStatus: 'initial',
+    editRequestStatus: 'initial' as const,
   }))
 );
 

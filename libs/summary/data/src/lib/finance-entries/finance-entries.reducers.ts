@@ -52,87 +52,87 @@ const financeEntriesReducer = createReducer(
   })),
   on(FinanceEntriesActions.load, (state) => ({
     ...state,
-    readRequestStatus: 'pending',
+    readRequestStatus: 'pending' as const,
     loadError: undefined,
   })),
   on(FinanceEntriesActions.loadEntriesSuccess, (state, { entries }) =>
     financeEntriesAdapter.setAll(entries, {
       ...state,
-      readRequestStatus: 'successful',
+      readRequestStatus: 'successful' as const,
     })
   ),
   on(FinanceEntriesActions.loadEntriesFailure, (state, { error }) => ({
     ...state,
     loadError: error,
-    readRequestStatus: 'failed',
+    readRequestStatus: 'failed' as const,
   })),
   on(FinanceEntriesActions.add, (state) => ({
     ...state,
-    addRequestStatus: 'pending',
+    addRequestStatus: 'pending' as const,
     addError: undefined,
   })),
   on(FinanceEntriesActions.addEntrySuccess, (state, { entry }) =>
     financeEntriesAdapter.setOne(entry, {
       ...state,
-      addRequestStatus: 'successful',
+      addRequestStatus: 'successful' as const,
     })
   ),
   on(FinanceEntriesActions.addEntryFailure, (state, { error }) => ({
     ...state,
-    addRequestStatus: 'failed',
+    addRequestStatus: 'failed' as const,
     addError: error,
   })),
   on(FinanceEntriesActions.deleteEntry, (state) => ({
     ...state,
-    deleteRequestStatus: 'pending',
+    deleteRequestStatus: 'pending' as const,
     deleteError: undefined,
   })),
   on(FinanceEntriesActions.deleteEntrySuccess, (state, { id }) =>
     financeEntriesAdapter.removeOne(id, {
       ...state,
-      deleteRequestStatus: 'successful',
+      deleteRequestStatus: 'successful' as const,
     })
   ),
   on(FinanceEntriesActions.deleteEntryFailure, (state, { error }) => ({
     ...state,
-    deleteRequestStatus: 'failed',
+    deleteRequestStatus: 'failed' as const,
     deleteError: error,
   })),
   on(FinanceEntriesActions.editEntry, (state) => ({
     ...state,
-    editRequestStatus: 'pending',
+    editRequestStatus: 'pending' as const,
     editError: undefined,
   })),
   on(FinanceEntriesActions.editEntrySuccess, (state, { entry }) =>
     financeEntriesAdapter.upsertOne(entry, {
       ...state,
-      editRequestStatus: 'successful',
+      editRequestStatus: 'successful' as const,
     })
   ),
   on(FinanceEntriesActions.editEntryFailure, (state, { error }) => ({
     ...state,
-    editRequestStatus: 'failed',
+    editRequestStatus: 'failed' as const,
     editError: error,
   })),
   on(FinanceEntriesActions.resetEntries, (state) => ({
     ...state,
     loadError: undefined,
-    readRequestStatus: 'initial',
+    readRequestStatus: 'initial' as const,
   })),
   on(FinanceEntriesActions.resetAdd, (state) => ({
     ...state,
     addError: undefined,
-    addRequestStatus: 'initial',
+    addRequestStatus: 'initial' as const,
   })),
   on(FinanceEntriesActions.resetDelete, (state) => ({
     ...state,
     deleteError: undefined,
-    deleteRequestStatus: 'initial',
+    deleteRequestStatus: 'initial' as const,
   })),
   on(FinanceEntriesActions.resetEdit, (state) => ({
     ...state,
     editError: undefined,
-    editRequestStatus: 'initial',
+    editRequestStatus: 'initial' as const,
   }))
 );
 
