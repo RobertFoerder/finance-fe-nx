@@ -1,24 +1,9 @@
 {
-  "npmScope": "finance-fe-nx",
   "affected": {
     "defaultBase": "main"
   },
   "cli": {
     "packageManager": "npm"
-  },
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "@nrwl/nx-cloud",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
-        "accessToken": "ODVjMmIyYTItOThhYy00OWU5LWE0ZmQtOTMxOTA4M2I3ZGNkfHJlYWQtd3JpdGU="
-      }
-    }
   },
   "generators": {
     "@nrwl/angular:application": {

@@ -10,12 +10,14 @@
  * Do not edit the class manually.
  */
 
-export interface FinanceEntry {
-  id?: string;
-  year?: number;
-  month?: number;
-  category?: string;
-  description?: string;
-  value?: number;
-  date?: Date;
+
+export interface FinanceEntry { 
+    id?: string;
+    year?: number;
+    month?: number;
+    category?: string;
+    description?: string;
+    value?: number;
+    date?: string;
 }
+

@@ -3,5 +3,8 @@
   "configurationPrefix": "Finance",
   "fileNaming": "kebab-case",
   "modelPropertyNaming": "camelCase",
-  "stringEnums": true
+  "stringEnums": true,
+  "typeMappings": {
+    "DateTime": "string"
+  }
 }

@@ -40,87 +40,87 @@ const fixedCostsReducer = createReducer(
   initialState,
   on(FixedCostsActions.load, (state) => ({
     ...state,
-    readRequestStatus: 'pending',
+    readRequestStatus: 'pending' as const,
     loadError: undefined,
   })),
   on(FixedCostsActions.loadFixedCostsSuccess, (state, { fixedCosts }) =>
     fixedCostsAdapter.setAll(fixedCosts, {
       ...state,
-      readRequestStatus: 'successful',
+      readRequestStatus: 'successful' as const,
     })
   ),
   on(FixedCostsActions.loadFixedCostsFailure, (state, { error }) => ({
     ...state,
     loadError: error,
-    readRequestStatus: 'failed',
+    readRequestStatus: 'failed' as const,
   })),
   on(FixedCostsActions.add, (state) => ({
     ...state,
-    addRequestStatus: 'pending',
+    addRequestStatus: 'pending' as const,
     addError: undefined,
   })),
   on(FixedCostsActions.addFixedCostSuccess, (state, { fixedCost }) =>
     fixedCostsAdapter.setOne(fixedCost, {
       ...state,
-      addRequestStatus: 'successful',
+      addRequestStatus: 'successful' as const,
     })
   ),
   on(FixedCostsActions.addFixedCostFailure, (state, { error }) => ({
     ...state,
-    addRequestStatus: 'failed',
+    addRequestStatus: 'failed' as const,
     addError: error,
   })),
   on(FixedCostsActions.deleteFixedCost, (state) => ({
     ...state,
-    deleteRequestStatus: 'pending',
+    deleteRequestStatus: 'pending' as const,
     deleteError: undefined,
   })),
   on(FixedCostsActions.deleteFixedCostSuccess, (state, { id }) =>
     fixedCostsAdapter.removeOne(id, {
       ...state,
-      deleteRequestStatus: 'successful',
+      deleteRequestStatus: 'successful' as const,
     })
   ),
   on(FixedCostsActions.deleteFixedCostFailure, (state, { error }) => ({
     ...state,
-    deleteRequestStatus: 'failed',
+    deleteRequestStatus: 'failed' as const,
     deleteError: error,
   })),
   on(FixedCostsActions.editFixedCost, (state) => ({
     ...state,
-    editRequestStatus: 'pending',
+    editRequestStatus: 'pending' as const,
     editError: undefined,
   })),
   on(FixedCostsActions.editFixedCostSuccess, (state, { fixedCost }) =>
     fixedCostsAdapter.upsertOne(fixedCost, {
       ...state,
-      editRequestStatus: 'successful',
+      editRequestStatus: 'successful' as const,
     })
   ),
   on(FixedCostsActions.editFixedCostFailure, (state, { error }) => ({
     ...state,
-    editRequestStatus: 'failed',
+    editRequestStatus: 'failed' as const,
     editError: error,
   })),
   on(FixedCostsActions.resetFixedCosts, (state) => ({
     ...state,
     loadError: undefined,
-    readRequestStatus: 'initial',
+    readRequestStatus: 'initial' as const,
   })),
   on(FixedCostsActions.resetAdd, (state) => ({
     ...state,
     addError: undefined,
-    addRequestStatus: 'initial',
+    addRequestStatus: 'initial' as const,
   })),
   on(FixedCostsActions.resetDelete, (state) => ({
     ...state,
     deleteError: undefined,
-    deleteRequestStatus: 'initial',
+    deleteRequestStatus: 'initial' as const,
   })),
   on(FixedCostsActions.resetEdit, (state) => ({
     ...state,
     editError: undefined,
-    editRequestStatus: 'initial',
+    editRequestStatus: 'initial' as const,
   }))
 );
 
