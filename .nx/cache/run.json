@@ -1,8 +1,8 @@
 {
   "run": {
     "command": "nx build",
-    "startTime": "2023-12-31T06:36:36.177Z",
-    "endTime": "2023-12-31T06:36:39.708Z",
+    "startTime": "2023-12-31T07:16:50.108Z",
+    "endTime": "2023-12-31T07:16:55.015Z",
     "inner": false
   },
   "tasks": [
@@ -10,9 +10,9 @@
       "taskId": "finance-fe:build:production",
       "target": "build",
       "projectName": "finance-fe",
-      "hash": "16862234354286446089",
-      "startTime": "2023-12-31T06:36:36.180Z",
-      "endTime": "2023-12-31T06:36:39.707Z",
+      "hash": "3113447352950969533",
+      "startTime": "2023-12-31T07:16:50.111Z",
+      "endTime": "2023-12-31T07:16:55.015Z",
       "params": "",
       "cacheStatus": "cache-miss",
       "status": 0

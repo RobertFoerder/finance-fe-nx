@@ -112,123 +112,773 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": ".vscode/extensions.json",
-        "hash": "5602819023443764055"
-      },
-      {
-        "file": "migrations.json",
-        "hash": "11086178949805868951"
-      },
-      {
-        "file": "angular.json",
-        "hash": "11471847725706911943"
-      },
-      {
-        "file": "apps/.gitkeep",
-        "hash": "3244421341483603138"
-      },
-      {
-        "file": "jest.config.ts",
-        "hash": "1257711678503192656"
-      },
-      {
-        "file": ".vscode/settings.json",
-        "hash": "509904888720431578"
-      },
-      {
-        "file": "tools/tsconfig.tools.json",
-        "hash": "16088922570277978783"
-      },
-      {
-        "file": "tsconfig.base.json",
-        "hash": "4784194520637840480"
-      },
-      {
-        "file": "apis/finance-api.json",
-        "hash": "9627573937257250201"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "9325233777451882048"
-      },
-      {
-        "file": "tailwind.config.js",
-        "hash": "14754591432402085621"
-      },
-      {
-        "file": ".prettierignore",
-        "hash": "17733650430415207254"
-      },
-      {
-        "file": "README.md",
-        "hash": "10889955915735098850"
-      },
-      {
-        "file": "apis/finance-api.html",
-        "hash": "17157304548287931345"
-      },
-      {
-        "file": "apis/sample.json",
-        "hash": "5419528653681686555"
-      },
-      {
-        "file": ".eslintrc.json",
-        "hash": "15388041757782744192"
-      },
-      {
-        "file": "decorate-angular-cli.js",
-        "hash": "12627382994622398531"
-      },
-      {
-        "file": "jest.preset.js",
-        "hash": "15767436571456972096"
-      },
-      {
-        "file": "package-lock.json",
-        "hash": "15337035016544067419"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "16267754514737964994"
-      },
-      {
-        "file": "openapitools.json",
-        "hash": "1943530909791428400"
-      },
-      {
         "file": "libs/.gitkeep",
         "hash": "3244421341483603138"
-      },
-      {
-        "file": "nx.json",
-        "hash": "13551780033640385097"
-      },
-      {
-        "file": "tools/generators/.gitkeep",
-        "hash": "3244421341483603138"
-      },
-      {
-        "file": ".github/workflows/azure-static-web-apps-blue-pond-02b563803.yml",
-        "hash": "13607690854804732763"
-      },
-      {
-        "file": "apis/config.json",
-        "hash": "15908476334234418082"
       },
       {
         "file": "apis/openapitools.json",
         "hash": "1943530909791428400"
       },
       {
+        "file": "tools/tsconfig.tools.json",
+        "hash": "16088922570277978783"
+      },
+      {
+        "file": "nx.json",
+        "hash": "13551780033640385097"
+      },
+      {
+        "file": "apis/config.json",
+        "hash": "802540012074328177"
+      },
+      {
+        "file": "decorate-angular-cli.js",
+        "hash": "12627382994622398531"
+      },
+      {
+        "file": "tailwind.config.js",
+        "hash": "14754591432402085621"
+      },
+      {
+        "file": ".vscode/settings.json",
+        "hash": "509904888720431578"
+      },
+      {
+        "file": "apis/finance-api.html",
+        "hash": "17157304548287931345"
+      },
+      {
         "file": "package.json",
         "hash": "6744337451434463954"
       },
       {
+        "file": ".nx/cache/d/server-process.json",
+        "hash": "13463910851260409660"
+      },
+      {
+        "file": "apps/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "apis/finance-api.json",
+        "hash": "9627573937257250201"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "16267754514737964994"
+      },
+      {
+        "file": "migrations.json",
+        "hash": "11086178949805868951"
+      },
+      {
+        "file": "apis/sample.json",
+        "hash": "5419528653681686555"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "5602819023443764055"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "3411037956422597255"
+      },
+      {
+        "file": ".github/workflows/azure-static-web-apps-blue-pond-02b563803.yml",
+        "hash": "13607690854804732763"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "17733650430415207254"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "15767436571456972096"
+      },
+      {
         "file": ".editorconfig",
         "hash": "5443105041930014821"
+      },
+      {
+        "file": "README.md",
+        "hash": "10889955915735098850"
+      },
+      {
+        "file": "tools/generators/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "openapitools.json",
+        "hash": "1943530909791428400"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "15337035016544067419"
+      },
+      {
+        "file": "angular.json",
+        "hash": "11471847725706911943"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "15388041757782744192"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "1257711678503192656"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "4784194520637840480"
       }
     ],
     "projectFileMap": {
+      "finance-fe-e2e": [
+        {
+          "file": "apps/finance-fe-e2e/.eslintrc.json",
+          "hash": "15523834149352881398"
+        },
+        {
+          "file": "apps/finance-fe-e2e/cypress.json",
+          "hash": "14155973076762169672"
+        },
+        {
+          "file": "apps/finance-fe-e2e/src/fixtures/example.json",
+          "hash": "11614668686582597233"
+        },
+        {
+          "file": "apps/finance-fe-e2e/src/integration/app.spec.ts",
+          "hash": "3423638294263190132"
+        },
+        {
+          "file": "apps/finance-fe-e2e/src/support/app.po.ts",
+          "hash": "11157016311132186162"
+        },
+        {
+          "file": "apps/finance-fe-e2e/src/support/commands.ts",
+          "hash": "7314691991044890572"
+        },
+        {
+          "file": "apps/finance-fe-e2e/src/support/index.ts",
+          "hash": "3666078656922506009"
+        },
+        {
+          "file": "apps/finance-fe-e2e/tsconfig.json",
+          "hash": "8708006766290581421"
+        }
+      ],
+      "fixed-costs-views": [
+        {
+          "file": "libs/fixed-costs/views/.eslintrc.json",
+          "hash": "12165883330662428459"
+        },
+        {
+          "file": "libs/fixed-costs/views/README.md",
+          "hash": "9734108509313315642"
+        },
+        {
+          "file": "libs/fixed-costs/views/jest.config.ts",
+          "hash": "6879272324898567095"
+        },
+        {
+          "file": "libs/fixed-costs/views/src/index.ts",
+          "hash": "16308220114196534891"
+        },
+        {
+          "file": "libs/fixed-costs/views/src/lib/add-fixed-cost/add-fixed-cost.component.html",
+          "hash": "7086793490881708815"
+        },
+        {
+          "file": "libs/fixed-costs/views/src/lib/add-fixed-cost/add-fixed-cost.component.ts",
+          "hash": "4608568917159030636",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "core",
+            "finance-api",
+            "fixed-costs-data",
+            "npm:ngx-toastr"
+          ]
+        },
+        {
+          "file": "libs/fixed-costs/views/src/lib/add-fixed-cost/add-fixed-cost.module.ts",
+          "hash": "13485070309162361567",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "shared"
+          ]
+        },
+        {
+          "file": "libs/fixed-costs/views/src/lib/edit-fixed-cost/edit-fixed-cost.component.html",
+          "hash": "1410656972732860904"
+        },
+        {
+          "file": "libs/fixed-costs/views/src/lib/edit-fixed-cost/edit-fixed-cost.component.ts",
+          "hash": "8165992357524915251",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "core",
+            "finance-api",
+            "fixed-costs-data",
+            "npm:ngx-toastr",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/fixed-costs/views/src/lib/edit-fixed-cost/edit-fixed-cost.module.ts",
+          "hash": "17344918452470141098",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "shared"
+          ]
+        },
+        {
+          "file": "libs/fixed-costs/views/src/lib/fixed-costs-views.module.ts",
+          "hash": "2885141202995280606",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common",
+            "npm:@angular/router",
+            "fixed-costs-data"
+          ]
+        },
+        {
+          "file": "libs/fixed-costs/views/src/lib/fixed-costs/fixed-costs.component.html",
+          "hash": "17857333328894405423"
+        },
+        {
+          "file": "libs/fixed-costs/views/src/lib/fixed-costs/fixed-costs.component.ts",
+          "hash": "10676112518007789260",
+          "deps": [
+            "npm:@angular/core",
+            "core",
+            "npm:@angular/router",
+            "npm:@costlydeveloper/ngx-awesome-popup",
+            "fixed-costs-data",
+            "finance-api",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/fixed-costs/views/src/lib/fixed-costs/fixed-costs.module.ts",
+          "hash": "6231444797496044628",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "libs/fixed-costs/views/src/test-setup.ts",
+          "hash": "17711435995618823417",
+          "deps": [
+            "npm:jest-preset-angular/setup-jest"
+          ]
+        },
+        {
+          "file": "libs/fixed-costs/views/tsconfig.json",
+          "hash": "7753990675860280201"
+        },
+        {
+          "file": "libs/fixed-costs/views/tsconfig.lib.json",
+          "hash": "13290263158084098684"
+        },
+        {
+          "file": "libs/fixed-costs/views/tsconfig.spec.json",
+          "hash": "13141853583967432992"
+        }
+      ],
+      "summary-views": [
+        {
+          "file": "libs/summary/views/.eslintrc.json",
+          "hash": "12369713809815251986"
+        },
+        {
+          "file": "libs/summary/views/README.md",
+          "hash": "4845382108341824921"
+        },
+        {
+          "file": "libs/summary/views/jest.config.ts",
+          "hash": "5695267843195417387"
+        },
+        {
+          "file": "libs/summary/views/src/index.ts",
+          "hash": "9396504015730035714"
+        },
+        {
+          "file": "libs/summary/views/src/lib/add-entry/add-entry.component.html",
+          "hash": "4733695644611786986"
+        },
+        {
+          "file": "libs/summary/views/src/lib/add-entry/add-entry.component.ts",
+          "hash": "11935610801611254590",
+          "deps": [
+            "npm:@angular/core",
+            "summary-data",
+            "finance-api",
+            "npm:@angular/router",
+            "core",
+            "npm:ngx-toastr"
+          ]
+        },
+        {
+          "file": "libs/summary/views/src/lib/add-entry/add-entry.module.ts",
+          "hash": "6080264323318572005",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "shared"
+          ]
+        },
+        {
+          "file": "libs/summary/views/src/lib/edit-entry/edit-entry.component.html",
+          "hash": "14344965134815408662"
+        },
+        {
+          "file": "libs/summary/views/src/lib/edit-entry/edit-entry.component.ts",
+          "hash": "2485264892047324234",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "core",
+            "finance-api",
+            "summary-data",
+            "npm:ngx-toastr",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/summary/views/src/lib/edit-entry/edit-entry.module.ts",
+          "hash": "12508113815574395663",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "shared"
+          ]
+        },
+        {
+          "file": "libs/summary/views/src/lib/summary-views.module.ts",
+          "hash": "641174173055186314",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common",
+            "npm:@angular/router",
+            "summary-data"
+          ]
+        },
+        {
+          "file": "libs/summary/views/src/lib/summary/category-summary/category-summary.component.html",
+          "hash": "5038899762987564042"
+        },
+        {
+          "file": "libs/summary/views/src/lib/summary/category-summary/category-summary.component.scss",
+          "hash": "9614750381036297237"
+        },
+        {
+          "file": "libs/summary/views/src/lib/summary/category-summary/category-summary.component.ts",
+          "hash": "9371541145669148968",
+          "deps": [
+            "npm:@angular/core",
+            "core",
+            "finance-api",
+            "shared",
+            "summary-data",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/summary/views/src/lib/summary/monthly-summary/monthly-summary.component.html",
+          "hash": "3383358923912399961"
+        },
+        {
+          "file": "libs/summary/views/src/lib/summary/monthly-summary/monthly-summary.component.ts",
+          "hash": "7683189202636974683",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "core",
+            "summary-data",
+            "npm:rxjs",
+            "npm:@costlydeveloper/ngx-awesome-popup",
+            "finance-api",
+            "shared"
+          ]
+        },
+        {
+          "file": "libs/summary/views/src/lib/summary/summary.component.html",
+          "hash": "857244622662973919"
+        },
+        {
+          "file": "libs/summary/views/src/lib/summary/summary.component.ts",
+          "hash": "8367772081739160638",
+          "deps": [
+            "npm:@angular/core",
+            "core",
+            "shared",
+            "summary-data",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/summary/views/src/lib/summary/summary.module.ts",
+          "hash": "8622989833466993010",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "shared"
+          ]
+        },
+        {
+          "file": "libs/summary/views/src/test-setup.ts",
+          "hash": "17711435995618823417",
+          "deps": [
+            "npm:jest-preset-angular/setup-jest"
+          ]
+        },
+        {
+          "file": "libs/summary/views/tsconfig.json",
+          "hash": "7753990675860280201"
+        },
+        {
+          "file": "libs/summary/views/tsconfig.lib.json",
+          "hash": "13290263158084098684"
+        },
+        {
+          "file": "libs/summary/views/tsconfig.spec.json",
+          "hash": "13141853583967432992"
+        }
+      ],
+      "fixed-costs-data": [
+        {
+          "file": "libs/fixed-costs/data/.eslintrc.json",
+          "hash": "12165883330662428459"
+        },
+        {
+          "file": "libs/fixed-costs/data/README.md",
+          "hash": "9964956692302726684"
+        },
+        {
+          "file": "libs/fixed-costs/data/jest.config.ts",
+          "hash": "7365838847108414450"
+        },
+        {
+          "file": "libs/fixed-costs/data/src/index.ts",
+          "hash": "16861062110940998164"
+        },
+        {
+          "file": "libs/fixed-costs/data/src/lib/fixed-costs-data.module.ts",
+          "hash": "11015298962442322843",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common",
+            "npm:@ngrx/store",
+            "npm:@ngrx/effects",
+            "shared"
+          ]
+        },
+        {
+          "file": "libs/fixed-costs/data/src/lib/fixed-costs/fixed-costs.actions.ts",
+          "hash": "14907332286434426339",
+          "deps": [
+            "core",
+            "npm:@ngrx/store"
+          ]
+        },
+        {
+          "file": "libs/fixed-costs/data/src/lib/fixed-costs/fixed-costs.effects.ts",
+          "hash": "9989986690112997607",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@ngrx/effects",
+            "finance-api",
+            "npm:@nrwl/angular",
+            "npm:rxjs",
+            "npm:@angular/common/http",
+            "core"
+          ]
+        },
+        {
+          "file": "libs/fixed-costs/data/src/lib/fixed-costs/fixed-costs.facade.ts",
+          "hash": "13923018787485390123",
+          "deps": [
+            "npm:@angular/core",
+            "finance-api",
+            "npm:@ngrx/store",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/fixed-costs/data/src/lib/fixed-costs/fixed-costs.models.ts",
+          "hash": "15854289293581412993",
+          "deps": [
+            "finance-api"
+          ]
+        },
+        {
+          "file": "libs/fixed-costs/data/src/lib/fixed-costs/fixed-costs.reducers.ts",
+          "hash": "5513034698353872829",
+          "deps": [
+            "core",
+            "npm:@ngrx/entity",
+            "npm:@ngrx/store"
+          ]
+        },
+        {
+          "file": "libs/fixed-costs/data/src/lib/fixed-costs/fixed-costs.selectors.ts",
+          "hash": "15011271238102844533",
+          "deps": [
+            "npm:@ngrx/store"
+          ]
+        },
+        {
+          "file": "libs/fixed-costs/data/src/test-setup.ts",
+          "hash": "17711435995618823417",
+          "deps": [
+            "npm:jest-preset-angular/setup-jest"
+          ]
+        },
+        {
+          "file": "libs/fixed-costs/data/tsconfig.json",
+          "hash": "7753990675860280201"
+        },
+        {
+          "file": "libs/fixed-costs/data/tsconfig.lib.json",
+          "hash": "13290263158084098684"
+        },
+        {
+          "file": "libs/fixed-costs/data/tsconfig.spec.json",
+          "hash": "13141853583967432992"
+        }
+      ],
+      "layout": [
+        {
+          "file": "libs/layout/.eslintrc.json",
+          "hash": "452826867117731524"
+        },
+        {
+          "file": "libs/layout/README.md",
+          "hash": "7639348883366159621"
+        },
+        {
+          "file": "libs/layout/jest.config.ts",
+          "hash": "12396557724025580363"
+        },
+        {
+          "file": "libs/layout/src/index.ts",
+          "hash": "11613300725964821526"
+        },
+        {
+          "file": "libs/layout/src/lib/layout.module.ts",
+          "hash": "13323563448108696998",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common",
+            "npm:@angular/router"
+          ]
+        },
+        {
+          "file": "libs/layout/src/lib/layout/layout.component.html",
+          "hash": "14472637482498016741"
+        },
+        {
+          "file": "libs/layout/src/lib/layout/layout.component.ts",
+          "hash": "11501178525307832386",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "libs/layout/src/lib/styles/layout.scss",
+          "hash": "17001678444241470378"
+        },
+        {
+          "file": "libs/layout/src/lib/styles/theme/buttons.scss",
+          "hash": "14186624921725077443"
+        },
+        {
+          "file": "libs/layout/src/lib/styles/theme/forms.scss",
+          "hash": "5293605369958819587"
+        },
+        {
+          "file": "libs/layout/src/lib/styles/theme/various.scss",
+          "hash": "5027101521494877077"
+        },
+        {
+          "file": "libs/layout/src/test-setup.ts",
+          "hash": "17711435995618823417",
+          "deps": [
+            "npm:jest-preset-angular/setup-jest"
+          ]
+        },
+        {
+          "file": "libs/layout/tsconfig.json",
+          "hash": "4216358947214100937"
+        },
+        {
+          "file": "libs/layout/tsconfig.lib.json",
+          "hash": "14999110739244744162"
+        },
+        {
+          "file": "libs/layout/tsconfig.spec.json",
+          "hash": "18121645209207210368"
+        }
+      ],
+      "finance-api": [
+        {
+          "file": "libs/finance-api/.eslintrc.json",
+          "hash": "4955502719068432821"
+        },
+        {
+          "file": "libs/finance-api/README.md",
+          "hash": "7846242587106591790"
+        },
+        {
+          "file": "libs/finance-api/jest.config.ts",
+          "hash": "5564688830621066244"
+        },
+        {
+          "file": "libs/finance-api/src/generated/.gitignore",
+          "hash": "14031326617291468971"
+        },
+        {
+          "file": "libs/finance-api/src/generated/.openapi-generator-ignore",
+          "hash": "5921108589004068994"
+        },
+        {
+          "file": "libs/finance-api/src/generated/.openapi-generator/FILES",
+          "hash": "15877864429034231969"
+        },
+        {
+          "file": "libs/finance-api/src/generated/.openapi-generator/VERSION",
+          "hash": "11986531370091543398"
+        },
+        {
+          "file": "libs/finance-api/src/generated/README.md",
+          "hash": "2226118835181049983"
+        },
+        {
+          "file": "libs/finance-api/src/generated/api.module.ts",
+          "hash": "1646328533548135211",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common/http"
+          ]
+        },
+        {
+          "file": "libs/finance-api/src/generated/api/accounts.service.ts",
+          "hash": "35937622098378093",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common/http",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/finance-api/src/generated/api/api.ts",
+          "hash": "7977673677241439156"
+        },
+        {
+          "file": "libs/finance-api/src/generated/api/entries.service.ts",
+          "hash": "16779457515737107321",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common/http",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/finance-api/src/generated/api/fixed-costs.service.ts",
+          "hash": "14653288208813093309",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common/http",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/finance-api/src/generated/configuration.ts",
+          "hash": "15636789573188735559",
+          "deps": [
+            "npm:@angular/common/http"
+          ]
+        },
+        {
+          "file": "libs/finance-api/src/generated/encoder.ts",
+          "hash": "8451822671086499773",
+          "deps": [
+            "npm:@angular/common/http"
+          ]
+        },
+        {
+          "file": "libs/finance-api/src/generated/git_push.sh",
+          "hash": "257268719382818012"
+        },
+        {
+          "file": "libs/finance-api/src/generated/index.ts",
+          "hash": "8882130801513074732"
+        },
+        {
+          "file": "libs/finance-api/src/generated/model/account.ts",
+          "hash": "17932217546929399408"
+        },
+        {
+          "file": "libs/finance-api/src/generated/model/finance-entry.ts",
+          "hash": "8873315932712982421"
+        },
+        {
+          "file": "libs/finance-api/src/generated/model/fixed-cost.ts",
+          "hash": "15104350648502120400"
+        },
+        {
+          "file": "libs/finance-api/src/generated/model/models.ts",
+          "hash": "8628056627263925134"
+        },
+        {
+          "file": "libs/finance-api/src/generated/variables.ts",
+          "hash": "8875628982008667018",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "libs/finance-api/src/index.ts",
+          "hash": "15255941663852351979"
+        },
+        {
+          "file": "libs/finance-api/src/lib/finance-api.module.ts",
+          "hash": "17970373241237213230",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common"
+          ]
+        },
+        {
+          "file": "libs/finance-api/src/test-setup.ts",
+          "hash": "17711435995618823417",
+          "deps": [
+            "npm:jest-preset-angular/setup-jest"
+          ]
+        },
+        {
+          "file": "libs/finance-api/tsconfig.json",
+          "hash": "4216358947214100937"
+        },
+        {
+          "file": "libs/finance-api/tsconfig.lib.json",
+          "hash": "14999110739244744162"
+        },
+        {
+          "file": "libs/finance-api/tsconfig.spec.json",
+          "hash": "18121645209207210368"
+        }
+      ],
       "finance-fe": [
         {
           "file": "apps/finance-fe/.eslintrc.json",
@@ -416,266 +1066,84 @@
           "hash": "18121645209207210368"
         }
       ],
-      "summary-data": [
+      "core": [
         {
-          "file": "libs/summary/data/.eslintrc.json",
-          "hash": "12165883330662428459"
+          "file": "libs/core/.eslintrc.json",
+          "hash": "4955502719068432821"
         },
         {
-          "file": "libs/summary/data/README.md",
-          "hash": "706853466693087467"
+          "file": "libs/core/README.md",
+          "hash": "9810432091555253122"
         },
         {
-          "file": "libs/summary/data/jest.config.ts",
-          "hash": "3439933202375793547"
+          "file": "libs/core/jest.config.ts",
+          "hash": "7888752402211890008"
         },
         {
-          "file": "libs/summary/data/src/index.ts",
-          "hash": "9974634728103188215"
+          "file": "libs/core/src/index.ts",
+          "hash": "14382614469452026880"
         },
         {
-          "file": "libs/summary/data/src/lib/finance-entries/finance-entries.actions.ts",
-          "hash": "11211663042703899653",
+          "file": "libs/core/src/lib/api-access/generic-actions.ts",
+          "hash": "14682006919866685879",
           "deps": [
-            "core",
             "npm:@ngrx/store"
           ]
         },
         {
-          "file": "libs/summary/data/src/lib/finance-entries/finance-entries.effects.ts",
-          "hash": "16423489063985213421",
+          "file": "libs/core/src/lib/api-access/generic-api.effects.ts",
+          "hash": "17793703960933994586",
           "deps": [
             "npm:@angular/core",
             "npm:@ngrx/effects",
-            "finance-api",
-            "npm:@nrwl/angular",
-            "npm:rxjs",
-            "npm:@angular/common/http",
-            "core"
-          ]
-        },
-        {
-          "file": "libs/summary/data/src/lib/finance-entries/finance-entries.facade.ts",
-          "hash": "835668943422122273",
-          "deps": [
-            "npm:@angular/core",
-            "finance-api",
-            "shared",
-            "npm:@ngrx/store",
             "npm:rxjs"
           ]
         },
         {
-          "file": "libs/summary/data/src/lib/finance-entries/finance-entries.models.ts",
-          "hash": "916443693349300856",
+          "file": "libs/core/src/lib/api-access/index.ts",
+          "hash": "10509667692485130929"
+        },
+        {
+          "file": "libs/core/src/lib/api-access/request-status-type.ts",
+          "hash": "16091381327876219326"
+        },
+        {
+          "file": "libs/core/src/lib/api-access/serialize-error-response.ts",
+          "hash": "7071432433999977011",
           "deps": [
-            "finance-api"
+            "npm:@angular/common/http"
           ]
         },
         {
-          "file": "libs/summary/data/src/lib/finance-entries/finance-entries.reducers.ts",
-          "hash": "561991586347912390",
-          "deps": [
-            "core",
-            "npm:@ngrx/entity",
-            "npm:@ngrx/store"
-          ]
-        },
-        {
-          "file": "libs/summary/data/src/lib/finance-entries/finance-entries.selectors.ts",
-          "hash": "1810062715764797132",
-          "deps": [
-            "npm:@ngrx/store"
-          ]
-        },
-        {
-          "file": "libs/summary/data/src/lib/summary-data.module.ts",
-          "hash": "11343934206183535624",
+          "file": "libs/core/src/lib/models/container-component.class.ts",
+          "hash": "979524700161520785",
           "deps": [
             "npm:@angular/core",
-            "npm:@angular/common",
-            "npm:@ngrx/store",
-            "npm:@ngrx/effects",
-            "shared"
+            "npm:rxjs"
           ]
         },
         {
-          "file": "libs/summary/data/src/test-setup.ts",
+          "file": "libs/core/src/lib/models/index.ts",
+          "hash": "3243211101841305438"
+        },
+        {
+          "file": "libs/core/src/test-setup.ts",
           "hash": "17711435995618823417",
           "deps": [
             "npm:jest-preset-angular/setup-jest"
           ]
         },
         {
-          "file": "libs/summary/data/tsconfig.json",
-          "hash": "7753990675860280201"
+          "file": "libs/core/tsconfig.json",
+          "hash": "4216358947214100937"
         },
         {
-          "file": "libs/summary/data/tsconfig.lib.json",
-          "hash": "13290263158084098684"
+          "file": "libs/core/tsconfig.lib.json",
+          "hash": "14999110739244744162"
         },
         {
-          "file": "libs/summary/data/tsconfig.spec.json",
-          "hash": "13141853583967432992"
-        }
-      ],
-      "finance-fe-e2e": [
-        {
-          "file": "apps/finance-fe-e2e/.eslintrc.json",
-          "hash": "15523834149352881398"
-        },
-        {
-          "file": "apps/finance-fe-e2e/cypress.json",
-          "hash": "14155973076762169672"
-        },
-        {
-          "file": "apps/finance-fe-e2e/src/fixtures/example.json",
-          "hash": "11614668686582597233"
-        },
-        {
-          "file": "apps/finance-fe-e2e/src/integration/app.spec.ts",
-          "hash": "3423638294263190132"
-        },
-        {
-          "file": "apps/finance-fe-e2e/src/support/app.po.ts",
-          "hash": "11157016311132186162"
-        },
-        {
-          "file": "apps/finance-fe-e2e/src/support/commands.ts",
-          "hash": "7314691991044890572"
-        },
-        {
-          "file": "apps/finance-fe-e2e/src/support/index.ts",
-          "hash": "3666078656922506009"
-        },
-        {
-          "file": "apps/finance-fe-e2e/tsconfig.json",
-          "hash": "8708006766290581421"
-        }
-      ],
-      "fixed-costs-views": [
-        {
-          "file": "libs/fixed-costs/views/.eslintrc.json",
-          "hash": "12165883330662428459"
-        },
-        {
-          "file": "libs/fixed-costs/views/README.md",
-          "hash": "9734108509313315642"
-        },
-        {
-          "file": "libs/fixed-costs/views/jest.config.ts",
-          "hash": "6879272324898567095"
-        },
-        {
-          "file": "libs/fixed-costs/views/src/index.ts",
-          "hash": "16308220114196534891"
-        },
-        {
-          "file": "libs/fixed-costs/views/src/lib/add-fixed-cost/add-fixed-cost.component.html",
-          "hash": "7086793490881708815"
-        },
-        {
-          "file": "libs/fixed-costs/views/src/lib/add-fixed-cost/add-fixed-cost.component.ts",
-          "hash": "4608568917159030636",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router",
-            "core",
-            "finance-api",
-            "fixed-costs-data",
-            "npm:ngx-toastr"
-          ]
-        },
-        {
-          "file": "libs/fixed-costs/views/src/lib/add-fixed-cost/add-fixed-cost.module.ts",
-          "hash": "13485070309162361567",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@angular/forms",
-            "shared"
-          ]
-        },
-        {
-          "file": "libs/fixed-costs/views/src/lib/edit-fixed-cost/edit-fixed-cost.component.html",
-          "hash": "1410656972732860904"
-        },
-        {
-          "file": "libs/fixed-costs/views/src/lib/edit-fixed-cost/edit-fixed-cost.component.ts",
-          "hash": "8165992357524915251",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router",
-            "core",
-            "finance-api",
-            "fixed-costs-data",
-            "npm:ngx-toastr",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/fixed-costs/views/src/lib/edit-fixed-cost/edit-fixed-cost.module.ts",
-          "hash": "17344918452470141098",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@angular/forms",
-            "shared"
-          ]
-        },
-        {
-          "file": "libs/fixed-costs/views/src/lib/fixed-costs-views.module.ts",
-          "hash": "2885141202995280606",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common",
-            "npm:@angular/router",
-            "fixed-costs-data"
-          ]
-        },
-        {
-          "file": "libs/fixed-costs/views/src/lib/fixed-costs/fixed-costs.component.html",
-          "hash": "17857333328894405423"
-        },
-        {
-          "file": "libs/fixed-costs/views/src/lib/fixed-costs/fixed-costs.component.ts",
-          "hash": "10676112518007789260",
-          "deps": [
-            "npm:@angular/core",
-            "core",
-            "npm:@angular/router",
-            "npm:@costlydeveloper/ngx-awesome-popup",
-            "fixed-costs-data",
-            "finance-api",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/fixed-costs/views/src/lib/fixed-costs/fixed-costs.module.ts",
-          "hash": "6231444797496044628",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "libs/fixed-costs/views/src/test-setup.ts",
-          "hash": "17711435995618823417",
-          "deps": [
-            "npm:jest-preset-angular/setup-jest"
-          ]
-        },
-        {
-          "file": "libs/fixed-costs/views/tsconfig.json",
-          "hash": "7753990675860280201"
-        },
-        {
-          "file": "libs/fixed-costs/views/tsconfig.lib.json",
-          "hash": "13290263158084098684"
-        },
-        {
-          "file": "libs/fixed-costs/views/tsconfig.spec.json",
-          "hash": "13141853583967432992"
+          "file": "libs/core/tsconfig.spec.json",
+          "hash": "18121645209207210368"
         }
       ],
       "accounts-data": [
@@ -779,79 +1247,6 @@
         {
           "file": "libs/accounts/data/tsconfig.spec.json",
           "hash": "13141853583967432992"
-        }
-      ],
-      "layout": [
-        {
-          "file": "libs/layout/.eslintrc.json",
-          "hash": "452826867117731524"
-        },
-        {
-          "file": "libs/layout/README.md",
-          "hash": "7639348883366159621"
-        },
-        {
-          "file": "libs/layout/jest.config.ts",
-          "hash": "12396557724025580363"
-        },
-        {
-          "file": "libs/layout/src/index.ts",
-          "hash": "11613300725964821526"
-        },
-        {
-          "file": "libs/layout/src/lib/layout.module.ts",
-          "hash": "13323563448108696998",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common",
-            "npm:@angular/router"
-          ]
-        },
-        {
-          "file": "libs/layout/src/lib/layout/layout.component.html",
-          "hash": "14472637482498016741"
-        },
-        {
-          "file": "libs/layout/src/lib/layout/layout.component.ts",
-          "hash": "11501178525307832386",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "libs/layout/src/lib/styles/layout.scss",
-          "hash": "17001678444241470378"
-        },
-        {
-          "file": "libs/layout/src/lib/styles/theme/buttons.scss",
-          "hash": "14186624921725077443"
-        },
-        {
-          "file": "libs/layout/src/lib/styles/theme/forms.scss",
-          "hash": "5293605369958819587"
-        },
-        {
-          "file": "libs/layout/src/lib/styles/theme/various.scss",
-          "hash": "5027101521494877077"
-        },
-        {
-          "file": "libs/layout/src/test-setup.ts",
-          "hash": "17711435995618823417",
-          "deps": [
-            "npm:jest-preset-angular/setup-jest"
-          ]
-        },
-        {
-          "file": "libs/layout/tsconfig.json",
-          "hash": "4216358947214100937"
-        },
-        {
-          "file": "libs/layout/tsconfig.lib.json",
-          "hash": "14999110739244744162"
-        },
-        {
-          "file": "libs/layout/tsconfig.spec.json",
-          "hash": "18121645209207210368"
         }
       ],
       "accounts-views": [
@@ -977,6 +1372,109 @@
           "hash": "13141853583967432992"
         }
       ],
+      "summary-data": [
+        {
+          "file": "libs/summary/data/.eslintrc.json",
+          "hash": "12165883330662428459"
+        },
+        {
+          "file": "libs/summary/data/README.md",
+          "hash": "706853466693087467"
+        },
+        {
+          "file": "libs/summary/data/jest.config.ts",
+          "hash": "3439933202375793547"
+        },
+        {
+          "file": "libs/summary/data/src/index.ts",
+          "hash": "9974634728103188215"
+        },
+        {
+          "file": "libs/summary/data/src/lib/finance-entries/finance-entries.actions.ts",
+          "hash": "11211663042703899653",
+          "deps": [
+            "core",
+            "npm:@ngrx/store"
+          ]
+        },
+        {
+          "file": "libs/summary/data/src/lib/finance-entries/finance-entries.effects.ts",
+          "hash": "16423489063985213421",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@ngrx/effects",
+            "finance-api",
+            "npm:@nrwl/angular",
+            "npm:rxjs",
+            "npm:@angular/common/http",
+            "core"
+          ]
+        },
+        {
+          "file": "libs/summary/data/src/lib/finance-entries/finance-entries.facade.ts",
+          "hash": "835668943422122273",
+          "deps": [
+            "npm:@angular/core",
+            "finance-api",
+            "shared",
+            "npm:@ngrx/store",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "libs/summary/data/src/lib/finance-entries/finance-entries.models.ts",
+          "hash": "916443693349300856",
+          "deps": [
+            "finance-api"
+          ]
+        },
+        {
+          "file": "libs/summary/data/src/lib/finance-entries/finance-entries.reducers.ts",
+          "hash": "561991586347912390",
+          "deps": [
+            "core",
+            "npm:@ngrx/entity",
+            "npm:@ngrx/store"
+          ]
+        },
+        {
+          "file": "libs/summary/data/src/lib/finance-entries/finance-entries.selectors.ts",
+          "hash": "1810062715764797132",
+          "deps": [
+            "npm:@ngrx/store"
+          ]
+        },
+        {
+          "file": "libs/summary/data/src/lib/summary-data.module.ts",
+          "hash": "11343934206183535624",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common",
+            "npm:@ngrx/store",
+            "npm:@ngrx/effects",
+            "shared"
+          ]
+        },
+        {
+          "file": "libs/summary/data/src/test-setup.ts",
+          "hash": "17711435995618823417",
+          "deps": [
+            "npm:jest-preset-angular/setup-jest"
+          ]
+        },
+        {
+          "file": "libs/summary/data/tsconfig.json",
+          "hash": "7753990675860280201"
+        },
+        {
+          "file": "libs/summary/data/tsconfig.lib.json",
+          "hash": "13290263158084098684"
+        },
+        {
+          "file": "libs/summary/data/tsconfig.spec.json",
+          "hash": "13141853583967432992"
+        }
+      ],
       "shared": [
         {
           "file": "libs/shared/.eslintrc.json",
@@ -1077,500 +1575,6 @@
         {
           "file": "libs/shared/tsconfig.spec.json",
           "hash": "18121645209207210368"
-        }
-      ],
-      "fixed-costs-data": [
-        {
-          "file": "libs/fixed-costs/data/.eslintrc.json",
-          "hash": "12165883330662428459"
-        },
-        {
-          "file": "libs/fixed-costs/data/README.md",
-          "hash": "9964956692302726684"
-        },
-        {
-          "file": "libs/fixed-costs/data/jest.config.ts",
-          "hash": "7365838847108414450"
-        },
-        {
-          "file": "libs/fixed-costs/data/src/index.ts",
-          "hash": "16861062110940998164"
-        },
-        {
-          "file": "libs/fixed-costs/data/src/lib/fixed-costs-data.module.ts",
-          "hash": "11015298962442322843",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common",
-            "npm:@ngrx/store",
-            "npm:@ngrx/effects",
-            "shared"
-          ]
-        },
-        {
-          "file": "libs/fixed-costs/data/src/lib/fixed-costs/fixed-costs.actions.ts",
-          "hash": "14907332286434426339",
-          "deps": [
-            "core",
-            "npm:@ngrx/store"
-          ]
-        },
-        {
-          "file": "libs/fixed-costs/data/src/lib/fixed-costs/fixed-costs.effects.ts",
-          "hash": "9989986690112997607",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@ngrx/effects",
-            "finance-api",
-            "npm:@nrwl/angular",
-            "npm:rxjs",
-            "npm:@angular/common/http",
-            "core"
-          ]
-        },
-        {
-          "file": "libs/fixed-costs/data/src/lib/fixed-costs/fixed-costs.facade.ts",
-          "hash": "13923018787485390123",
-          "deps": [
-            "npm:@angular/core",
-            "finance-api",
-            "npm:@ngrx/store",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/fixed-costs/data/src/lib/fixed-costs/fixed-costs.models.ts",
-          "hash": "15854289293581412993",
-          "deps": [
-            "finance-api"
-          ]
-        },
-        {
-          "file": "libs/fixed-costs/data/src/lib/fixed-costs/fixed-costs.reducers.ts",
-          "hash": "5513034698353872829",
-          "deps": [
-            "core",
-            "npm:@ngrx/entity",
-            "npm:@ngrx/store"
-          ]
-        },
-        {
-          "file": "libs/fixed-costs/data/src/lib/fixed-costs/fixed-costs.selectors.ts",
-          "hash": "15011271238102844533",
-          "deps": [
-            "npm:@ngrx/store"
-          ]
-        },
-        {
-          "file": "libs/fixed-costs/data/src/test-setup.ts",
-          "hash": "17711435995618823417",
-          "deps": [
-            "npm:jest-preset-angular/setup-jest"
-          ]
-        },
-        {
-          "file": "libs/fixed-costs/data/tsconfig.json",
-          "hash": "7753990675860280201"
-        },
-        {
-          "file": "libs/fixed-costs/data/tsconfig.lib.json",
-          "hash": "13290263158084098684"
-        },
-        {
-          "file": "libs/fixed-costs/data/tsconfig.spec.json",
-          "hash": "13141853583967432992"
-        }
-      ],
-      "finance-api": [
-        {
-          "file": "libs/finance-api/.eslintrc.json",
-          "hash": "4955502719068432821"
-        },
-        {
-          "file": "libs/finance-api/README.md",
-          "hash": "7846242587106591790"
-        },
-        {
-          "file": "libs/finance-api/jest.config.ts",
-          "hash": "5564688830621066244"
-        },
-        {
-          "file": "libs/finance-api/src/generated/.gitignore",
-          "hash": "14031326617291468971"
-        },
-        {
-          "file": "libs/finance-api/src/generated/.openapi-generator-ignore",
-          "hash": "5921108589004068994"
-        },
-        {
-          "file": "libs/finance-api/src/generated/.openapi-generator/FILES",
-          "hash": "15877864429034231969"
-        },
-        {
-          "file": "libs/finance-api/src/generated/.openapi-generator/VERSION",
-          "hash": "11986531370091543398"
-        },
-        {
-          "file": "libs/finance-api/src/generated/README.md",
-          "hash": "2226118835181049983"
-        },
-        {
-          "file": "libs/finance-api/src/generated/api.module.ts",
-          "hash": "1646328533548135211",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common/http"
-          ]
-        },
-        {
-          "file": "libs/finance-api/src/generated/api/accounts.service.ts",
-          "hash": "35937622098378093",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common/http",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/finance-api/src/generated/api/api.ts",
-          "hash": "7977673677241439156"
-        },
-        {
-          "file": "libs/finance-api/src/generated/api/entries.service.ts",
-          "hash": "16779457515737107321",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common/http",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/finance-api/src/generated/api/fixed-costs.service.ts",
-          "hash": "14653288208813093309",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common/http",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/finance-api/src/generated/configuration.ts",
-          "hash": "15636789573188735559",
-          "deps": [
-            "npm:@angular/common/http"
-          ]
-        },
-        {
-          "file": "libs/finance-api/src/generated/encoder.ts",
-          "hash": "8451822671086499773",
-          "deps": [
-            "npm:@angular/common/http"
-          ]
-        },
-        {
-          "file": "libs/finance-api/src/generated/git_push.sh",
-          "hash": "257268719382818012"
-        },
-        {
-          "file": "libs/finance-api/src/generated/index.ts",
-          "hash": "8882130801513074732"
-        },
-        {
-          "file": "libs/finance-api/src/generated/model/account.ts",
-          "hash": "17932217546929399408"
-        },
-        {
-          "file": "libs/finance-api/src/generated/model/finance-entry.ts",
-          "hash": "14364146935764814696"
-        },
-        {
-          "file": "libs/finance-api/src/generated/model/fixed-cost.ts",
-          "hash": "15104350648502120400"
-        },
-        {
-          "file": "libs/finance-api/src/generated/model/models.ts",
-          "hash": "8628056627263925134"
-        },
-        {
-          "file": "libs/finance-api/src/generated/variables.ts",
-          "hash": "8875628982008667018",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "libs/finance-api/src/index.ts",
-          "hash": "15255941663852351979"
-        },
-        {
-          "file": "libs/finance-api/src/lib/finance-api.module.ts",
-          "hash": "17970373241237213230",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common"
-          ]
-        },
-        {
-          "file": "libs/finance-api/src/test-setup.ts",
-          "hash": "17711435995618823417",
-          "deps": [
-            "npm:jest-preset-angular/setup-jest"
-          ]
-        },
-        {
-          "file": "libs/finance-api/tsconfig.json",
-          "hash": "4216358947214100937"
-        },
-        {
-          "file": "libs/finance-api/tsconfig.lib.json",
-          "hash": "14999110739244744162"
-        },
-        {
-          "file": "libs/finance-api/tsconfig.spec.json",
-          "hash": "18121645209207210368"
-        }
-      ],
-      "core": [
-        {
-          "file": "libs/core/.eslintrc.json",
-          "hash": "4955502719068432821"
-        },
-        {
-          "file": "libs/core/README.md",
-          "hash": "9810432091555253122"
-        },
-        {
-          "file": "libs/core/jest.config.ts",
-          "hash": "7888752402211890008"
-        },
-        {
-          "file": "libs/core/src/index.ts",
-          "hash": "14382614469452026880"
-        },
-        {
-          "file": "libs/core/src/lib/api-access/generic-actions.ts",
-          "hash": "14682006919866685879",
-          "deps": [
-            "npm:@ngrx/store"
-          ]
-        },
-        {
-          "file": "libs/core/src/lib/api-access/generic-api.effects.ts",
-          "hash": "17793703960933994586",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@ngrx/effects",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/core/src/lib/api-access/index.ts",
-          "hash": "10509667692485130929"
-        },
-        {
-          "file": "libs/core/src/lib/api-access/request-status-type.ts",
-          "hash": "16091381327876219326"
-        },
-        {
-          "file": "libs/core/src/lib/api-access/serialize-error-response.ts",
-          "hash": "7071432433999977011",
-          "deps": [
-            "npm:@angular/common/http"
-          ]
-        },
-        {
-          "file": "libs/core/src/lib/models/container-component.class.ts",
-          "hash": "979524700161520785",
-          "deps": [
-            "npm:@angular/core",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/core/src/lib/models/index.ts",
-          "hash": "3243211101841305438"
-        },
-        {
-          "file": "libs/core/src/test-setup.ts",
-          "hash": "17711435995618823417",
-          "deps": [
-            "npm:jest-preset-angular/setup-jest"
-          ]
-        },
-        {
-          "file": "libs/core/tsconfig.json",
-          "hash": "4216358947214100937"
-        },
-        {
-          "file": "libs/core/tsconfig.lib.json",
-          "hash": "14999110739244744162"
-        },
-        {
-          "file": "libs/core/tsconfig.spec.json",
-          "hash": "18121645209207210368"
-        }
-      ],
-      "summary-views": [
-        {
-          "file": "libs/summary/views/.eslintrc.json",
-          "hash": "12369713809815251986"
-        },
-        {
-          "file": "libs/summary/views/README.md",
-          "hash": "4845382108341824921"
-        },
-        {
-          "file": "libs/summary/views/jest.config.ts",
-          "hash": "5695267843195417387"
-        },
-        {
-          "file": "libs/summary/views/src/index.ts",
-          "hash": "9396504015730035714"
-        },
-        {
-          "file": "libs/summary/views/src/lib/add-entry/add-entry.component.html",
-          "hash": "4733695644611786986"
-        },
-        {
-          "file": "libs/summary/views/src/lib/add-entry/add-entry.component.ts",
-          "hash": "5344576348956604870",
-          "deps": [
-            "npm:@angular/core",
-            "summary-data",
-            "finance-api",
-            "npm:@angular/router",
-            "core",
-            "npm:ngx-toastr"
-          ]
-        },
-        {
-          "file": "libs/summary/views/src/lib/add-entry/add-entry.module.ts",
-          "hash": "6080264323318572005",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@angular/forms",
-            "shared"
-          ]
-        },
-        {
-          "file": "libs/summary/views/src/lib/edit-entry/edit-entry.component.html",
-          "hash": "14344965134815408662"
-        },
-        {
-          "file": "libs/summary/views/src/lib/edit-entry/edit-entry.component.ts",
-          "hash": "2485264892047324234",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router",
-            "core",
-            "finance-api",
-            "summary-data",
-            "npm:ngx-toastr",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/summary/views/src/lib/edit-entry/edit-entry.module.ts",
-          "hash": "12508113815574395663",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@angular/forms",
-            "shared"
-          ]
-        },
-        {
-          "file": "libs/summary/views/src/lib/summary-views.module.ts",
-          "hash": "641174173055186314",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common",
-            "npm:@angular/router",
-            "summary-data"
-          ]
-        },
-        {
-          "file": "libs/summary/views/src/lib/summary/category-summary/category-summary.component.html",
-          "hash": "5038899762987564042"
-        },
-        {
-          "file": "libs/summary/views/src/lib/summary/category-summary/category-summary.component.scss",
-          "hash": "9614750381036297237"
-        },
-        {
-          "file": "libs/summary/views/src/lib/summary/category-summary/category-summary.component.ts",
-          "hash": "9371541145669148968",
-          "deps": [
-            "npm:@angular/core",
-            "core",
-            "finance-api",
-            "shared",
-            "summary-data",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/summary/views/src/lib/summary/monthly-summary/monthly-summary.component.html",
-          "hash": "3383358923912399961"
-        },
-        {
-          "file": "libs/summary/views/src/lib/summary/monthly-summary/monthly-summary.component.ts",
-          "hash": "8725879956987908535",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router",
-            "core",
-            "summary-data",
-            "npm:rxjs",
-            "npm:@costlydeveloper/ngx-awesome-popup",
-            "finance-api",
-            "shared"
-          ]
-        },
-        {
-          "file": "libs/summary/views/src/lib/summary/summary.component.html",
-          "hash": "857244622662973919"
-        },
-        {
-          "file": "libs/summary/views/src/lib/summary/summary.component.ts",
-          "hash": "8367772081739160638",
-          "deps": [
-            "npm:@angular/core",
-            "core",
-            "shared",
-            "summary-data",
-            "npm:rxjs"
-          ]
-        },
-        {
-          "file": "libs/summary/views/src/lib/summary/summary.module.ts",
-          "hash": "8622989833466993010",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@angular/forms",
-            "shared"
-          ]
-        },
-        {
-          "file": "libs/summary/views/src/test-setup.ts",
-          "hash": "17711435995618823417",
-          "deps": [
-            "npm:jest-preset-angular/setup-jest"
-          ]
-        },
-        {
-          "file": "libs/summary/views/tsconfig.json",
-          "hash": "7753990675860280201"
-        },
-        {
-          "file": "libs/summary/views/tsconfig.lib.json",
-          "hash": "13290263158084098684"
-        },
-        {
-          "file": "libs/summary/views/tsconfig.spec.json",
-          "hash": "13141853583967432992"
         }
       ]
     }

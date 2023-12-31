@@ -148,7 +148,7 @@ export class MonthlySummaryComponent
           if (!e1.date || !e2.date) {
             return 0;
           }
-          return e1.date.toString().localeCompare(e2.date.toString());
+          return e1.date.localeCompare(e2.date);
         });
 
       groupedEntries.push({

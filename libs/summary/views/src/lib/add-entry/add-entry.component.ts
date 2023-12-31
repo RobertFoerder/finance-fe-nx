@@ -14,7 +14,7 @@ export class AddEntryComponent extends ContainerComponent implements OnInit {
     month: new Date().getMonth(),
     category: '',
     description: '',
-    date: new Date(),
+    date: new Date().toISOString(),
   };
 
   constructor(
