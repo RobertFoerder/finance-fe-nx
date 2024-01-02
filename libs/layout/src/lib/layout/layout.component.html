@@ -31,7 +31,7 @@
       class="w-full block flex-grow lg:flex lg:items-center lg:w-auto"
       [class.hidden]="!expanded"
     >
-      <div class="text-sm lg:flex-grow">
+      <div class="text-sm lg:flex lg:flex-grow">
         <a
           [routerLink]="['/summary']"
           href="/summary"
@@ -54,6 +54,11 @@
           (click)="expanded = false"
           >Fixed costs</a
         >
+        <span
+          class="block text-white text-xs mt-6 lg:m-auto lg:flex-grow lg:text-end"
+        >
+          v{{ version }}
+        </span>
       </div>
     </div>
   </nav>
