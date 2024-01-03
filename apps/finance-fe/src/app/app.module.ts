@@ -5,7 +5,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { MsalGuard, MsalInterceptor, MsalModule } from '@azure/msal-angular';
 import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
 import { StoreModule } from '@ngrx/store';
-import { environment } from '../environments/environment';
+import { environment } from '@finance-fe-nx/shared';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -17,7 +17,6 @@ import {
 import { AppComponent } from './app.component';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-// import { LetModule, PushModule } from '@ngrx/component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { LayoutModule } from '@finance-fe-nx/layout';
 import { GenericApiEffects } from '@finance-fe-nx/core';
@@ -39,7 +38,7 @@ const ROUTES: Routes = [
     path: 'accounts',
     loadChildren: () =>
       import('@finance-fe-nx/accounts/views').then(
-        (m) => m.AccountsViewsModule
+        (m) => m.AccountsViewsModule,
       ),
     canActivate: [MsalGuard],
   },
@@ -47,7 +46,7 @@ const ROUTES: Routes = [
     path: 'fixed-costs',
     loadChildren: () =>
       import('@finance-fe-nx/fixed-costs/views').then(
-        (m) => m.FixedCostsViewsModule
+        (m) => m.FixedCostsViewsModule,
       ),
     canActivate: [MsalGuard],
   },
@@ -84,7 +83,7 @@ const ROUTES: Routes = [
             ['api://b4dcf01c-7c63-4131-933c-7f359c4a0c58/user_impersonation'],
           ],
         ]),
-      }
+      },
     ),
     StoreModule.forRoot(
       {},
@@ -96,14 +95,13 @@ const ROUTES: Routes = [
           strictActionSerializability: true,
           strictActionTypeUniqueness: true,
         },
-      }
+      },
     ),
     EffectsModule.forRoot([GenericApiEffects]),
     environment.production ? [] : StoreDevtoolsModule.instrument(),
     StoreRouterConnectingModule.forRoot(),
-    // LetModule, PushModule,
     FinanceApiModule.forRoot(
-      () => new FinanceConfiguration({ basePath: environment.basePath })
+      () => new FinanceConfiguration({ basePath: environment.basePath }),
     ),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
