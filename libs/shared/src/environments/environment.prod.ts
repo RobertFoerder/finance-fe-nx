@@ -3,5 +3,5 @@ export const environment = {
   basePath: 'https://finance-app-function-app.azurewebsites.net/api',
   loginRedirectUri: 'https://eichel-finance.de',
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  appVersion: require('../../package.json').version,
+  appVersion: `v${require('../../../../package.json').version}dev`,
 };

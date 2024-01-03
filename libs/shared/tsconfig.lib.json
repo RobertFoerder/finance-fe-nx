@@ -5,9 +5,7 @@
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "types": ["node"],
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
+    "types": ["node"]
   },
   "exclude": [
     "src/test-setup.ts",
