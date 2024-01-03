@@ -14,6 +14,8 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "@finance-fe-nx/accounts/data": ["libs/accounts/data/src/index.ts"],
       "@finance-fe-nx/accounts/views": ["libs/accounts/views/src/index.ts"],
