@@ -157,6 +157,14 @@
               ],
               "outputHashing": "all"
             },
+            "mock": {
+              "fileReplacements": [
+                {
+                  "replace": "libs/shared/src/environments/environment.ts",
+                  "with": "libs/shared/src/environments/environment.mock.ts"
+                }
+              ]
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -176,6 +184,9 @@
             },
             "development": {
               "browserTarget": "finance-fe:build:development"
+            },
+            "mock": {
+              "browserTarget": "finance-fe:build:mock"
             }
           },
           "defaultConfiguration": "development"

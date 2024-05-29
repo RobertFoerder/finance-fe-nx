@@ -4,8 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "nx",
-    "start": "nx serve",
-    "start:mock": "run-p start api:finance:mock",
+    "serve:mock": "nx serve finance-fe --configuration mock",
+    "start:dev": "nx serve",
+    "start:mock": "run-p serve:mock api:finance:mock",
     "start:prod": "nx serve --prod",
     "build": "nx build",
     "test": "nx test",
