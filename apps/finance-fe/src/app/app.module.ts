@@ -1,4 +1,4 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
@@ -52,78 +52,62 @@ const ROUTES: Routes = [
   },
 ];
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }),
-    MsalModule.forRoot(
-      new PublicClientApplication({
-        auth: {
-          clientId: '0328ffcf-3e10-46af-bbcb-b0304f3ad068',
-          authority:
-            'https://login.microsoftonline.com/b0ea035c-6cd2-489c-941b-081faffe69e1',
-          redirectUri: environment.loginRedirectUri,
+@NgModule({ declarations: [AppComponent],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }),
+        MsalModule.forRoot(new PublicClientApplication({
+            auth: {
+                clientId: '0328ffcf-3e10-46af-bbcb-b0304f3ad068',
+                authority: 'https://login.microsoftonline.com/b0ea035c-6cd2-489c-941b-081faffe69e1',
+                redirectUri: environment.loginRedirectUri,
+            },
+            cache: {
+                cacheLocation: 'localStorage',
+            },
+        }), {
+            interactionType: InteractionType.Redirect,
+            authRequest: {
+                scopes: ['user.read'],
+            },
+        }, {
+            interactionType: InteractionType.Redirect,
+            protectedResourceMap: new Map([
+                [
+                    'https://finance-app-function-app.azurewebsites.net/api/*',
+                    ['api://b4dcf01c-7c63-4131-933c-7f359c4a0c58/user_impersonation'],
+                ],
+            ]),
+        }),
+        StoreModule.forRoot({}, {
+            runtimeChecks: {
+                strictStateImmutability: true,
+                strictActionImmutability: true,
+                strictStateSerializability: true,
+                strictActionSerializability: true,
+                strictActionTypeUniqueness: true,
+            },
+        }),
+        EffectsModule.forRoot([GenericApiEffects]),
+        environment.production ? [] : StoreDevtoolsModule.instrument(),
+        StoreRouterConnectingModule.forRoot(),
+        FinanceApiModule.forRoot(() => new FinanceConfiguration({ basePath: environment.basePath })),
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: environment.production,
+            // Register the ServiceWorker as soon as the app is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000',
+        }),
+        LayoutModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot(),
+        NgxAwesomePopupModule.forRoot(),
+        ConfirmBoxConfigModule.forRoot(),
+        SharedModule], providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: MsalInterceptor,
+            multi: true,
         },
-        cache: {
-          cacheLocation: 'localStorage',
-        },
-      }),
-      {
-        interactionType: InteractionType.Redirect,
-        authRequest: {
-          scopes: ['user.read'],
-        },
-      },
-      {
-        interactionType: InteractionType.Redirect,
-        protectedResourceMap: new Map([
-          [
-            'https://finance-app-function-app.azurewebsites.net/api/*',
-            ['api://b4dcf01c-7c63-4131-933c-7f359c4a0c58/user_impersonation'],
-          ],
-        ]),
-      },
-    ),
-    StoreModule.forRoot(
-      {},
-      {
-        runtimeChecks: {
-          strictStateImmutability: true,
-          strictActionImmutability: true,
-          strictStateSerializability: true,
-          strictActionSerializability: true,
-          strictActionTypeUniqueness: true,
-        },
-      },
-    ),
-    EffectsModule.forRoot([GenericApiEffects]),
-    environment.production ? [] : StoreDevtoolsModule.instrument(),
-    StoreRouterConnectingModule.forRoot(),
-    FinanceApiModule.forRoot(
-      () => new FinanceConfiguration({ basePath: environment.basePath }),
-    ),
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000',
-    }),
-    LayoutModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot(),
-    NgxAwesomePopupModule.forRoot(),
-    ConfirmBoxConfigModule.forRoot(),
-    SharedModule,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: MsalInterceptor,
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent],
-})
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}
