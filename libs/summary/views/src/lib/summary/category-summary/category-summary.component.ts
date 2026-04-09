@@ -27,10 +27,11 @@ interface EntryCategory {
 }
 
 @Component({
-  selector: 'finance-fe-category-summary',
-  templateUrl: './category-summary.component.html',
-  styleUrls: ['./category-summary.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'finance-fe-category-summary',
+    templateUrl: './category-summary.component.html',
+    styleUrls: ['./category-summary.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class CategorySummaryComponent
   extends ContainerComponent

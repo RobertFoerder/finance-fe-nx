@@ -1,6 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'monthToDate' })
+@Pipe({
+    name: 'monthToDate',
+    standalone: false
+})
 export class MonthToDatePipe implements PipeTransform {
   transform(value: number | undefined): Date | undefined {
     if (value === undefined) {

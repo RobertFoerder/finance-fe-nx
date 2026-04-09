@@ -6,8 +6,9 @@ import { ContainerComponent } from '@finance-fe-nx/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  templateUrl: './add-entry.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './add-entry.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class AddEntryComponent extends ContainerComponent implements OnInit {
   public entry: FinanceEntry = {

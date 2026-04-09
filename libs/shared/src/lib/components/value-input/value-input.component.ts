@@ -4,16 +4,17 @@ import { ChangeDetectorRef, Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'finance-fe-value-input',
-  templateUrl: './value-input.component.html',
-  styleUrls: ['./value-input.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ValueInputComponent),
-      multi: true,
-    },
-  ],
+    selector: 'finance-fe-value-input',
+    templateUrl: './value-input.component.html',
+    styleUrls: ['./value-input.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ValueInputComponent),
+            multi: true,
+        },
+    ],
+    standalone: false
 })
 export class ValueInputComponent implements ControlValueAccessor {
   @Input() public income = false;

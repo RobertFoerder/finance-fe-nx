@@ -22,9 +22,10 @@ interface EntriesPerCategory {
 }
 
 @Component({
-  selector: 'finance-fe-monthly-summary',
-  templateUrl: './monthly-summary.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'finance-fe-monthly-summary',
+    templateUrl: './monthly-summary.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class MonthlySummaryComponent
   extends ContainerComponent

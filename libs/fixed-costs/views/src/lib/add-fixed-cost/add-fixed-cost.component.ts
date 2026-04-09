@@ -6,8 +6,9 @@ import { FixedCostsFacade } from '@finance-fe-nx/fixed-costs/data';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  templateUrl: './add-fixed-cost.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './add-fixed-cost.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class AddFixedCostComponent
   extends ContainerComponent

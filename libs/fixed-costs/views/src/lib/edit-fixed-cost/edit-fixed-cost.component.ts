@@ -12,8 +12,9 @@ import { ToastrService } from 'ngx-toastr';
 import { map, Observable, switchMap, takeWhile, tap } from 'rxjs';
 
 @Component({
-  templateUrl: './edit-fixed-cost.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './edit-fixed-cost.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class EditFixedCostComponent
   extends ContainerComponent

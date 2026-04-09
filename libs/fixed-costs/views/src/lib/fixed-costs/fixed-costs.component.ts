@@ -12,8 +12,9 @@ interface FixedCostsPerCategory {
 }
 
 @Component({
-  templateUrl: './fixed-costs.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './fixed-costs.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FixedCostsComponent extends ContainerComponent implements OnInit {
   public total = 0;

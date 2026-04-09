@@ -5,8 +5,9 @@ import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
 import { map, Observable } from 'rxjs';
 
 @Component({
-  templateUrl: './summary.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './summary.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SummaryComponent extends ContainerComponent implements OnInit {
   public year = new Date().getFullYear();

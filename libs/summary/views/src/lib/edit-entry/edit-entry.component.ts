@@ -12,8 +12,9 @@ import { ToastrService } from 'ngx-toastr';
 import { map, Observable, switchMap, takeWhile, tap } from 'rxjs';
 
 @Component({
-  templateUrl: './edit-entry.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './edit-entry.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class EditEntryComponent extends ContainerComponent implements OnInit {
   public entry: FinanceEntry | undefined = undefined;

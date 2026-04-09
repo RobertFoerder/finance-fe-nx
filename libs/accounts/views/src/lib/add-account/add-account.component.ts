@@ -6,8 +6,9 @@ import { Account } from '@finance-fe-nx/finance-api';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  templateUrl: './add-account.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './add-account.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class AddAccountComponent extends ContainerComponent implements OnInit {
   public account: Account = {

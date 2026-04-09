@@ -5,8 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmBoxEvokeService } from '@costlydeveloper/ngx-awesome-popup';
 
 @Component({
-  templateUrl: './accounts.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './accounts.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class AccountsComponent extends ContainerComponent implements OnInit {
   public total = 0;
