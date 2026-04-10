@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AppUpdateService } from '@finance-fe-nx/shared';
 
 @Component({
     selector: 'finance-fe-root',
     templateUrl: './app.component.html',
-    standalone: false
+    standalone: false,
 })
 export class AppComponent {
-  constructor(private readonly updateService: AppUpdateService) {}
+  private readonly updateService = inject(AppUpdateService);
 }

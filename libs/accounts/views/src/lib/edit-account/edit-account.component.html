@@ -1,38 +1,45 @@
-<span *ngIf="facade.editing$ | async">Editing...</span>
-<span *ngIf="loading">Loading...</span>
-<span *ngIf="!account && !loading">No account with this id</span>
-<form
-  *ngIf="(facade.editing$ | async) === false && account"
-  (ngSubmit)="facade.editAccount(account)"
-  #accountForm="ngForm"
-  class="max-w-md"
->
-  <div>
-    <label for="name">Name*</label>
-    <input
-      name="name"
-      type="text"
-      [(ngModel)]="account.name"
-      required
-      readonly
-    />
-  </div>
-  <div>
-    <label for="value">Value*</label>
-    <finance-fe-value-input
-      [income]="initialValue >= 0"
-      [(ngModel)]="account.value"
-      required
-      name="value"
-    ></finance-fe-value-input>
-  </div>
-  <div>
-    <button
-      [disabled]="accountForm.form.untouched || !accountForm.form.valid"
-      type="submit"
-      class="btn-primary mt-2"
+@if (facade.editing$ | async) {
+  <span>Editing...</span>
+}
+@if (loading) {
+  <span>Loading...</span>
+}
+@if (!account && !loading) {
+  <span>No account with this id</span>
+}
+@if ((facade.editing$ | async) === false && account) {
+  <form
+    (ngSubmit)="facade.editAccount(account)"
+    #accountForm="ngForm"
+    class="max-w-md"
     >
-      Save
-    </button>
-  </div>
-</form>
+    <div>
+      <label for="name">Name*</label>
+      <input
+        name="name"
+        type="text"
+        [(ngModel)]="account.name"
+        required
+        readonly
+        />
+    </div>
+    <div>
+      <label for="value">Value*</label>
+      <finance-fe-value-input
+        [income]="initialValue >= 0"
+        [(ngModel)]="account.value"
+        required
+        name="value"
+      ></finance-fe-value-input>
+    </div>
+    <div>
+      <button
+        [disabled]="accountForm.form.untouched || !accountForm.form.valid"
+        type="submit"
+        class="btn-primary mt-2"
+        >
+        Save
+      </button>
+    </div>
+  </form>
+}

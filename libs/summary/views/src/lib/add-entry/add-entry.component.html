@@ -1,51 +1,54 @@
-<span *ngIf="facade.adding$ | async">Adding...</span>
-<form
-  *ngIf="(facade.adding$ | async) === false"
-  #entryForm="ngForm"
-  class="max-w-md"
-  (ngSubmit)="facade.addEntry(entry)"
->
-  <div>
-    <label for="year">Year</label>
-    <input name="year" type="text" [ngModel]="entry.year" readonly />
-  </div>
-  <div>
-    <label for="month">Month</label>
-    <input
-      name="month"
-      type="text"
-      [ngModel]="entry.month | monthToDate | date: 'MMMM'"
-      readonly
-    />
-  </div>
-  <div>
-    <label for="category">Category*</label>
-    <input name="category" type="text" [(ngModel)]="entry.category" required />
-  </div>
-  <div>
-    <label for="description">Description*</label>
-    <input
-      name="description"
-      type="text"
-      [(ngModel)]="entry.description"
-      required
-    />
-  </div>
-  <div>
-    <label for="value">Value*</label>
-    <finance-fe-value-input
-      name="value"
-      [(ngModel)]="entry.value"
-      required
-    ></finance-fe-value-input>
-  </div>
-  <div>
-    <button
-      [disabled]="entryForm.form.untouched || !entryForm.form.valid"
-      type="submit"
-      class="btn-primary mt-2"
+@if (facade.adding$ | async) {
+  <span>Adding...</span>
+}
+@if ((facade.adding$ | async) === false) {
+  <form
+    #entryForm="ngForm"
+    class="max-w-md"
+    (ngSubmit)="facade.addEntry(entry)"
     >
-      Add entry
-    </button>
-  </div>
-</form>
+    <div>
+      <label for="year">Year</label>
+      <input name="year" type="text" [ngModel]="entry.year" readonly />
+    </div>
+    <div>
+      <label for="month">Month</label>
+      <input
+        name="month"
+        type="text"
+        [ngModel]="entry.month | monthToDate | date: 'MMMM'"
+        readonly
+        />
+    </div>
+    <div>
+      <label for="category">Category*</label>
+      <input name="category" type="text" [(ngModel)]="entry.category" required />
+    </div>
+    <div>
+      <label for="description">Description*</label>
+      <input
+        name="description"
+        type="text"
+        [(ngModel)]="entry.description"
+        required
+        />
+    </div>
+    <div>
+      <label for="value">Value*</label>
+      <finance-fe-value-input
+        name="value"
+        [(ngModel)]="entry.value"
+        required
+      ></finance-fe-value-input>
+    </div>
+    <div>
+      <button
+        [disabled]="entryForm.form.untouched || !entryForm.form.valid"
+        type="submit"
+        class="btn-primary mt-2"
+        >
+        Add entry
+      </button>
+    </div>
+  </form>
+}

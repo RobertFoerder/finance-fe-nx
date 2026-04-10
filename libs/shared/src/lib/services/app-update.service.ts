@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import { ConfirmBoxEvokeService } from '@costlydeveloper/ngx-awesome-popup';
-import { filter, tap } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 
 @Injectable()
 export class AppUpdateService {

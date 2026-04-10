@@ -8,7 +8,7 @@
       "prefix": "finance-fe-nx",
       "architect": {
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "@nx/jest:jest",
           "outputs": ["{workspaceRoot}/coverage/libs/accounts/data"],
           "options": {
             "jestConfig": "libs/accounts/data/jest.config.ts",
@@ -16,7 +16,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "builder": "@nx/eslint:lint",
           "options": {
             "lintFilePatterns": [
               "libs/accounts/data/src/**/*.ts",
@@ -34,7 +34,7 @@
       "prefix": "finance-fe-nx",
       "architect": {
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "@nx/jest:jest",
           "outputs": ["{workspaceRoot}/coverage/libs/accounts/views"],
           "options": {
             "jestConfig": "libs/accounts/views/jest.config.ts",
@@ -42,7 +42,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "builder": "@nx/eslint:lint",
           "options": {
             "lintFilePatterns": [
               "libs/accounts/views/src/**/*.ts",
@@ -60,7 +60,7 @@
       "prefix": "finance-fe",
       "architect": {
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "@nx/jest:jest",
           "outputs": ["{workspaceRoot}/coverage/libs/core"],
           "options": {
             "jestConfig": "libs/core/jest.config.ts",
@@ -68,7 +68,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "builder": "@nx/eslint:lint",
           "options": {
             "lintFilePatterns": [
               "libs/core/src/**/*.ts",
@@ -86,7 +86,7 @@
       "prefix": "finance-fe",
       "architect": {
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "@nx/jest:jest",
           "outputs": ["{workspaceRoot}/coverage/libs/finance-api"],
           "options": {
             "jestConfig": "libs/finance-api/jest.config.ts",
@@ -94,7 +94,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "builder": "@nx/eslint:lint",
           "options": {
             "lintFilePatterns": [
               "libs/finance-api/src/**/*.ts",
@@ -112,13 +112,13 @@
       "prefix": "finance-fe",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/finance-fe",
             "index": "apps/finance-fe/src/index.html",
-            "main": "apps/finance-fe/src/main.ts",
-            "polyfills": "apps/finance-fe/src/polyfills.ts",
+            "browser": "apps/finance-fe/src/main.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "apps/finance-fe/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -132,8 +132,7 @@
               "includePaths": ["libs/layout/src/lib/styles"]
             },
             "scripts": [],
-            "serviceWorker": true,
-            "ngswConfigPath": "apps/finance-fe/ngsw-config.json"
+            "serviceWorker": "apps/finance-fe/ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -158,9 +157,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -172,10 +169,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "finance-fe:build:production"
+              "buildTarget": "finance-fe:build:production"
             },
             "development": {
-              "browserTarget": "finance-fe:build:development"
+              "buildTarget": "finance-fe:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -183,11 +180,11 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "finance-fe:build"
+            "buildTarget": "finance-fe:build"
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "builder": "@nx/eslint:lint",
           "options": {
             "lintFilePatterns": [
               "apps/finance-fe/src/**/*.ts",
@@ -196,7 +193,7 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "@nx/jest:jest",
           "outputs": ["{workspaceRoot}/coverage/apps/finance-fe"],
           "options": {
             "jestConfig": "apps/finance-fe/jest.config.ts",
@@ -212,7 +209,7 @@
       "projectType": "application",
       "architect": {
         "e2e": {
-          "builder": "@nrwl/cypress:cypress",
+          "builder": "@nx/cypress:cypress",
           "options": {
             "cypressConfig": "apps/finance-fe-e2e/cypress.json",
             "devServerTarget": "finance-fe:serve:development"
@@ -224,7 +221,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "builder": "@nx/eslint:lint",
           "outputs": ["{options.outputFile}"],
           "options": {
             "lintFilePatterns": ["apps/finance-fe-e2e/**/*.{js,ts}"]
@@ -241,7 +238,7 @@
       "prefix": "finance-fe-nx",
       "architect": {
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "@nx/jest:jest",
           "outputs": ["{workspaceRoot}/coverage/libs/fixed-costs/data"],
           "options": {
             "jestConfig": "libs/fixed-costs/data/jest.config.ts",
@@ -249,7 +246,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "builder": "@nx/eslint:lint",
           "options": {
             "lintFilePatterns": [
               "libs/fixed-costs/data/src/**/*.ts",
@@ -267,7 +264,7 @@
       "prefix": "finance-fe-nx",
       "architect": {
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "@nx/jest:jest",
           "outputs": ["{workspaceRoot}/coverage/libs/fixed-costs/views"],
           "options": {
             "jestConfig": "libs/fixed-costs/views/jest.config.ts",
@@ -275,7 +272,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "builder": "@nx/eslint:lint",
           "options": {
             "lintFilePatterns": [
               "libs/fixed-costs/views/src/**/*.ts",
@@ -293,7 +290,7 @@
       "prefix": "finance-fe",
       "architect": {
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "@nx/jest:jest",
           "outputs": ["{workspaceRoot}/coverage/libs/layout"],
           "options": {
             "jestConfig": "libs/layout/jest.config.ts",
@@ -301,7 +298,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "builder": "@nx/eslint:lint",
           "options": {
             "lintFilePatterns": [
               "libs/layout/src/**/*.ts",
@@ -319,7 +316,7 @@
       "prefix": "finance-fe-nx",
       "architect": {
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "@nx/jest:jest",
           "outputs": ["{workspaceRoot}/coverage/libs/shared"],
           "options": {
             "jestConfig": "libs/shared/jest.config.ts",
@@ -327,37 +324,11 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "builder": "@nx/eslint:lint",
           "options": {
             "lintFilePatterns": [
               "libs/shared/src/**/*.ts",
               "libs/shared/src/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": []
-    },
-    "summary": {
-      "projectType": "library",
-      "root": "libs/summary",
-      "sourceRoot": "libs/summary/src",
-      "prefix": "finance-fe",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/libs/summary"],
-          "options": {
-            "jestConfig": "libs/summary/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/summary/src/**/*.ts",
-              "libs/summary/src/**/*.html"
             ]
           }
         }
@@ -371,7 +342,7 @@
       "prefix": "finance-fe",
       "architect": {
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "@nx/jest:jest",
           "outputs": ["{workspaceRoot}/coverage/libs/summary/data"],
           "options": {
             "jestConfig": "libs/summary/data/jest.config.ts",
@@ -379,7 +350,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "builder": "@nx/eslint:lint",
           "options": {
             "lintFilePatterns": [
               "libs/summary/data/src/**/*.ts",
@@ -397,7 +368,7 @@
       "prefix": "finance-fe",
       "architect": {
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "@nx/jest:jest",
           "outputs": ["{workspaceRoot}/coverage/libs/summary/views"],
           "options": {
             "jestConfig": "libs/summary/views/jest.config.ts",
@@ -405,7 +376,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "builder": "@nx/eslint:lint",
           "options": {
             "lintFilePatterns": [
               "libs/summary/views/src/**/*.ts",
@@ -417,31 +388,5 @@
       "tags": []
     }
   },
-  "npmScope": "finance-fe-nx",
-  "affected": {
-    "defaultBase": "main"
-  },
-  "implicitDependencies": {
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
-    ".eslintrc.json": "*"
-  },
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
-      }
-    }
-  },
-  "targetDependencies": {
-    "build": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ]
-  }
+  "npmScope": "finance-fe-nx"
 }

@@ -1,71 +1,80 @@
 <div class="shadow-lg rounded-md h-auto bg-white flex flex-col p-2">
   <div class="pb-2 pl-2">
-    <div
-      class="mb-2"
-      *ngFor="let category of entriesGroupedByCategory$ | async"
-    >
-      <div class="border-b-2 flex">
-        <button (click)="category.expanded = !category.expanded">
-          <svg class="h-2 w-2" viewBox="0 0 10 6">
-            <path [class.hidden]="category.expanded" d="M 0 0 l 5 6 l 5 -6" />
-            <path [class.hidden]="!category.expanded" d="M 0 6 l 5 -6 l 5 6" />
-          </svg>
-        </button>
-        <span class="ml-2 font-bold">{{ category.name }}</span>
-        <span class="average">
-          {{ category.monthlyAverage | currency: 'EUR' }}/month
-        </span>
-        <span
-          class="value font-bold"
-          [class.expense]="category.value && category.value < 0"
-          [class.income]="category.value && category.value > 0"
+    @for (category of entriesGroupedByCategory$ | async; track category) {
+      <div
+        class="mb-2"
         >
-          {{ category.value | currency: 'EUR' }}
-        </span>
-      </div>
-      <div *ngIf="category.expanded" class="mb-4">
-        <div class="pl-2" *ngFor="let description of category.descriptions">
-          <div class="flex border-b-2">
-            <button (click)="description.expanded = !description.expanded">
-              <svg class="h-2 w-2" viewBox="0 0 10 6">
-                <path
-                  [class.hidden]="description.expanded"
-                  d="M 0 0 l 5 6 l 5 -6"
-                />
-                <path
-                  [class.hidden]="!description.expanded"
-                  d="M 0 6 l 5 -6 l 5 6"
-                />
-              </svg>
-            </button>
-            <span class="ml-2">{{ description.name }}</span>
-            <span class="average">
-              {{ description.monthlyAverage | currency: 'EUR' }}/month
-            </span>
-            <span
-              class="value"
-              [class.expense]="description.value && description.value < 0"
-              [class.income]="description.value && description.value > 0"
+        <div class="border-b-2 flex">
+          <button (click)="category.expanded = !category.expanded">
+            <svg class="h-2 w-2" viewBox="0 0 10 6">
+              <path [class.hidden]="category.expanded" d="M 0 0 l 5 6 l 5 -6" />
+              <path [class.hidden]="!category.expanded" d="M 0 6 l 5 -6 l 5 6" />
+            </svg>
+          </button>
+          <span class="ml-2 font-bold">{{ category.name }}</span>
+          <span class="average">
+            {{ category.monthlyAverage | currency: 'EUR' }}/month
+          </span>
+          <span
+            class="value font-bold"
+            [class.expense]="category.value && category.value < 0"
+            [class.income]="category.value && category.value > 0"
             >
-              {{ description.value | currency: 'EUR' }}
-            </span>
-          </div>
-          <div class="mb-2" *ngIf="description.expanded">
-            <div class="flex" *ngFor="let month of description.months">
-              <span class="text-sm">{{
-                month.month | monthToDate | date: 'MMMM'
-              }}</span>
-              <span
-                class="flex-grow text-right text-sm"
-                [class.expense]="month.sum && month.sum < 0"
-                [class.income]="month.sum && month.sum > 0"
-              >
-                {{ month.sum | currency: 'EUR' }}
-              </span>
-            </div>
-          </div>
+            {{ category.value | currency: 'EUR' }}
+          </span>
         </div>
+        @if (category.expanded) {
+          <div class="mb-4">
+            @for (description of category.descriptions; track description) {
+              <div class="pl-2">
+                <div class="flex border-b-2">
+                  <button (click)="description.expanded = !description.expanded">
+                    <svg class="h-2 w-2" viewBox="0 0 10 6">
+                      <path
+                        [class.hidden]="description.expanded"
+                        d="M 0 0 l 5 6 l 5 -6"
+                        />
+                      <path
+                        [class.hidden]="!description.expanded"
+                        d="M 0 6 l 5 -6 l 5 6"
+                        />
+                    </svg>
+                  </button>
+                  <span class="ml-2">{{ description.name }}</span>
+                  <span class="average">
+                    {{ description.monthlyAverage | currency: 'EUR' }}/month
+                  </span>
+                  <span
+                    class="value"
+                    [class.expense]="description.value && description.value < 0"
+                    [class.income]="description.value && description.value > 0"
+                    >
+                    {{ description.value | currency: 'EUR' }}
+                  </span>
+                </div>
+                @if (description.expanded) {
+                  <div class="mb-2">
+                    @for (month of description.months; track month) {
+                      <div class="flex">
+                        <span class="text-sm">{{
+                          month.month | monthToDate | date: 'MMMM'
+                        }}</span>
+                        <span
+                          class="flex-grow text-right text-sm"
+                          [class.expense]="month.sum && month.sum < 0"
+                          [class.income]="month.sum && month.sum > 0"
+                          >
+                          {{ month.sum | currency: 'EUR' }}
+                        </span>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        }
       </div>
-    </div>
+    }
   </div>
 </div>
