@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountsFacade } from '@finance-fe-nx/accounts/data';
@@ -15,17 +15,13 @@ import { ToastrService } from 'ngx-toastr';
     imports: [AsyncPipe, FormsModule, ValueInputComponent]
 })
 export class AddAccountComponent extends ContainerComponent implements OnInit {
+  public readonly facade = inject(AccountsFacade);
+  private readonly toastr = inject(ToastrService);
+  private readonly router = inject(Router);
+
   public account: Account = {
     name: '',
   };
-
-  constructor(
-    public readonly facade: AccountsFacade,
-    private readonly toastr: ToastrService,
-    private readonly router: Router
-  ) {
-    super();
-  }
 
   public ngOnInit(): void {
     this.facade.resetAdd();

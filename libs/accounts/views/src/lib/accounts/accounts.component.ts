@@ -1,5 +1,5 @@
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { ContainerComponent } from '@finance-fe-nx/core';
 import { AccountsFacade } from '@finance-fe-nx/accounts/data';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,16 +12,12 @@ import { ConfirmBoxEvokeService } from '@costlydeveloper/ngx-awesome-popup';
     imports: [AsyncPipe, CurrencyPipe]
 })
 export class AccountsComponent extends ContainerComponent implements OnInit {
-  public total = 0;
+  public readonly facade = inject(AccountsFacade);
+  private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly confirmBox = inject(ConfirmBoxEvokeService);
 
-  constructor(
-    public readonly facade: AccountsFacade,
-    private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly confirmBox: ConfirmBoxEvokeService
-  ) {
-    super();
-  }
+  public total = 0;
 
   public ngOnInit(): void {
     this.subscribeTo(this.facade.total$, (total) => {

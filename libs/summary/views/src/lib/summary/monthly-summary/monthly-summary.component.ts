@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
   OnDestroy,
   OnInit,
@@ -35,6 +36,12 @@ export class MonthlySummaryComponent
   extends ContainerComponent
   implements OnInit, OnDestroy
 {
+  public readonly facade = inject(FinanceEntriesFacade);
+  private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly confirmBox = inject(ConfirmBoxEvokeService);
+  private readonly sumUp = inject(SumUpService);
+
   public month = input(new Date().getMonth());
 
   private selectedYear = toSignal(this.facade.selectedYear$);
@@ -66,16 +73,6 @@ export class MonthlySummaryComponent
     this.monthlyEntries$.pipe(
       map((entries: FinanceEntry[]) => this.sumUp.financeEntries(entries)),
     );
-
-  constructor(
-    public readonly facade: FinanceEntriesFacade,
-    private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly confirmBox: ConfirmBoxEvokeService,
-    private readonly sumUp: SumUpService,
-  ) {
-    super();
-  }
 
   public ngOnInit(): void {
     this.subscribeTo(this.monthlyTotal$, (total) => {

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { ChangeDetectorRef, Component, forwardRef, model } from '@angular/core';
+import { ChangeDetectorRef, Component, forwardRef, inject, model } from '@angular/core';
 import {
   ControlValueAccessor,
   FormsModule,
@@ -32,7 +32,7 @@ export class ValueInputComponent implements ControlValueAccessor {
 
   private onTouched = () => {};
 
-  constructor(private readonly cdr: ChangeDetectorRef) {}
+  private readonly cdr = inject(ChangeDetectorRef);
 
   public onValueChanged(value: number | undefined) {
     this.markAsTouched();

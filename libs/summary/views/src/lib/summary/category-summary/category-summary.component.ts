@@ -1,5 +1,5 @@
 import { AsyncPipe, CurrencyPipe, DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { ContainerComponent } from '@finance-fe-nx/core';
 import { FinanceEntry } from '@finance-fe-nx/finance-api';
 import { DateService, MonthToDatePipe, SumUpService } from '@finance-fe-nx/shared';
@@ -39,20 +39,16 @@ export class CategorySummaryComponent
   extends ContainerComponent
   implements OnInit
 {
+  private readonly facade = inject(FinanceEntriesFacade);
+  private sumUp = inject(SumUpService);
+  private dateService = inject(DateService);
+
   private availableMonths = 0;
 
   public entriesGroupedByCategory$: Observable<EntryCategory[]> =
     this.facade.collection$.pipe(
       map((entries) => this.groupEntriesByCategory(entries))
     );
-
-  constructor(
-    private readonly facade: FinanceEntriesFacade,
-    private sumUp: SumUpService,
-    private dateService: DateService
-  ) {
-    super();
-  }
 
   public ngOnInit(): void {
     this.subscribeTo(

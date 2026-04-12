@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AccountsService } from '@finance-fe-nx/finance-api';
 
@@ -9,6 +9,9 @@ import { serializeErrorResponse } from '@finance-fe-nx/core';
 
 @Injectable()
 export class AccountsEffects {
+  private readonly actions$ = inject(Actions);
+  private readonly service = inject(AccountsService);
+
   public readonly load$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AccountsActions.load),
@@ -82,9 +85,4 @@ export class AccountsEffects {
       )
     )
   );
-
-  constructor(
-    private readonly actions$: Actions,
-    private readonly service: AccountsService
-  ) {}
 }

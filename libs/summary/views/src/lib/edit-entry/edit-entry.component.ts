@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  inject,
   OnInit,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -21,19 +22,15 @@ import { map, Observable, switchMap, takeWhile, tap } from 'rxjs';
     imports: [AsyncPipe, DatePipe, FormsModule, MonthToDatePipe, ValueInputComponent]
 })
 export class EditEntryComponent extends ContainerComponent implements OnInit {
+  public readonly facade = inject(FinanceEntriesFacade);
+  private readonly toastr = inject(ToastrService);
+  private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly cdr = inject(ChangeDetectorRef);
+
   public entry: FinanceEntry | undefined = undefined;
   public loading = true;
   public initialValue = 0;
-
-  constructor(
-    public readonly facade: FinanceEntriesFacade,
-    private readonly toastr: ToastrService,
-    private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly cdr: ChangeDetectorRef
-  ) {
-    super();
-  }
 
   public ngOnInit(): void {
     this.facade.init();

@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map } from 'rxjs';
 import { genericApiError } from './generic-actions';
 
 @Injectable()
 export class GenericApiEffects {
+  private readonly actions$ = inject(Actions);
+
   public genericApiError$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -16,6 +18,4 @@ export class GenericApiEffects {
       ),
     { dispatch: false }
   );
-
-  constructor(private readonly actions$: Actions) {}
 }

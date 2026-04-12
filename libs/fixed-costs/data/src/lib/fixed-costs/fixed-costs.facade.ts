@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { FixedCost } from '@finance-fe-nx/finance-api';
 import { select, Store } from '@ngrx/store';
 import { take } from 'rxjs';
@@ -7,6 +7,8 @@ import * as FixedCostsSelectors from './fixed-costs.selectors';
 
 @Injectable()
 export class FixedCostsFacade {
+  private readonly store = inject(Store);
+
   public readonly loading$ = this.store.pipe(
     select(FixedCostsSelectors.getFixedCostsLoading)
   );
@@ -46,8 +48,6 @@ export class FixedCostsFacade {
   public readonly editError$ = this.store.pipe(
     select(FixedCostsSelectors.getFixedCostsEditError)
   );
-
-  constructor(private readonly store: Store) {}
 
   public init(): void {
     this.loaded$.pipe(take(1)).subscribe((loaded) => {

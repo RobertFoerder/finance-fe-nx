@@ -1,5 +1,5 @@
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { ContainerComponent } from '@finance-fe-nx/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmBoxEvokeService } from '@costlydeveloper/ngx-awesome-popup';
@@ -19,21 +19,17 @@ interface FixedCostsPerCategory {
     imports: [AsyncPipe, CurrencyPipe]
 })
 export class FixedCostsComponent extends ContainerComponent implements OnInit {
+  public readonly facade = inject(FixedCostsFacade);
+  private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly confirmBox = inject(ConfirmBoxEvokeService);
+
   public total = 0;
 
   public fixedCostsGroupedByCategory$: Observable<FixedCostsPerCategory[]> =
     this.facade.collection$.pipe(
       map((fixedCosts) => this.groupFixedCostsByCategory(fixedCosts))
     );
-
-  constructor(
-    public readonly facade: FixedCostsFacade,
-    private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly confirmBox: ConfirmBoxEvokeService
-  ) {
-    super();
-  }
 
   public ngOnInit(): void {
     this.facade.init();

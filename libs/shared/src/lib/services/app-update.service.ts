@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import { ConfirmBoxEvokeService } from '@costlydeveloper/ngx-awesome-popup';
 import { filter } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AppUpdateService {
+  private readonly updates = inject(SwUpdate);
+  private readonly confirmBox = inject(ConfirmBoxEvokeService);
+
   private updating = false;
 
-  constructor(
-    private readonly updates: SwUpdate,
-    private readonly confirmBox: ConfirmBoxEvokeService
-  ) {
-    updates.versionUpdates
+  constructor() {
+    this.updates.versionUpdates
       .pipe(
         filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY')
       )

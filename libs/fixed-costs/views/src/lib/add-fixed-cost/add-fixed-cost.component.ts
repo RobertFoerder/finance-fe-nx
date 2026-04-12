@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ContainerComponent } from '@finance-fe-nx/core';
@@ -18,19 +18,15 @@ export class AddFixedCostComponent
   extends ContainerComponent
   implements OnInit
 {
+  public readonly facade = inject(FixedCostsFacade);
+  private readonly toastr = inject(ToastrService);
+  private readonly router = inject(Router);
+
   public fixedCost: FixedCost = {
     category: '',
     description: '',
     value: 0,
   };
-
-  constructor(
-    public readonly facade: FixedCostsFacade,
-    private readonly toastr: ToastrService,
-    private readonly router: Router
-  ) {
-    super();
-  }
 
   public ngOnInit(): void {
     this.facade.resetAdd();

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Account } from '@finance-fe-nx/finance-api';
 import { SumUpService } from '@finance-fe-nx/shared';
 import { select, Store } from '@ngrx/store';
@@ -8,6 +8,9 @@ import * as AccountsSelectors from './accounts.selectors';
 
 @Injectable()
 export class AccountsFacade {
+  private readonly store = inject(Store);
+  private readonly sumUp = inject(SumUpService);
+
   public readonly loading$ = this.store.pipe(
     select(AccountsSelectors.getAccountsLoading)
   );
@@ -50,11 +53,6 @@ export class AccountsFacade {
   public readonly total$ = this.collection$.pipe(
     map((accounts) => this.sumUp.accounts(accounts))
   );
-
-  constructor(
-    private readonly store: Store,
-    private readonly sumUp: SumUpService
-  ) {}
 
   public init(): void {
     this.loaded$.pipe(take(1)).subscribe((loaded) => {

@@ -1,13 +1,16 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { FinanceEntry } from '@finance-fe-nx/finance-api';
 import { SumUpService } from '@finance-fe-nx/shared';
 import { select, Store } from '@ngrx/store';
-import { map, Observable, take } from 'rxjs';
+import { map, take } from 'rxjs';
 import * as FinanceEntriesActions from './finance-entries.actions';
 import * as FinanceEntriesSelectors from './finance-entries.selectors';
 
 @Injectable()
 export class FinanceEntriesFacade {
+  private readonly store = inject(Store);
+  private readonly sumUp = inject(SumUpService);
+
   public readonly loading$ = this.store.pipe(
     select(FinanceEntriesSelectors.getFinanceEntriesLoading)
   );
@@ -56,11 +59,6 @@ export class FinanceEntriesFacade {
   public readonly total$ = this.collection$.pipe(
     map((entries) => this.sumUp.financeEntries(entries))
   );
-
-  constructor(
-    private readonly store: Store,
-    private readonly sumUp: SumUpService
-  ) {}
 
   public init(): void {
     this.loaded$.pipe(take(1)).subscribe((loaded) => {

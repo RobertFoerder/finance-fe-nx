@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  inject,
   OnInit,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -24,19 +25,15 @@ export class EditFixedCostComponent
   extends ContainerComponent
   implements OnInit
 {
+  public readonly facade = inject(FixedCostsFacade);
+  private readonly toastr = inject(ToastrService);
+  private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly cdr = inject(ChangeDetectorRef);
+
   public fixedCost: FixedCost | undefined = undefined;
   public loading = true;
   public initialValue = 0;
-
-  constructor(
-    public readonly facade: FixedCostsFacade,
-    private readonly toastr: ToastrService,
-    private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly cdr: ChangeDetectorRef
-  ) {
-    super();
-  }
 
   public ngOnInit(): void {
     this.facade.init();

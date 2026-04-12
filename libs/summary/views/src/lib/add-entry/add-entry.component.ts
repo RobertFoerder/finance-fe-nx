@@ -1,5 +1,5 @@
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
 import { FinanceEntry } from '@finance-fe-nx/finance-api';
@@ -15,21 +15,17 @@ import { ToastrService } from 'ngx-toastr';
     imports: [AsyncPipe, DatePipe, FormsModule, MonthToDatePipe, ValueInputComponent]
 })
 export class AddEntryComponent extends ContainerComponent implements OnInit {
+  public readonly facade = inject(FinanceEntriesFacade);
+  private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly toastr = inject(ToastrService);
+
   public entry: FinanceEntry = {
     month: new Date().getMonth(),
     category: '',
     description: '',
     date: new Date().toISOString(),
   };
-
-  constructor(
-    public readonly facade: FinanceEntriesFacade,
-    private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly toastr: ToastrService
-  ) {
-    super();
-  }
 
   public ngOnInit(): void {
     this.facade.resetAdd();

@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  inject,
   OnInit,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -21,19 +22,15 @@ import { map, Observable, switchMap, takeWhile, tap } from 'rxjs';
     imports: [AsyncPipe, FormsModule, ValueInputComponent]
 })
 export class EditAccountComponent extends ContainerComponent implements OnInit {
+  public readonly facade = inject(AccountsFacade);
+  private readonly toastr = inject(ToastrService);
+  private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly cdr = inject(ChangeDetectorRef);
+
   public account: Account | undefined = undefined;
   public loading = true;
   public initialValue = 0;
-
-  constructor(
-    public readonly facade: AccountsFacade,
-    private readonly toastr: ToastrService,
-    private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly cdr: ChangeDetectorRef
-  ) {
-    super();
-  }
 
   public ngOnInit(): void {
     this.facade.init();
