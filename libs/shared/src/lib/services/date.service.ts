@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class DateService {
   public getAvailableMonths(year: number | undefined): number[] {
     const availableMonths = [];

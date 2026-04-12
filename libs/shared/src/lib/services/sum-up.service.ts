@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Account, FinanceEntry } from '@finance-fe-nx/finance-api';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SumUpService {
   public financeEntries(entries: FinanceEntry[]): number | undefined {
     if (!entries || entries.length === 0) {

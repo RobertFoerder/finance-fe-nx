@@ -1,14 +1,18 @@
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ContainerComponent } from '@finance-fe-nx/core';
 import { FixedCost } from '@finance-fe-nx/finance-api';
 import { FixedCostsFacade } from '@finance-fe-nx/fixed-costs/data';
+import { ValueInputComponent } from '@finance-fe-nx/shared';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
     templateUrl: './add-fixed-cost.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [AsyncPipe, FormsModule, ValueInputComponent]
 })
 export class AddFixedCostComponent
   extends ContainerComponent

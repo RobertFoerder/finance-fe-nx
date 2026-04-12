@@ -1,1 +1,1 @@
-export * from './lib/summary-views.module';
+export * from './lib/summary.routes';

@@ -1,3 +1,4 @@
+import { AsyncPipe, CurrencyPipe, DatePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -25,7 +26,8 @@ interface EntriesPerCategory {
     selector: 'finance-fe-monthly-summary',
     templateUrl: './monthly-summary.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [AsyncPipe, CurrencyPipe, DatePipe]
 })
 export class MonthlySummaryComponent
   extends ContainerComponent

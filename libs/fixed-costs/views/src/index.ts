@@ -1,1 +1,1 @@
-export * from './lib/fixed-costs-views.module';
+export * from './lib/fixed-costs.routes';

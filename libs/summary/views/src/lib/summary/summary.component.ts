@@ -1,13 +1,18 @@
+import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ContainerComponent } from '@finance-fe-nx/core';
 import { DateService } from '@finance-fe-nx/shared';
 import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
 import { map, Observable } from 'rxjs';
+import { MonthlySummaryComponent } from './monthly-summary/monthly-summary.component';
+import { CategorySummaryComponent } from './category-summary/category-summary.component';
 
 @Component({
     templateUrl: './summary.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [AsyncPipe, CurrencyPipe, FormsModule, MonthlySummaryComponent, CategorySummaryComponent]
 })
 export class SummaryComponent extends ContainerComponent implements OnInit {
   public year = new Date().getFullYear();

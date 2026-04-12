@@ -1,3 +1,4 @@
+import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ContainerComponent } from '@finance-fe-nx/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +15,8 @@ interface FixedCostsPerCategory {
 @Component({
     templateUrl: './fixed-costs.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [AsyncPipe, CurrencyPipe]
 })
 export class FixedCostsComponent extends ContainerComponent implements OnInit {
   public total = 0;

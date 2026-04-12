@@ -1,20 +1,24 @@
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   OnInit,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountsFacade } from '@finance-fe-nx/accounts/data';
 import { ContainerComponent } from '@finance-fe-nx/core';
 import { Account } from '@finance-fe-nx/finance-api';
+import { ValueInputComponent } from '@finance-fe-nx/shared';
 import { ToastrService } from 'ngx-toastr';
 import { map, Observable, switchMap, takeWhile, tap } from 'rxjs';
 
 @Component({
     templateUrl: './edit-account.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [AsyncPipe, FormsModule, ValueInputComponent]
 })
 export class EditAccountComponent extends ContainerComponent implements OnInit {
   public account: Account | undefined = undefined;

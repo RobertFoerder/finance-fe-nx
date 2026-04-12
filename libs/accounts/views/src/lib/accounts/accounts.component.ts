@@ -1,3 +1,4 @@
+import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ContainerComponent } from '@finance-fe-nx/core';
 import { AccountsFacade } from '@finance-fe-nx/accounts/data';
@@ -7,7 +8,8 @@ import { ConfirmBoxEvokeService } from '@costlydeveloper/ngx-awesome-popup';
 @Component({
     templateUrl: './accounts.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [AsyncPipe, CurrencyPipe]
 })
 export class AccountsComponent extends ContainerComponent implements OnInit {
   public total = 0;

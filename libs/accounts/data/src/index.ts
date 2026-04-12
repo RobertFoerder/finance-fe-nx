@@ -1,3 +1,4 @@
 export * from './lib/accounts/accounts.models';
 export * from './lib/accounts/accounts.facade';
-export * from './lib/accounts-data.module';
+export { ACCOUNTS_FEATURE_KEY, reducer } from './lib/accounts/accounts.reducers';
+export { AccountsEffects } from './lib/accounts/accounts.effects';

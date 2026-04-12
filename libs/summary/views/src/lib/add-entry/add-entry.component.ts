@@ -1,14 +1,18 @@
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
 import { FinanceEntry } from '@finance-fe-nx/finance-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContainerComponent } from '@finance-fe-nx/core';
+import { MonthToDatePipe, ValueInputComponent } from '@finance-fe-nx/shared';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
     templateUrl: './add-entry.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [AsyncPipe, DatePipe, FormsModule, MonthToDatePipe, ValueInputComponent]
 })
 export class AddEntryComponent extends ContainerComponent implements OnInit {
   public entry: FinanceEntry = {

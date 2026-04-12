@@ -1,20 +1,24 @@
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   OnInit,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContainerComponent } from '@finance-fe-nx/core';
 import { FixedCost } from '@finance-fe-nx/finance-api';
 import { FixedCostsFacade } from '@finance-fe-nx/fixed-costs/data';
+import { ValueInputComponent } from '@finance-fe-nx/shared';
 import { ToastrService } from 'ngx-toastr';
 import { map, Observable, switchMap, takeWhile, tap } from 'rxjs';
 
 @Component({
     templateUrl: './edit-fixed-cost.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [AsyncPipe, FormsModule, ValueInputComponent]
 })
 export class EditFixedCostComponent
   extends ContainerComponent

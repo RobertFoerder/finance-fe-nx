@@ -1,1 +1,1 @@
-export * from './lib/accounts-views.module';
+export * from './lib/accounts.routes';

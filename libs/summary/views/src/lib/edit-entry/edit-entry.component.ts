@@ -1,12 +1,15 @@
+import { AsyncPipe, DatePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   OnInit,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContainerComponent } from '@finance-fe-nx/core';
 import { FinanceEntry } from '@finance-fe-nx/finance-api';
+import { MonthToDatePipe, ValueInputComponent } from '@finance-fe-nx/shared';
 import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
 import { ToastrService } from 'ngx-toastr';
 import { map, Observable, switchMap, takeWhile, tap } from 'rxjs';
@@ -14,7 +17,8 @@ import { map, Observable, switchMap, takeWhile, tap } from 'rxjs';
 @Component({
     templateUrl: './edit-entry.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [AsyncPipe, DatePipe, FormsModule, MonthToDatePipe, ValueInputComponent]
 })
 export class EditEntryComponent extends ContainerComponent implements OnInit {
   public entry: FinanceEntry | undefined = undefined;

@@ -1,7 +1,8 @@
+import { AsyncPipe, CurrencyPipe, DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ContainerComponent } from '@finance-fe-nx/core';
 import { FinanceEntry } from '@finance-fe-nx/finance-api';
-import { DateService, SumUpService } from '@finance-fe-nx/shared';
+import { DateService, MonthToDatePipe, SumUpService } from '@finance-fe-nx/shared';
 import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
 import { map, Observable } from 'rxjs';
 
@@ -31,7 +32,8 @@ interface EntryCategory {
     templateUrl: './category-summary.component.html',
     styleUrls: ['./category-summary.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [AsyncPipe, CurrencyPipe, DatePipe, MonthToDatePipe]
 })
 export class CategorySummaryComponent
   extends ContainerComponent
