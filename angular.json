@@ -211,7 +211,7 @@
         "e2e": {
           "builder": "@nx/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/finance-fe-e2e/cypress.json",
+            "cypressConfig": "apps/finance-fe-e2e/cypress.config.ts",
             "devServerTarget": "finance-fe:serve:development"
           },
           "configurations": {
