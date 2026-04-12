@@ -1,26 +1,30 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { ChangeDetectorRef, Component, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ChangeDetectorRef, Component, forwardRef, model } from '@angular/core';
+import {
+  ControlValueAccessor,
+  FormsModule,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
 
 @Component({
-    selector: 'finance-fe-value-input',
-    templateUrl: './value-input.component.html',
-    styleUrls: ['./value-input.component.scss'],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ValueInputComponent),
-            multi: true,
-        },
-    ],
-    standalone: true,
-    imports: [FormsModule]
+  selector: 'finance-fe-value-input',
+  templateUrl: './value-input.component.html',
+  styleUrls: ['./value-input.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ValueInputComponent),
+      multi: true,
+    },
+  ],
+  standalone: true,
+  imports: [FormsModule],
 })
 export class ValueInputComponent implements ControlValueAccessor {
-  @Input() public income = false;
+  public income = model(false);
 
-  @Input() public value: number | undefined;
+  public value: number | undefined;
 
   private touched = false;
 
@@ -34,15 +38,15 @@ export class ValueInputComponent implements ControlValueAccessor {
     this.markAsTouched();
     this.value = value;
     if (value !== undefined) {
-      this.onChange(this.income ? value : -value);
+      this.onChange(this.income() ? value : -value);
     } else {
       this.onChange(undefined);
     }
   }
 
   public setIncome(income: boolean): void {
-    if (this.income !== income) {
-      this.income = income;
+    if (this.income() !== income) {
+      this.income.set(income);
       this.onValueChanged(this.value);
     }
   }

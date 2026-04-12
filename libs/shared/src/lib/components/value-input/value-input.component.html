@@ -5,7 +5,7 @@
       type="button"
       class="switch-button switch-button-left income"
       (click)="setIncome(true)"
-      [class.selected]="income"
+      [class.selected]="income()"
     >
       +
     </button>
@@ -14,7 +14,7 @@
       type="button"
       class="switch-button switch-button-right expense"
       (click)="setIncome(false)"
-      [class.selected]="!income"
+      [class.selected]="!income()"
     >
       -
     </button>
