@@ -1,52 +1,35 @@
-import { AsyncPipe, CurrencyPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ContainerComponent } from '@finance-fe-nx/core';
 import { DateService } from '@finance-fe-nx/shared';
-import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
-import { map, Observable } from 'rxjs';
+import { FinanceEntriesStore } from '@finance-fe-nx/summary/data';
 import { MonthlySummaryComponent } from './monthly-summary/monthly-summary.component';
 import { CategorySummaryComponent } from './category-summary/category-summary.component';
 
 @Component({
-    templateUrl: './summary.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [AsyncPipe, CurrencyPipe, FormsModule, MonthlySummaryComponent, CategorySummaryComponent]
+  templateUrl: './summary.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CurrencyPipe, FormsModule, MonthlySummaryComponent, CategorySummaryComponent],
 })
-export class SummaryComponent extends ContainerComponent implements OnInit {
-  public readonly facade = inject(FinanceEntriesFacade);
+export class SummaryComponent {
+  readonly store = inject(FinanceEntriesStore);
   private readonly dateService = inject(DateService);
 
-  public year = new Date().getFullYear();
   public availableYears: number[] = [];
-  public availableMonths$: Observable<number[]> =
-    this.facade.selectedYear$.pipe(
-      map((selectedYear) => this.dateService.getAvailableMonths(selectedYear))
-    );
-  public total = 0;
   public displayType: 'month' | 'category' = 'month';
 
-  public ngOnInit(): void {
+  readonly availableMonths = computed(() =>
+    this.dateService.getAvailableMonths(this.store.selectedYear()),
+  );
+
+  constructor() {
     this.loadAvailableYears();
-
-    this.subscribeTo(this.facade.total$, (total) => {
-      if (total) {
-        this.total = total;
-      }
-    });
-
-    this.useLatest(
-      this.facade.selectedYear$,
-      (selectedYear) => (this.year = selectedYear)
-    );
-
-    this.facade.init();
+    this.store.init();
   }
 
   public selectedYearChanged(year: number): void {
-    this.facade.setSelectedYear(year);
-    this.year = year;
+    this.store.setSelectedYear(year);
   }
 
   private loadAvailableYears(): void {

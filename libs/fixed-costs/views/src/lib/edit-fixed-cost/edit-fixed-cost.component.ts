@@ -1,72 +1,68 @@
-import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
+  computed,
+  effect,
   inject,
-  OnInit,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ContainerComponent } from '@finance-fe-nx/core';
 import { FixedCost } from '@finance-fe-nx/finance-api';
-import { FixedCostsFacade } from '@finance-fe-nx/fixed-costs/data';
+import { FixedCostsStore } from '@finance-fe-nx/fixed-costs/data';
 import { ValueInputComponent } from '@finance-fe-nx/shared';
 import { ToastrService } from 'ngx-toastr';
-import { map, Observable, switchMap, takeWhile, tap } from 'rxjs';
 
 @Component({
-    templateUrl: './edit-fixed-cost.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [AsyncPipe, FormsModule, ValueInputComponent]
+  templateUrl: './edit-fixed-cost.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [FormsModule, ValueInputComponent],
 })
-export class EditFixedCostComponent
-  extends ContainerComponent
-  implements OnInit
-{
-  public readonly facade = inject(FixedCostsFacade);
+export class EditFixedCostComponent {
+  readonly store = inject(FixedCostsStore);
   private readonly toastr = inject(ToastrService);
   private readonly router = inject(Router);
   private readonly activatedRoute = inject(ActivatedRoute);
-  private readonly cdr = inject(ChangeDetectorRef);
+
+  private readonly fixedCostId =
+    this.activatedRoute.snapshot.params.fixedCostId;
+
+  private readonly entity = computed(() =>
+    this.store.entities().find((fc) => fc.id === this.fixedCostId),
+  );
 
   public fixedCost: FixedCost | undefined = undefined;
-  public loading = true;
   public initialValue = 0;
 
-  public ngOnInit(): void {
-    this.facade.init();
-    this.facade.resetEdit();
-    this.subscribeTo(this.facade.editError$, (error) => {
-      if (error) {
-        this.toastr.error('Error adding fixed cost');
+  constructor() {
+    this.store.init();
+    this.store.resetEdit();
+
+    effect(() => {
+      if (this.store.editError()) {
+        this.toastr.error('Error editing fixed cost');
       }
     });
-    this.subscribeTo(this.facade.edited$, (edited) => {
-      if (edited) {
+    effect(() => {
+      if (this.store.edited()) {
         this.router.navigate(['/fixed-costs']);
       }
     });
-
-    const fixedCostId = this.activatedRoute.snapshot.params.fixedCostId;
-
-    const getFixedCostById: Observable<FixedCost | undefined> =
-      this.facade.loaded$.pipe(
-        takeWhile(() => this.loading),
-        tap((loaded) => (this.loading = !loaded)),
-        switchMap(() => this.facade.collection$),
-        map((fixedCosts) =>
-          fixedCosts.find((fixedCost) => fixedCost.id === fixedCostId)
-        )
-      );
-
-    this.subscribeTo(getFixedCostById, (fixedCost) => {
-      this.fixedCost = { ...fixedCost };
-      if (this.fixedCost) {
+    effect(() => {
+      const entity = this.entity();
+      if (entity && !this.fixedCost) {
+        this.fixedCost = { ...entity };
         this.initialValue = this.fixedCost.value ?? 0;
       }
-      this.cdr.detectChanges();
     });
+  }
+
+  public saveFixedCost(): void {
+    if (this.fixedCost?.id) {
+      this.store.editFixedCost({
+        id: this.fixedCost.id,
+        fixedCost: this.fixedCost,
+      });
+    }
   }
 }

@@ -1,7 +1,7 @@
 <label for="year">Year</label>
 <select
   name="year"
-  [ngModel]="year"
+  [ngModel]="store.selectedYear()"
   (ngModelChange)="selectedYearChanged($event)"
   class="ml-1"
   >
@@ -16,28 +16,28 @@
   <option value="month">month</option>
   <option value="category">category</option>
 </select>
-@if (facade.loading$ | async) {
+@if (store.loading()) {
   <span>Loading ...</span>
 }
-@if (facade.loadError$ | async) {
+@if (store.loadError()) {
   <span>Error loading entries...</span>
 }
-@if (facade.deleting$ | async) {
+@if (store.deleting()) {
   <span>Deleting...</span>
 }
-@if (facade.deleteError$ | async) {
+@if (store.deleteError()) {
   <span>Error deleting entry...</span>
 }
 @if (
-  (facade.loading$ | async) === false &&
-  (facade.loadError$ | async) === undefined &&
-  (facade.deleting$ | async) === false
+  !store.loading() &&
+  !store.loadError() &&
+  !store.deleting()
   ) {
   <div
     >
     @if (displayType === 'month') {
       <div>
-        @for (month of availableMonths$ | async; track month) {
+        @for (month of availableMonths(); track month) {
           <div class="mt-2">
             <finance-fe-monthly-summary [month]="month"> </finance-fe-monthly-summary>
           </div>
@@ -52,9 +52,9 @@
     <div class="mt-2 mr-2 flex flex-row-reverse">
       <span
         class="text-lg font-bold"
-        [class.income]="total > 0"
-        [class.expense]="total < 0"
-        >{{ total | currency: 'EUR' }}</span
+        [class.income]="store.total() && store.total()! > 0"
+        [class.expense]="store.total() && store.total()! < 0"
+        >{{ store.total() | currency: 'EUR' }}</span
         >
         <span class="font-bold mr-2 text-lg">Total</span>
       </div>

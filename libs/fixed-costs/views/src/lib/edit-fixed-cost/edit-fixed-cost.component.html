@@ -1,17 +1,17 @@
-@if (facade.editing$ | async) {
+@if (store.editing()) {
   <span>Editing...</span>
 }
-@if (loading) {
+@if (!store.loaded()) {
   <span>Loading...</span>
 }
-@if (!fixedCost && !loading) {
+@if (!fixedCost && store.loaded()) {
   <span>No fixed cost with this id</span>
 }
-@if ((facade.editing$ | async) === false && fixedCost) {
+@if (!store.editing() && fixedCost) {
   <form
     #fixedCostForm="ngForm"
     class="max-w-md"
-    (ngSubmit)="facade.editFixedCost(fixedCost)"
+    (ngSubmit)="saveFixedCost()"
     >
     <div>
       <label for="category">Category*</label>

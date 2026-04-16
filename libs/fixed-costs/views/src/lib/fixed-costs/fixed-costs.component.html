@@ -1,19 +1,19 @@
-@if (facade.loading$ | async) {
+@if (store.loading()) {
   <span>Loading ...</span>
 }
-@if (facade.loadError$ | async) {
+@if (store.loadError()) {
   <span>Error loading fixed costs...</span>
 }
-@if (facade.deleting$ | async) {
+@if (store.deleting()) {
   <span>Deleting...</span>
 }
-@if (facade.deleteError$ | async) {
+@if (store.deleteError()) {
   <span>Error deleting fixed cost...</span>
 }
 @if (
-  (facade.loading$ | async) === false &&
-  (facade.loadError$ | async) === undefined &&
-  (facade.deleting$ | async) === false
+  !store.loading() &&
+  !store.loadError() &&
+  !store.deleting()
   ) {
   <div
     >
@@ -34,7 +34,7 @@
         </button>
       </div>
       <div class="pt-4 pb-2 pl-2">
-        @for (category of fixedCostsGroupedByCategory$ | async; track category) {
+        @for (category of fixedCostsGroupedByCategory(); track category) {
           <div
             class="mb-2"
             >

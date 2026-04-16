@@ -1,15 +1,15 @@
-@if (facade.editing$ | async) {
+@if (store.editing()) {
   <span>Editing...</span>
 }
-@if (loading) {
+@if (!store.loaded()) {
   <span>Loading...</span>
 }
-@if (!account && !loading) {
+@if (!account && store.loaded()) {
   <span>No account with this id</span>
 }
-@if ((facade.editing$ | async) === false && account) {
+@if (!store.editing() && account) {
   <form
-    (ngSubmit)="facade.editAccount(account)"
+    (ngSubmit)="saveAccount()"
     #accountForm="ngForm"
     class="max-w-md"
     >

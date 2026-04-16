@@ -1,24 +1,19 @@
-import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ContainerComponent } from '@finance-fe-nx/core';
 import { FixedCost } from '@finance-fe-nx/finance-api';
-import { FixedCostsFacade } from '@finance-fe-nx/fixed-costs/data';
+import { FixedCostsStore } from '@finance-fe-nx/fixed-costs/data';
 import { ValueInputComponent } from '@finance-fe-nx/shared';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-    templateUrl: './add-fixed-cost.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [AsyncPipe, FormsModule, ValueInputComponent]
+  templateUrl: './add-fixed-cost.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [FormsModule, ValueInputComponent],
 })
-export class AddFixedCostComponent
-  extends ContainerComponent
-  implements OnInit
-{
-  public readonly facade = inject(FixedCostsFacade);
+export class AddFixedCostComponent {
+  readonly store = inject(FixedCostsStore);
   private readonly toastr = inject(ToastrService);
   private readonly router = inject(Router);
 
@@ -28,15 +23,15 @@ export class AddFixedCostComponent
     value: 0,
   };
 
-  public ngOnInit(): void {
-    this.facade.resetAdd();
-    this.subscribeTo(this.facade.addError$, (error) => {
-      if (error) {
+  constructor() {
+    this.store.resetAdd();
+    effect(() => {
+      if (this.store.addError()) {
         this.toastr.error('Error adding fixed cost');
       }
     });
-    this.subscribeTo(this.facade.added$, (added) => {
-      if (added) {
+    effect(() => {
+      if (this.store.added()) {
         this.router.navigate(['/fixed-costs']);
       }
     });

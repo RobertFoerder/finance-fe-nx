@@ -1,11 +1,11 @@
-@if (facade.adding$ | async) {
+@if (store.adding()) {
   <span>Adding...</span>
 }
-@if ((facade.adding$ | async) === false) {
+@if (!store.adding()) {
   <form
     #fixedCostForm="ngForm"
     class="max-w-md"
-    (ngSubmit)="facade.addFixedCost(fixedCost)"
+    (ngSubmit)="store.addFixedCost(fixedCost)"
     >
     <div>
       <label for="category">Category*</label>

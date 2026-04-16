@@ -1,24 +1,19 @@
-import { AsyncPipe, CurrencyPipe, DatePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   inject,
   input,
-  OnDestroy,
-  OnInit,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ContainerComponent } from '@finance-fe-nx/core';
-import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
-import { map, Observable } from 'rxjs';
+import { FinanceEntriesStore } from '@finance-fe-nx/summary/data';
 import {
   ConfirmBoxEvokeService,
   IConfirmBoxPublicResponse,
 } from '@costlydeveloper/ngx-awesome-popup';
 import { FinanceEntry } from '@finance-fe-nx/finance-api';
 import { SumUpService } from '@finance-fe-nx/shared';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 interface EntriesPerCategory {
   category: string | undefined;
@@ -30,13 +25,10 @@ interface EntriesPerCategory {
   templateUrl: './monthly-summary.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [AsyncPipe, CurrencyPipe, DatePipe],
+  imports: [CurrencyPipe, DatePipe],
 })
-export class MonthlySummaryComponent
-  extends ContainerComponent
-  implements OnInit, OnDestroy
-{
-  public readonly facade = inject(FinanceEntriesFacade);
+export class MonthlySummaryComponent {
+  readonly store = inject(FinanceEntriesStore);
   private readonly router = inject(Router);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly confirmBox = inject(ConfirmBoxEvokeService);
@@ -44,46 +36,32 @@ export class MonthlySummaryComponent
 
   public month = input(new Date().getMonth());
 
-  private selectedYear = toSignal(this.facade.selectedYear$);
-
-  private monthlyEntries$: Observable<FinanceEntry[]> =
-    this.facade.collection$.pipe(
-      map((entries) => entries.filter((entry) => entry.month === this.month())),
-    );
-
-  public expanded$: Observable<boolean> = this.facade.selectedMonth$.pipe(
-    map((selectedMonth) => selectedMonth === this.month()),
+  readonly expanded = computed(
+    () => this.store.selectedMonth() === this.month(),
   );
 
-  public total = 0;
-  public date = computed<Date>(() => {
+  readonly date = computed<Date>(() => {
     const date = new Date();
-    date.setFullYear(this.selectedYear() as number);
+    date.setFullYear(this.store.selectedYear());
     date.setDate(1);
     date.setMonth(this.month());
     return date;
   });
 
-  public monthlyEntriesGroupedByCategory$: Observable<EntriesPerCategory[]> =
-    this.monthlyEntries$.pipe(
-      map((entries) => this.groupEntriesByCategory(entries)),
-    );
+  private readonly monthlyEntries = computed(() =>
+    this.store.entities().filter((entry) => entry.month === this.month()),
+  );
 
-  public monthlyTotal$: Observable<number | undefined> =
-    this.monthlyEntries$.pipe(
-      map((entries: FinanceEntry[]) => this.sumUp.financeEntries(entries)),
-    );
+  readonly monthlyEntriesGroupedByCategory = computed(() =>
+    this.groupEntriesByCategory(this.monthlyEntries()),
+  );
 
-  public ngOnInit(): void {
-    this.subscribeTo(this.monthlyTotal$, (total) => {
-      if (total) {
-        this.total = total;
-      }
-    });
-  }
+  readonly monthlyTotal = computed(() =>
+    this.sumUp.financeEntries(this.monthlyEntries()),
+  );
 
   public addEntry(category?: string): void {
-    this.facade.setSelectedMonth(this.month());
+    this.store.setSelectedMonth(this.month());
     let queryParams = null;
     if (category) {
       queryParams = { category };
@@ -95,13 +73,8 @@ export class MonthlySummaryComponent
   }
 
   public toggleExpand(): void {
-    this.useLatest(this.expanded$, (expanded) => {
-      let selectedMonth = undefined;
-      if (!expanded) {
-        selectedMonth = this.month();
-      }
-      this.facade.setSelectedMonth(selectedMonth);
-    });
+    const expanded = this.expanded();
+    this.store.setSelectedMonth(expanded ? undefined : this.month());
   }
 
   public deleteEntry(
@@ -116,8 +89,8 @@ export class MonthlySummaryComponent
         'Cancel',
       )
       .subscribe((resp: IConfirmBoxPublicResponse) => {
-        if (resp.success) {
-          this.facade.deleteEntry(id);
+        if (resp.success && id) {
+          this.store.deleteEntry(id);
         }
       });
   }

@@ -1,11 +1,11 @@
-@if (facade.adding$ | async) {
+@if (store.adding()) {
   <span>Adding...</span>
 }
-@if ((facade.adding$ | async) === false) {
+@if (!store.adding()) {
   <form
     #entryForm="ngForm"
     class="max-w-md"
-    (ngSubmit)="facade.addEntry(entry)"
+    (ngSubmit)="store.addEntry(entry)"
     >
     <div>
       <label for="year">Year</label>

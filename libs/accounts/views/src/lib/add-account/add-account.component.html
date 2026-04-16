@@ -1,9 +1,9 @@
-@if (facade.adding$ | async) {
+@if (store.adding()) {
   <span>Adding...</span>
 }
-@if ((facade.adding$ | async) === false) {
+@if (!store.adding()) {
   <form
-    (ngSubmit)="facade.addAccount(account)"
+    (ngSubmit)="store.addAccount(account)"
     #accountForm="ngForm"
     class="max-w-md"
     >

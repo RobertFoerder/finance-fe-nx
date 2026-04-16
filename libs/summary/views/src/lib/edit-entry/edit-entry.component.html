@@ -1,17 +1,17 @@
-@if (facade.editing$ | async) {
+@if (store.editing()) {
   <span>Editing...</span>
 }
-@if (loading) {
+@if (!store.loaded()) {
   <span>Loading...</span>
 }
-@if (!entry && !loading) {
+@if (!entry && store.loaded()) {
   <span>No entry with this id</span>
 }
-@if ((facade.editing$ | async) === false && entry) {
+@if (!store.editing() && entry) {
   <form
     #entryForm="ngForm"
     class="max-w-md"
-    (ngSubmit)="facade.editEntry(entry)"
+    (ngSubmit)="saveEntry()"
     >
     <div>
       <label for="year">Year</label>

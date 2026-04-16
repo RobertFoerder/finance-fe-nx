@@ -1,11 +1,9 @@
-import { AsyncPipe, CurrencyPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { ContainerComponent } from '@finance-fe-nx/core';
+import { CurrencyPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmBoxEvokeService } from '@costlydeveloper/ngx-awesome-popup';
-import { FixedCostsFacade } from '@finance-fe-nx/fixed-costs/data';
+import { FixedCostsStore } from '@finance-fe-nx/fixed-costs/data';
 import { FixedCost } from '@finance-fe-nx/finance-api';
-import { map, Observable } from 'rxjs';
 
 interface FixedCostsPerCategory {
   category: string | undefined;
@@ -13,26 +11,23 @@ interface FixedCostsPerCategory {
 }
 
 @Component({
-    templateUrl: './fixed-costs.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [AsyncPipe, CurrencyPipe]
+  templateUrl: './fixed-costs.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CurrencyPipe],
 })
-export class FixedCostsComponent extends ContainerComponent implements OnInit {
-  public readonly facade = inject(FixedCostsFacade);
+export class FixedCostsComponent {
+  readonly store = inject(FixedCostsStore);
   private readonly router = inject(Router);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly confirmBox = inject(ConfirmBoxEvokeService);
 
-  public total = 0;
+  readonly fixedCostsGroupedByCategory = computed(() =>
+    this.groupFixedCostsByCategory(this.store.entities()),
+  );
 
-  public fixedCostsGroupedByCategory$: Observable<FixedCostsPerCategory[]> =
-    this.facade.collection$.pipe(
-      map((fixedCosts) => this.groupFixedCostsByCategory(fixedCosts))
-    );
-
-  public ngOnInit(): void {
-    this.facade.init();
+  constructor() {
+    this.store.init();
   }
 
   public addFixedCost(category?: string): void {
@@ -48,18 +43,18 @@ export class FixedCostsComponent extends ContainerComponent implements OnInit {
 
   public deleteFixedCost(
     id: string | undefined,
-    description: string | undefined
+    description: string | undefined,
   ): void {
     this.confirmBox
       .danger(
         'Delete fixed cost',
         `Should fixed cost "${description}" really be deleted?`,
         'Yes',
-        'Cancel'
+        'Cancel',
       )
       .subscribe((resp) => {
-        if (resp.success) {
-          this.facade.deleteFixedCost(id);
+        if (resp.success && id) {
+          this.store.deleteFixedCost(id);
         }
       });
   }
@@ -69,7 +64,7 @@ export class FixedCostsComponent extends ContainerComponent implements OnInit {
   }
 
   private groupFixedCostsByCategory(
-    fixedCosts: FixedCost[]
+    fixedCosts: FixedCost[],
   ): FixedCostsPerCategory[] {
     const groupedFixedCosts: FixedCostsPerCategory[] = [];
 

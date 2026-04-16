@@ -1,6 +1,6 @@
 <div class="shadow-lg rounded-md h-auto bg-white flex flex-col p-2">
   <div class="pb-2 pl-2">
-    @for (category of entriesGroupedByCategory$ | async; track category) {
+    @for (category of entriesGroupedByCategory(); track category) {
       <div
         class="mb-2"
         >

@@ -1,10 +1,8 @@
-import { AsyncPipe, CurrencyPipe, DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { ContainerComponent } from '@finance-fe-nx/core';
+import { CurrencyPipe, DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { FinanceEntry } from '@finance-fe-nx/finance-api';
 import { DateService, MonthToDatePipe, SumUpService } from '@finance-fe-nx/shared';
-import { FinanceEntriesFacade } from '@finance-fe-nx/summary/data';
-import { map, Observable } from 'rxjs';
+import { FinanceEntriesStore } from '@finance-fe-nx/summary/data';
 
 interface EntryMonth {
   month: number;
@@ -28,36 +26,25 @@ interface EntryCategory {
 }
 
 @Component({
-    selector: 'finance-fe-category-summary',
-    templateUrl: './category-summary.component.html',
-    styleUrls: ['./category-summary.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [AsyncPipe, CurrencyPipe, DatePipe, MonthToDatePipe]
+  selector: 'finance-fe-category-summary',
+  templateUrl: './category-summary.component.html',
+  styleUrls: ['./category-summary.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CurrencyPipe, DatePipe, MonthToDatePipe],
 })
-export class CategorySummaryComponent
-  extends ContainerComponent
-  implements OnInit
-{
-  private readonly facade = inject(FinanceEntriesFacade);
-  private sumUp = inject(SumUpService);
-  private dateService = inject(DateService);
+export class CategorySummaryComponent {
+  private readonly store = inject(FinanceEntriesStore);
+  private readonly sumUp = inject(SumUpService);
+  private readonly dateService = inject(DateService);
 
-  private availableMonths = 0;
+  private readonly availableMonthsCount = computed(
+    () => this.dateService.getAvailableMonths(this.store.selectedYear()).length,
+  );
 
-  public entriesGroupedByCategory$: Observable<EntryCategory[]> =
-    this.facade.collection$.pipe(
-      map((entries) => this.groupEntriesByCategory(entries))
-    );
-
-  public ngOnInit(): void {
-    this.subscribeTo(
-      this.facade.selectedYear$,
-      (year) =>
-        (this.availableMonths =
-          this.dateService.getAvailableMonths(year).length)
-    );
-  }
+  readonly entriesGroupedByCategory = computed(() =>
+    this.groupEntriesByCategory(this.store.entities()),
+  );
 
   private groupEntriesByCategory(entries: FinanceEntry[]): EntryCategory[] {
     const groupedEntries: EntryCategory[] = [];
@@ -68,7 +55,7 @@ export class CategorySummaryComponent
 
     for (const category of categories) {
       const entriesPerCategory: FinanceEntry[] = entries.filter(
-        (entry) => entry.category?.trim() === category
+        (entry) => entry.category?.trim() === category,
       );
 
       const sum = this.sumUp.financeEntries(entriesPerCategory);
@@ -91,7 +78,7 @@ export class CategorySummaryComponent
   }
 
   private groupEntriesByDescription(
-    entries: FinanceEntry[]
+    entries: FinanceEntry[],
   ): EntryDescription[] {
     const groupedEntries: EntryDescription[] = [];
 
@@ -101,7 +88,7 @@ export class CategorySummaryComponent
 
     for (const description of descriptions) {
       const entriesPerDescription = entries.filter(
-        (entry) => entry.description?.trim() === description
+        (entry) => entry.description?.trim() === description,
       );
 
       const sum = this.sumUp.financeEntries(entriesPerDescription);
@@ -145,13 +132,13 @@ export class CategorySummaryComponent
       return 0;
     }
 
-    return sum / this.availableMonths;
+    return sum / this.availableMonthsCount();
   }
 
   private distinct(
     value: string | undefined,
     index: number,
-    self: (string | undefined)[]
+    self: (string | undefined)[],
   ) {
     return self.indexOf(value) === index;
   }
