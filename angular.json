@@ -115,7 +115,10 @@
           "builder": "@angular-devkit/build-angular:application",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/finance-fe",
+            "outputPath": {
+              "base": "dist/apps/finance-fe",
+              "browser": ""
+            },
             "index": "apps/finance-fe/src/index.html",
             "browser": "apps/finance-fe/src/main.ts",
             "polyfills": ["zone.js"],
